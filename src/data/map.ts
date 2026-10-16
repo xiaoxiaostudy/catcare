@@ -84,7 +84,7 @@ export const MODULES: Module[] = [
       { title: '上呼吸道感染', note: 'cat-flu' },
       { title: '猫瘟', note: 'panleukopenia' },
       { title: '肥胖与糖尿病', note: 'diabetes' },
-      { title: '甲亢', tag: '老年猫' },
+      { title: '甲亢', note: 'hyperthyroidism', tag: '老年猫' },
       { title: '肥厚型心肌病', tag: '老年猫' },
     ],
   },
