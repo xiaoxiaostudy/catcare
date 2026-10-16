@@ -110,6 +110,16 @@ export const SITUATIONS: Situation[] = [
     note: 'panleukopenia',
   },
   {
+    id: 'diabetic',
+    tier: 'now',
+    title: '糖尿病猫：又吐又拉、不吃、虚脱，或打针后像喝醉',
+    signs: '呕吐、腹泻、不吃、虚脱（可能是酮症酸中毒）；或者打胰岛素后虚弱、迷糊、走路像喝醉、抽搐、昏迷（可能是低血糖）',
+    action: '立刻联系兽医。怀疑低血糖时，等待期间可以先给一点葡萄糖浆，但一定还要去医院。',
+    why: 'iCatCare 说糖尿病酮症酸中毒和低血糖都要立刻联系兽医，低血糖会危及生命。',
+    sources: [{ name: 'iCatCare：Diabetes mellitus in cats', url: 'https://icatcare.org/articles/diabetes-mellitus-in-cats' }],
+    note: 'diabetes',
+  },
+  {
     id: 'not-eating',
     tier: 'soon',
     title: '持续不吃东西',

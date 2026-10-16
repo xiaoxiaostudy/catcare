@@ -23,6 +23,7 @@ summary: >-
 | 从窗户、阳台或高处掉下来 | 就算看起来没事，也马上联系兽医 | [意外和异物](/catcare/notes/accidents-foreign-bodies/) |
 | 严重出血、休克、烧伤、眼睛受伤、中暑 | 先做临时处理，马上去 | [送医前的正确做法](/catcare/notes/before-the-vet/) |
 | 小猫又发烧、又吐、又拉、不吃（尤其没打完疫苗的） | 先打电话说明可能是猫瘟，病猫要隔离 | [猫瘟](/catcare/notes/panleukopenia/) |
+| 糖尿病猫：又吐又拉、不吃、虚脱，或打胰岛素后虚弱、像喝醉、抽搐 | 立刻联系兽医；怀疑低血糖可先给一点葡萄糖浆，但一定还要去 | [肥胖与糖尿病](/catcare/notes/diabetes/) |
 
 ## 2. 尽快联系兽医（今天就打电话）
 
@@ -75,7 +76,7 @@ summary: >-
 
 ## 8. 来源
 
-这一页没有新的事实，每一条都来自急症识别区的前十篇笔记，以及后来补充的疾病笔记（如《猫瘟》），原始来源（Cornell、iCatCare、Merck、AVMA、WSAVA、VCA、AAFP 等）见各篇笔记的「来源」一节：
+这一页没有新的事实，每一条都来自急症识别区的前十篇笔记，以及后来补充的疾病笔记（如《猫瘟》《肥胖与糖尿病》），原始来源（Cornell、iCatCare、Merck、AVMA、WSAVA、VCA、AAFP 等）见各篇笔记的「来源」一节：
 
 - [猫的正常生命体征](/catcare/notes/vital-signs/)
 - [怎么数静息呼吸](/catcare/notes/resting-breathing/)
@@ -88,6 +89,7 @@ summary: >-
 - [意外和异物：哪些要马上送医](/catcare/notes/accidents-foreign-bodies/)
 - [送医前的正确做法](/catcare/notes/before-the-vet/)
 - [猫瘟](/catcare/notes/panleukopenia/)
+- [肥胖与糖尿病](/catcare/notes/diabetes/)
 
 ## 9. 存疑点（待问兽医）
 
