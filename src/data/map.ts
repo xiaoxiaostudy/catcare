@@ -111,6 +111,6 @@ export const MODULES: Module[] = [
     id: 'daily-care',
     name: '日常护理',
     blurb: '梳毛、刷牙、剪指甲、猫砂盆',
-    topics: [{ title: '梳毛', note: 'grooming' }, { title: '刷牙', note: 'toothbrushing' }, { title: '剪指甲', note: 'claw-trimming' }, { title: '猫砂盆管理' }],
+    topics: [{ title: '梳毛', note: 'grooming' }, { title: '刷牙', note: 'toothbrushing' }, { title: '剪指甲', note: 'claw-trimming' }, { title: '猫砂盆管理', note: 'litter-box' }],
   },
 ];
