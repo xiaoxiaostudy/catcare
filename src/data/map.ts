@@ -81,7 +81,7 @@ export const MODULES: Module[] = [
       { title: '下泌尿道疾病', note: 'flutd' },
       { title: '慢性肾病', note: 'kidney-disease' },
       { title: '牙周病和口炎', note: 'dental-disease' },
-      { title: '上呼吸道感染' },
+      { title: '上呼吸道感染', note: 'cat-flu' },
       { title: '猫瘟' },
       { title: '肥胖与糖尿病' },
       { title: '甲亢', tag: '老年猫' },
