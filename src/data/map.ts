@@ -57,7 +57,7 @@ export const MODULES: Module[] = [
     topics: [
       { title: '绝育的利弊与时机', note: 'neutering', tag: '优先' },
       { title: '疫苗原理、程序与加强免疫', note: 'vaccines' },
-      { title: '体内外驱虫' },
+      { title: '体内外驱虫', note: 'parasites' },
       { title: '定期体检' },
     ],
   },
