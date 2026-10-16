@@ -40,7 +40,7 @@ export const MODULES: Module[] = [
       { title: '猫的正常生命体征', note: 'vital-signs' },
       { title: '怎么数静息呼吸', note: 'resting-breathing' },
       { title: '吃喝拉撒的正常范围与异常信号', note: 'eating-drinking-elimination' },
-      { title: '猫的体型评分怎么看', tool: 'tools/body-condition/' },
+      { title: '猫的体型评分怎么看', note: 'body-condition', tool: 'tools/body-condition/' },
       { title: '猫很会忍，哪些细微变化要警惕', note: 'subtle-changes' },
       { title: '这些情况别等，立刻就医', note: 'dont-wait' },
       { title: '公猫尿不出：为什么是急事', note: 'urinary-blockage' },
