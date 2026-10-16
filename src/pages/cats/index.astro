@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import CatList from '../../components/cats/CatList';
+import '../../styles/cats.css';
+---
+
+<Base title="我的猫" current="cats" description="记录自家猫每天的状态，找到它自己的正常范围">
+  <div class="wrap narrow cats-page">
+    <p class="eyebrow">我的猫</p>
+    <h1 class="serif">先知道它平时的样子</h1>
+    <p class="lead">每天记一分钟，攒出每只猫自己的正常范围。哪天不一样了，一眼就能看出来。</p>
+    <CatList client:only="preact">
+      <p class="fine" slot="fallback">正在读取这台设备上的记录…</p>
+    </CatList>
+  </div>
+</Base>
