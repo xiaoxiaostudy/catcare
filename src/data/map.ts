@@ -70,7 +70,7 @@ export const MODULES: Module[] = [
       { title: '看懂成分表和营养标注', note: 'food-labels' },
       { title: '干粮、湿粮、自制饮食的利弊', note: 'diet-types' },
       { title: '喂食方式和饮水', note: 'feeding-water' },
-      { title: '肥胖的危害与体重管理' },
+      { title: '肥胖的危害与体重管理', note: 'obesity' },
     ],
   },
   {
