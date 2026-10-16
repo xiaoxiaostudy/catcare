@@ -105,7 +105,7 @@ export const MODULES: Module[] = [
     id: 'life-stages',
     name: '生命阶段',
     blurb: '幼猫、成年猫、老年猫各要注意什么',
-    topics: [{ title: '幼猫和青少年猫' }, { title: '成年猫' }, { title: '老年猫' }],
+    topics: [{ title: '幼猫和青少年猫', note: 'kitten' }, { title: '成年猫' }, { title: '老年猫' }],
   },
   {
     id: 'daily-care',
