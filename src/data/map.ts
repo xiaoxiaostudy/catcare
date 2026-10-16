@@ -95,7 +95,7 @@ export const MODULES: Module[] = [
     topics: [
       { title: '猫的沟通方式与压力信号', note: 'communication-stress' },
       { title: '乱尿', note: 'house-soiling' },
-      { title: '过度舔毛' },
+      { title: '过度舔毛', note: 'over-grooming' },
       { title: '攻击行为' },
       { title: '环境丰容' },
       { title: '多猫家庭' },
