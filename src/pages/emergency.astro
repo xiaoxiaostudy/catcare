@@ -14,7 +14,7 @@ const tiers = (Object.keys(TIERS) as Tier[]).map((t) => ({
 
 <Base title="急症清单" current="emergency" description="猫不对劲时，先判断要不要马上去医院">
   <div class="wrap narrow sos">
-    <p class="eyebrow">急症清单 · 临时版</p>
+    <p class="eyebrow">急症清单</p>
     <h1 class="serif">猫现在怎么了？</h1>
     <p class="lead">从上往下看，找到最像的一条，点开看现在该做什么。<strong>拿不准，就直接打电话给兽医。</strong></p>
 
@@ -75,7 +75,7 @@ const tiers = (Object.keys(TIERS) as Tier[]).map((t) => ({
     ))}
 
     <p class="footnote">
-      这是临时版：只收录了已写好的几篇笔记里「就医红线」明确提到的情况，还不完整。正式的《急症清单》写好、经兽医审核后会替换这一页。没列在这里的情况，不代表不紧急。
+      这一页汇总了急症识别区十篇笔记里的就医红线，还没有经过兽医审核。没列在这里的情况，不代表不紧急。想打印出来贴在家里，用<a href={`${base}notes/emergency-checklist/`}>《急症清单（一页成稿）》</a>。
     </p>
   </div>
 </Base>
