@@ -2,6 +2,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { breathsPerMinute, type Breathing, type DayRecord } from '../../lib/store';
 import { Segmented, Stepper } from './Segmented';
 import { BASE } from './useData';
+import BreathTimer from '../tools/BreathTimer';
 
 interface Props {
   catId: string;
@@ -21,6 +22,7 @@ export function RecordForm({ catId, date, existing, onSave }: Props) {
   const [count, setCount] = useState(existing?.breathing ? String(existing.breathing.count) : '');
   const [seconds, setSeconds] = useState<Breathing['seconds']>(existing?.breathing?.seconds ?? 30);
   const [saved, setSaved] = useState(false);
+  const [timing, setTiming] = useState(false);
 
   // 换了日期或换了猫，表单重新载入那天的记录
   useEffect(() => {
@@ -61,15 +63,33 @@ export function RecordForm({ catId, date, existing, onSave }: Props) {
         <p class="hint">
           等它睡熟、没有在呼噜时，胸口一起一伏算一次。<a href={`${BASE}notes/resting-breathing/`}>怎么数？</a>
         </p>
-        <div class="breath-row">
-          <label class="field inline">
-            <span>数到</span>
-            <input type="number" inputMode="numeric" min="1" max="200" value={count} onInput={(e) => { setCount(e.currentTarget.value); setSaved(false); }} />
-            <span>次，数了</span>
-          </label>
-          <Segmented value={String(seconds)} onChange={(v) => v && setSeconds(Number(v) as Breathing['seconds'])} options={SECONDS} label="数了多久" />
-        </div>
-        {breathing && seconds !== 60 && <p class="calc">= 每分钟 {breathsPerMinute(breathing)} 次</p>}
+        {!timing && (
+          <>
+            <div class="breath-row">
+              <label class="field inline">
+                <span>数到</span>
+                <input type="number" inputMode="numeric" min="1" max="200" value={count} onInput={(e) => { setCount(e.currentTarget.value); setSaved(false); }} />
+                <span>次，数了</span>
+              </label>
+              <Segmented value={String(seconds)} onChange={(v) => v && setSeconds(Number(v) as Breathing['seconds'])} options={SECONDS} label="数了多久" />
+            </div>
+            {breathing && seconds !== 60 && <p class="calc">= 每分钟 {breathsPerMinute(breathing)} 次</p>}
+          </>
+        )}
+        {timing ? (
+          <BreathTimer
+            onDone={(b) => {
+              setCount(String(b.count));
+              setSeconds(b.seconds);
+              setTiming(false);
+              setSaved(false);
+            }}
+          />
+        ) : (
+          <button class="btn small timer-btn" type="button" onClick={() => setTiming(true)}>
+            ⏱ 用计时器数
+          </button>
+        )}
       </fieldset>
 
       <fieldset class="card">
@@ -130,7 +150,9 @@ export function RecordForm({ catId, date, existing, onSave }: Props) {
             <input type="number" inputMode="decimal" step="0.01" min="0" max="20" value={rec.weight ?? ''} onInput={(e) => set('weight', num(e.currentTarget.value))} />
           </label>
           <label class="field">
-            <span class="field-label">体型评分（9 分制，理想 5 分）</span>
+            <span class="field-label">
+              体型评分（9 分制，理想 5 分）<a href={`${BASE}tools/body-condition/?cat=${encodeURIComponent(catId)}`}>对照图</a>
+            </span>
             <select value={rec.bcs ?? ''} onChange={(e) => set('bcs', num(e.currentTarget.value))}>
               <option value="">没记</option>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((v) => (

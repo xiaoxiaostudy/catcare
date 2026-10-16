@@ -13,6 +13,11 @@
   - `src/lib/store.ts`：数据结构、读写、备份导入导出。键名 `catcare:data`；改结构要提高 `VERSION` 并在 `migrate()` 里转换旧数据。
   - `src/lib/baseline.ts`：每只猫自己的正常范围（最近 30 天去掉两头各 10%，满 5 天才算）和当天提醒。提醒只说「和它平时不一样」，并链接到急症清单和笔记里对应的条目，措辞要和笔记一致。
   - 急症页存的兽医电话在 `catcare:contacts`。
+- 互动工具（`src/components/tools/`）：
+  - `BreathTimer`：呼吸计时器。笔记 frontmatter 写 `widget: breath-timer` 就会出现在笔记页「动手试试」里；记录表单里也能打开，数完直接填进表单。
+  - `BodyCondition`：体型评分滑块，页面在 `/tools/body-condition/`。每一分的文字逐条译自 WSAVA 对照表，不要自己改写。地图上的主题可以用 `tool` 字段指向工具页。
+  - 两个工具都用 `SaveToCat` 把结果存进某只猫今天的记录；链接带 `?cat=<id>` 会预先选好那只猫。
+- 已知坑：`.astro` 文件里，条件表达式 `{x && (...)}` 中的 `client:only` 组件不要带 `slot="fallback"` 子元素，会让 Astro 编译器崩溃。
 
 ## 本地预览
 

@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import BodyCondition from '../../components/tools/BodyCondition';
+import '../../styles/cats.css';
+import '../../styles/tools.css';
+
+const WSAVA = 'https://vmc.vet.osu.edu/sites/default/files/documents/wsava-bcs-chart-dogs-cats.pdf';
+---
+
+<Base title="体型评分对照" description="拖动滑块，对照 WSAVA 的 9 分制给猫的体型打分">
+  <div class="wrap narrow tool-page">
+    <p class="eyebrow">动手试试 · 急症识别</p>
+    <h1 class="serif">它现在是几分？</h1>
+    <p class="lead">
+      从上面看它有没有腰身，从侧面看肚子是往上收还是往下垂，再用手摸一摸肋骨。拖动滑块，找到最像的那一分。猫的理想体型是 5 分。
+    </p>
+
+    <BodyCondition client:only="preact">
+      <p class="fine" slot="fallback">正在加载…</p>
+    </BodyCondition>
+
+    <section class="tool-notes">
+      <h2>怎么摸、怎么看</h2>
+      <ul>
+        <li>每月在同一时间评一次，同时称体重，从上面、侧面各拍一张照片，方便以后对比。</li>
+        <li>表里「能看到肋骨」说的是短毛猫；长毛猫看不出来，要用手摸。</li>
+        <li>还在长身体的小猫，评分标准和成年猫是否一样，请问你的兽医。</li>
+      </ul>
+      <p class="fine">
+        来源：<a href={WSAVA} target="_blank" rel="noopener">WSAVA 体型评分表（猫）</a>，中文是逐条翻译，待你核对。上面的猫是示意图，不是按比例画的。《猫的体型评分怎么看》这篇笔记还没写。
+      </p>
+    </section>
+  </div>
+</Base>

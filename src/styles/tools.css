@@ -1,0 +1,359 @@
+/* 互动工具：呼吸计时器、体型评分 */
+
+.tool-page {
+  padding-top: 28px;
+}
+
+.tool-page h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(28px, 6vw, 38px);
+}
+
+.tool-page .lead {
+  margin: 0 0 20px;
+  color: var(--ink-2);
+}
+
+.tool-notes {
+  margin-top: 32px;
+}
+
+.tool-notes h2 {
+  font-size: 19px;
+}
+
+.tool-notes ul {
+  padding-left: 1.3em;
+}
+
+/* 笔记页里的「动手试试」 */
+.try-it {
+  margin: 24px 0;
+  padding: 18px 20px;
+  border: 1.5px dashed color-mix(in srgb, var(--accent) 50%, var(--line));
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.try-title {
+  margin: 0 0 12px;
+  font-size: 19px;
+}
+
+.save-to-cat {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* 呼吸计时器 */
+.breath-timer {
+  display: grid;
+  gap: 14px;
+}
+
+.bt-ready {
+  display: grid;
+  gap: 14px;
+}
+
+.bt-check {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bt-check li::before {
+  content: '✓';
+  margin-right: 8px;
+  color: var(--s-done);
+  font-weight: 700;
+}
+
+.bt-setup {
+  display: grid;
+  gap: 6px;
+}
+
+.bt-start {
+  justify-self: start;
+  min-width: 10em;
+}
+
+.bt-stage {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.bt-dial {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(240px, 70vw);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bt-dial:disabled {
+  cursor: default;
+}
+
+.bt-dial.live:active {
+  transform: scale(0.97);
+}
+
+.bt-dial svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bt-track {
+  fill: none;
+  stroke: color-mix(in srgb, var(--accent) 18%, transparent);
+  stroke-width: 10;
+}
+
+.bt-ring {
+  transition: stroke-dashoffset 0.1s linear;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.bt-count {
+  position: relative;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  animation: bt-pop 0.18s ease-out;
+}
+
+.bt-sub {
+  position: absolute;
+  bottom: 26%;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+@keyframes bt-pop {
+  from {
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bt-count {
+    animation: none;
+  }
+}
+
+.bt-actions {
+  justify-content: center;
+}
+
+.bt-result {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.bt-result .field.inline input {
+  width: 5em;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  text-align: center;
+}
+
+.bt-bpm {
+  margin: 0;
+  font-size: 18px;
+}
+
+.bt-bpm b {
+  color: var(--accent);
+  font-size: 30px;
+}
+
+.record-form .breath-timer {
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.timer-btn {
+  justify-self: start;
+}
+
+/* 体型评分 */
+.bcs {
+  display: grid;
+  gap: 16px;
+}
+
+.bcs-views {
+  --c: var(--warn);
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: end;
+  gap: 8px;
+  padding: 16px 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.bcs-views.ideal {
+  --c: var(--s-done);
+}
+
+.bcs-views figure {
+  margin: 0;
+  text-align: center;
+}
+
+.bcs-views figcaption {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.bcs-svg {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+}
+
+.bcs-body {
+  fill: color-mix(in srgb, var(--c) 22%, var(--surface));
+  stroke: var(--c);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  transition: d 0.25s ease;
+}
+
+.bcs-tail {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.bcs-rib {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+
+.bcs-ground {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.bcs-slider {
+  display: grid;
+  gap: 4px;
+}
+
+.bcs-slider input[type='range'] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+/* 数字和滑块的停靠点对齐：两端各留半个滑块宽度 */
+.bcs-scale {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1px;
+}
+
+.bcs-scale button {
+  width: 18px;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bcs-scale button.on {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.bcs-zones {
+  display: grid;
+  grid-template-columns: 4fr 1fr 4fr;
+  gap: 3px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.bcs-zones span {
+  padding: 2px 0;
+  border-top: 3px solid var(--warn);
+  color: var(--muted);
+}
+
+.bcs-zones .ideal {
+  border-color: var(--s-done);
+}
+
+.bcs-card {
+  --c: var(--warn);
+  padding: 14px 18px;
+  border-left: 5px solid var(--c);
+  border-radius: var(--radius);
+  background: var(--warn-soft);
+}
+
+.bcs-card.ideal {
+  --c: var(--s-done);
+  background: color-mix(in srgb, var(--s-done) 12%, var(--surface));
+}
+
+.bcs-score {
+  margin: 0 0 6px;
+  color: var(--ink-2);
+}
+
+.bcs-score b {
+  color: var(--ink);
+  font-size: 30px;
+}
+
+.bcs-score .pill {
+  margin-left: 6px;
+  background: var(--c);
+  color: #fff;
+  vertical-align: 6px;
+}
+
+.bcs-card ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.bt-result > .btn {
+  justify-self: start;
+}
