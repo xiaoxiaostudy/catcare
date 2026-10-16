@@ -64,7 +64,7 @@ Cornell 说导致猫肥胖的一大原因是"自由采食"，也就是食盆里�
 
 - **担心猫太胖：联系兽医**（iCatCare）。
 - **想给猫减重：先问兽医，不要自己突然减少食物。**突然限食会让猫生病；减得太快可能引起脂肪肝，这是一种可能致命的肝病（iCatCare）。
-- 减重要慢慢来，严重超重的猫可能要一年才能回到理想体型（iCatCare）。
+- 减重要慢慢来：Cornell 的兽医建议大约每周减体重的 1% 到 2%；严重超重的猫可能要一年才能回到理想体型（iCatCare）。详见《肥胖的危害与体重管理》。
 
 ## 6. 家里能做什么
 
@@ -92,7 +92,7 @@ Cornell 说导致猫肥胖的一大原因是"自由采食"，也就是食盆里�
 - [WSAVA：猫肌肉状况评分表（Muscle Condition Score）](https://wsava.org/wp-content/uploads/2020/01/Muscle-Condition-Score-Chart-for-Cats.pdf)，Tufts 大学 2014 年版权。建议分级：A。
 - [Cornell Feline Health Center：Obesity](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/obesity)。建议分级：A。
 - [International Cat Care：Obesity in cats](https://icatcare.org/articles/obesity-in-cats)，2025 年 9 月 26 日更新。建议分级：A。
-- 素材来自 Kimi 整理的知识库卡片（02「BCS 体况评分」「猫胖不是可爱是病」），以上事实已于 2026-10-16 回原网页核对。卡片说"4–5 分都算理想"，和 WSAVA 原表不一致，这里按原表写；卡片说的"每周减 1–2%"我没在 iCatCare 和 Cornell 原文里找到，没有采用。
+- 素材来自 Kimi 整理的知识库卡片（02「BCS 体况评分」「猫胖不是可爱是病」），以上事实已于 2026-10-16 回原网页核对。卡片说"4–5 分都算理想"，和 WSAVA 原表不一致，这里按原表写；卡片说的"每周减 1–2%"出自 Cornell 肥胖页（第一次核对时漏看了，2026-10-16 补上）。
 
 ## 10. 存疑点（待问兽医）
 
