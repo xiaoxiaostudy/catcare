@@ -92,7 +92,7 @@ AVMA 的清单里还有活性炭和 3% 双氧水（催吐用），并注明只�
 - [International Cat Care：Taking your cat to the vet](https://icatcare.org/articles/taking-your-cat-to-the-vet)，2025 年 9 月 26 日更新。建议分级：A。
 - [Cornell Feline Health Center：Common Cat Hazards](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/common-cat-hazards)。建议分级：A。
 - 素材部分来自 Kimi 整理的知识库卡片（04「航空箱训练」「低应激就医」、07「带猫出门不崩溃」），这几张卡片的来源 catfriendly.com 拒绝了自动访问，我没法核对，所以航空箱部分改用 iCatCare 原文。急救部分是我另外查的 AVMA 原文。2026-10-16 核对。
-- 没有采用：AVMA 页面里的人工呼吸、心脏按压、噎住时把猫抓着大腿甩动的做法，光看文字很难做对，做错可能伤到猫，见存疑点。
+- 没有采用：AVMA 页面里的人工呼吸、心脏按压、噎住时把猫抓着大腿甩动的做法，光看文字很难做对，做错可能伤到猫。想学的话，请兽医当面教。
 
 ## 9. 存疑点（待问兽医）
 
