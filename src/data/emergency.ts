@@ -65,6 +65,18 @@ export const SITUATIONS: Situation[] = [
     note: 'household-toxins',
   },
   {
+    id: 'seizure',
+    tier: 'now',
+    title: '抽搐',
+    signs: '24 小时内抽了 2 次或以上，一次超过 5 分钟，或者停不下来',
+    action: '立刻去兽医院。抽的时候把周围会撞到的东西挪开，用手表计时；不要按住它，手不要靠近它的嘴。只抽了一次、很快停了，之后也要联系兽医。',
+    why: 'AVMA 的宠物急救指南把这三种情况列为要立刻送医的抽搐。抽搐也是 Cornell 列出的中毒信号之一。',
+    sources: [
+      { name: 'AVMA：First aid tips for pet owners', url: 'https://www.avma.org/resources-tools/pet-owners/emergencycare/first-aid-tips-pet-owners' },
+    ],
+    note: 'before-the-vet',
+  },
+  {
     id: 'fall',
     tier: 'now',
     title: '从窗户、阳台或高处掉下来',
