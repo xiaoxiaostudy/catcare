@@ -43,7 +43,7 @@ export const MODULES: Module[] = [
       { title: '猫的体型评分怎么看', tool: 'tools/body-condition/' },
       { title: '猫很会忍，哪些细微变化要警惕', note: 'subtle-changes' },
       { title: '这些情况别等，立刻就医' },
-      { title: '公猫尿不出：为什么是急事' },
+      { title: '公猫尿不出：为什么是急事', note: 'urinary-blockage' },
       { title: '家里哪些东西对猫有毒' },
       { title: '意外和异物：哪些要马上送医' },
       { title: '送医前的正确做法' },
