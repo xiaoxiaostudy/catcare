@@ -55,7 +55,7 @@ export const MODULES: Module[] = [
     name: '预防医疗',
     blurb: '绝育、疫苗、驱虫、体检',
     topics: [
-      { title: '绝育的利弊与时机', tag: '优先' },
+      { title: '绝育的利弊与时机', note: 'neutering', tag: '优先' },
       { title: '疫苗原理、程序与加强免疫' },
       { title: '体内外驱虫' },
       { title: '定期体检' },
