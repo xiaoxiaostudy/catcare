@@ -5,7 +5,7 @@ const KINDS = [
   [/家里能做什么/, 'todo'],
   [/常见误区/, 'myths'],
   [/国内差异/, 'local'],
-  [/来源/, 'sources'],
+  [/^来源/, 'sources'],
   [/存疑点/, 'questions'],
   [/我家猫/, 'mycat'],
 ];
@@ -33,10 +33,10 @@ export default function rehypeNoteSections() {
     let current = null;
     for (const node of tree.children) {
       if (node.type === 'element' && node.tagName === 'h2') {
-        const title = text(node);
+        // 去掉标题前的序号，比如「4. 」，再按标题判断这一节是什么
+        const title = text(node).replace(/^\d+\.\s*/, '');
         const kind = KINDS.find(([re]) => re.test(title))?.[1] || 'plain';
-        // 去掉标题前的序号，比如「4. 」
-        node.children = [{ type: 'text', value: title.replace(/^\d+\.\s*/, '') }];
+        node.children = [{ type: 'text', value: title }];
         if (COLLAPSED.has(kind)) {
           current = {
             type: 'element',

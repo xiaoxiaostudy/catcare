@@ -2,6 +2,9 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { MODULES } from '../../data/map';
+import BreathTimer from '../../components/tools/BreathTimer';
+import '../../styles/cats.css';
+import '../../styles/tools.css';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
@@ -44,6 +47,13 @@ const date = note.data.date.toISOString().slice(0, 10);
       <p class="takeaway-label">一句话结论</p>
       <p class="takeaway-text">{note.data.summary}</p>
     </aside>
+
+    {note.data.widget === 'breath-timer' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：现在就数一次</h2>
+        <BreathTimer client:only="preact" />
+      </section>
+    )}
 
     {toc.length > 0 && (
       <nav class="toc" aria-label="本篇目录">

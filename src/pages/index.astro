@@ -10,7 +10,7 @@ const regions = MODULES.map((m) => {
   const topics = m.topics.map((t) => {
     const note = t.note ? notes.get(t.note) : undefined;
     const status: Status = note ? note.data.status : '未开始';
-    return { ...t, status, href: note ? `${base}notes/${note.id}/` : undefined };
+    return { ...t, status, href: note ? `${base}notes/${note.id}/` : t.tool ? `${base}${t.tool}` : undefined };
   });
   const written = topics.filter((t) => t.status !== '未开始').length;
   return { ...m, topics, written };
@@ -99,6 +99,7 @@ function trailPath(n: number) {
                     <span class="stop-title">{t.title}</span>
                     <span class="stop-meta">
                       {t.status !== '未开始' && <span class="pill status" data-status={t.status}>{t.status}</span>}
+                      {t.tool && !t.note && <span class="pill tool">互动工具</span>}
                       {t.tag && <span class="pill tag">{t.tag}</span>}
                     </span>
                   </span>
@@ -374,6 +375,11 @@ function trailPath(n: number) {
 
   .stop-meta:empty {
     display: none;
+  }
+
+  .tool {
+    background: var(--calm-soft);
+    color: var(--calm);
   }
 
   .tag {
