@@ -1,0 +1,389 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITUATIONS, TIERS, type Tier } from '../data/emergency';
+
+const base = import.meta.env.BASE_URL;
+const notes = new Map((await getCollection('notes')).map((n) => [n.id, n.data.title]));
+const tiers = (Object.keys(TIERS) as Tier[]).map((t) => ({
+  id: t,
+  ...TIERS[t],
+  items: SITUATIONS.filter((s) => s.tier === t),
+}));
+---
+
+<Base title="急症清单" current="emergency" description="猫不对劲时，先判断要不要马上去医院">
+  <div class="wrap narrow sos">
+    <p class="eyebrow">急症清单 · 临时版</p>
+    <h1 class="serif">猫现在怎么了？</h1>
+    <p class="lead">从上往下看，找到最像的一条，点开看现在该做什么。<strong>拿不准，就直接打电话给兽医。</strong></p>
+
+    <section class="contacts" data-contacts>
+      <div class="contact-buttons" data-contact-buttons hidden></div>
+      <details class="contact-edit" data-contact-edit>
+        <summary data-contact-summary>先存好兽医和急诊电话，急的时候一点就能打</summary>
+        <form data-contact-form>
+          <label>
+            <span>我的兽医</span>
+            <input name="vetName" placeholder="医院或医生名字" autocomplete="off" />
+            <input name="vetPhone" type="tel" placeholder="电话" autocomplete="off" />
+          </label>
+          <label>
+            <span>24 小时急诊</span>
+            <input name="erName" placeholder="医院名字" autocomplete="off" />
+            <input name="erPhone" type="tel" placeholder="电话" autocomplete="off" />
+          </label>
+          <p class="fine">只保存在这台设备的浏览器里，不会上传。</p>
+          <button type="submit">保存</button>
+        </form>
+      </details>
+    </section>
+
+    {tiers.map((tier) => (
+      <section class="tier" data-tier={tier.id}>
+        <header class="tier-head">
+          <h2>{tier.label}</h2>
+          <p>{tier.hint}</p>
+        </header>
+        {tier.items.map((s) => (
+          <details class="case" id={s.id}>
+            <summary>
+              <span class="case-title">{s.title}</span>
+              <span class="case-signs">{s.signs}</span>
+            </summary>
+            <div class="case-body">
+              <p class="do"><span>现在做什么</span>{s.action}</p>
+              <p class="why">{s.why}</p>
+              <p class="refs">
+                来源：{s.sources.map((src, i) => (
+                  <>
+                    {i > 0 && '；'}
+                    {src.url ? <a href={src.url} target="_blank" rel="noopener">{src.name}</a> : src.name}
+                  </>
+                ))}
+                <br />
+                详见笔记：<a href={`${base}notes/${s.note}/`}>{notes.get(s.note)}</a>
+              </p>
+            </div>
+          </details>
+        ))}
+      </section>
+    ))}
+
+    <p class="footnote">
+      这是临时版：只收录了已写好的几篇笔记里「就医红线」明确提到的情况，还不完整。正式的《急症清单》写好、经兽医审核后会替换这一页。没列在这里的情况，不代表不紧急。
+    </p>
+  </div>
+</Base>
+
+<script>
+  const KEY = 'catcare:contacts';
+  type Contacts = { vetName?: string; vetPhone?: string; erName?: string; erPhone?: string };
+
+  function load(): Contacts {
+    try {
+      return JSON.parse(localStorage.getItem(KEY) || '{}');
+    } catch {
+      return {};
+    }
+  }
+
+  function save(c: Contacts) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(c));
+    } catch {
+      /* 隐私模式下存不了，就只在本次页面里显示 */
+    }
+  }
+
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]')!;
+  const buttons = document.querySelector<HTMLElement>('[data-contact-buttons]')!;
+  const edit = document.querySelector<HTMLDetailsElement>('[data-contact-edit]')!;
+  const summary = document.querySelector<HTMLElement>('[data-contact-summary]')!;
+
+  function render(c: Contacts) {
+    for (const [k, v] of Object.entries(c)) {
+      const input = form.elements.namedItem(k) as HTMLInputElement | null;
+      if (input) input.value = v ?? '';
+    }
+    buttons.replaceChildren();
+    const rows: [string, string | undefined, string | undefined, string][] = [
+      ['急诊', c.erName, c.erPhone, 'er'],
+      ['兽医', c.vetName, c.vetPhone, 'vet'],
+    ];
+    for (const [label, name, phone, kind] of rows) {
+      if (!phone) continue;
+      const a = document.createElement('a');
+      a.href = `tel:${phone.replace(/[^\d+]/g, '')}`;
+      a.className = `call call-${kind}`;
+      const small = document.createElement('small');
+      small.textContent = `打给${label}`;
+      const strong = document.createElement('strong');
+      strong.textContent = name || phone;
+      a.append(small, strong);
+      buttons.append(a);
+    }
+    const has = buttons.childElementCount > 0;
+    buttons.hidden = !has;
+    summary.textContent = has ? '修改电话' : '先存好兽医和急诊电话，急的时候一点就能打';
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form)) as Contacts;
+    save(data);
+    render(data);
+    edit.open = false;
+  });
+
+  render(load());
+
+  // 从别处链接到某一条时，自动展开
+  const target = location.hash && document.querySelector<HTMLDetailsElement>(`details${CSS.escape(location.hash)}`);
+  if (target) target.open = true;
+</script>
+
+<style>
+  .sos {
+    padding-top: 28px;
+  }
+
+  h1 {
+    margin: 6px 0 8px;
+    font-size: clamp(30px, 6vw, 40px);
+  }
+
+  .lead {
+    margin: 0 0 20px;
+    color: var(--ink-2);
+  }
+
+  .lead strong {
+    color: var(--ink);
+  }
+
+  /* 电话 */
+  .contacts {
+    margin-bottom: 28px;
+  }
+
+  .contact-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .contact-buttons :global(.call) {
+    display: grid;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .contact-buttons :global(.call small) {
+    opacity: 0.85;
+  }
+
+  .contact-buttons :global(.call strong) {
+    overflow: hidden;
+    font-size: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .contact-buttons :global(.call-er) {
+    background: var(--danger-fill);
+  }
+
+  .contact-buttons :global(.call-vet) {
+    background: var(--calm);
+  }
+
+  .contact-edit {
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .contact-edit summary {
+    padding: 12px 16px;
+    color: var(--ink-2);
+    cursor: pointer;
+  }
+
+  .contact-edit form {
+    display: grid;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .contact-edit label {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .contact-edit label span {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .contact-edit input {
+    min-width: 0;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .contact-edit button {
+    justify-self: start;
+    padding: 8px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .fine {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* 分级 */
+  .tier {
+    --c: var(--calm);
+    --c-soft: var(--calm-soft);
+    margin-top: 24px;
+  }
+
+  .tier[data-tier='now'] {
+    --c: var(--danger);
+    --c-soft: var(--danger-soft);
+  }
+
+  .tier[data-tier='soon'] {
+    --c: var(--warn);
+    --c-soft: var(--warn-soft);
+  }
+
+  .tier-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    border-left: 5px solid var(--c);
+  }
+
+  .tier-head h2 {
+    margin: 0;
+    color: var(--c);
+    font-size: 21px;
+  }
+
+  .tier-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .case {
+    margin-bottom: 10px;
+    border: 1px solid color-mix(in srgb, var(--c) 30%, var(--line));
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .case[open] {
+    background: var(--c-soft);
+  }
+
+  .case summary {
+    display: grid;
+    gap: 2px;
+    padding: 14px 44px 14px 16px;
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .case summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .case summary::after {
+    content: '+';
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    color: var(--c);
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .case[open] summary::after {
+    content: '−';
+  }
+
+  .case-title {
+    font-size: 17px;
+    font-weight: 650;
+  }
+
+  .case-signs {
+    color: var(--ink-2);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .case-body {
+    padding: 0 16px 14px;
+  }
+
+  .do {
+    margin: 4px 0 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--surface);
+    font-weight: 600;
+  }
+
+  .do span {
+    display: block;
+    color: var(--c);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .why {
+    margin: 0 0 8px;
+    color: var(--ink-2);
+    font-size: 15px;
+  }
+
+  .refs {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+
+  .footnote {
+    margin-top: 32px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    color: var(--ink-2);
+    font-size: 14px;
+  }
+</style>
