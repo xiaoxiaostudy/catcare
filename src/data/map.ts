@@ -68,7 +68,7 @@ export const MODULES: Module[] = [
     topics: [
       { title: '猫是肉食动物：蛋白质、水分、牛磺酸', note: 'carnivore' },
       { title: '看懂成分表和营养标注', note: 'food-labels' },
-      { title: '干粮、湿粮、自制饮食的利弊' },
+      { title: '干粮、湿粮、自制饮食的利弊', note: 'diet-types' },
       { title: '喂食方式和饮水' },
       { title: '肥胖的危害与体重管理' },
     ],
