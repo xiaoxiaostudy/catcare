@@ -5,8 +5,8 @@
 }
 
 .cats-page h1 {
-  margin: 4px 0 8px;
-  font-size: clamp(28px, 6vw, 38px);
+  margin: 4px 0 10px;
+  font-size: clamp(38px, 7vw, 56px);
 }
 
 .cats-page .lead {
@@ -156,9 +156,9 @@
   border-radius: 50%;
   background: var(--accent-soft);
   color: var(--accent);
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 700;
+  font-family: var(--hand);
+  font-size: 26px;
+  font-weight: 400;
 }
 
 .avatar.big {

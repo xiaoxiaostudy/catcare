@@ -46,7 +46,7 @@ export default function CatList() {
                   <span class="cat-card-main">
                     <span class="cat-name">{cat.name}</span>
                     <span class="cat-meta">
-                      {[cat.breed, cat.sex + '猫', cat.neutered ? '已绝育' : '未绝育', ageText(cat.birth)].filter(Boolean).join(' · ')}
+                      {[cat.breed, cat.sex + '猫', cat.neutered ? '已绝育' : '未绝育', ageText(cat.birth)].filter(Boolean).join('，')}
                     </span>
                     <span class="cat-status">
                       {alerts.length > 0 ? (
@@ -60,7 +60,7 @@ export default function CatList() {
                     </span>
                   </span>
                   <span class="chev" aria-hidden="true">
-                    →
+                    ›
                   </span>
                 </a>
               </li>

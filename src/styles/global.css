@@ -1,54 +1,65 @@
+/* 配色取自一只三花猫：白毛纸面、玳瑁黑文字和线稿、橘毛表示学会、肉垫粉表示下一篇和选中、
+   猫眼绿表示兽医审核过、急症红只给急症用。手写体（龙藏体）只用在标题和标注上，正文和急症页不用。 */
 :root {
-  --bg: #f8f4ec;
-  --surface: #fffdf8;
-  --surface-2: #f2ece1;
-  --ink: #2b2520;
-  --ink-2: #5c534b;
-  --muted: #8a7f74;
-  --line: #e6ddcf;
-  --accent: #c0672f;
-  --accent-soft: #f6e3d3;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f4f3f5;
+  --ink: #2c2a2e;
+  --ink-2: #4f4c53;
+  --muted: #6e6a72;
+  --line: #e6e3e8;
+  --accent: #b4570f;
+  --accent-soft: #fdeee1;
 
-  --s-todo: #cfc5b8;
-  --s-draft: #d9973f;
-  --s-done: #4f8a5b;
-  --s-reviewed: #2f6f8f;
+  --ginger: #e8822f;
+  --tortie: #2c2a2e;
+  --pad: #f3a9a0;
+  --on-pad: #2c2a2e;
+  --eye: #6f8a2a;
 
-  --danger: #b8392a;
-  --danger-soft: #fbe8e3;
-  --danger-fill: #b8392a;
+  --s-todo: #d6d3da;
+  --s-draft: #e8a35f;
+  --s-done: #7d9a34;
+  --s-reviewed: #6f8a2a;
+
+  --danger: #d3263a;
+  --danger-soft: #fdeaec;
+  --danger-fill: #d3263a;
   --warn: #a8661a;
   --warn-soft: #fbefdc;
   --calm: #3f6f8a;
   --calm-soft: #e5eff4;
 
-  --radius: 14px;
-  --shadow: 0 1px 2px rgb(60 40 20 / 0.06), 0 4px 16px rgb(60 40 20 / 0.06);
+  --radius: 12px;
+  --shadow: 0 1px 2px rgb(44 42 46 / 0.06), 0 4px 14px rgb(44 42 46 / 0.06);
   --sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
-  --serif: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', STSong, serif;
+  --hand: 'Long Cang', 'Kaiti SC', STKaiti, KaiTi, cursive;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1b1815;
-    --surface: #24201c;
-    --surface-2: #2d2823;
-    --ink: #efe8de;
-    --ink-2: #c9bfb2;
-    --muted: #978b7e;
-    --line: #3a332c;
-    --accent: #e08a52;
-    --accent-soft: #3a2a1f;
+    --bg: #1f1d22;
+    --surface: #26242a;
+    --surface-2: #2e2c33;
+    --ink: #efece8;
+    --ink-2: #cfcad3;
+    --muted: #a29da6;
+    --line: #3a373e;
+    --accent: #f0a060;
+    --accent-soft: #3a2b20;
 
-    --s-todo: #4a423a;
-    --s-draft: #e0a352;
-    --s-done: #6fae7b;
-    --s-reviewed: #5aa3c7;
+    --ginger: #f0913f;
+    --eye: #a9c25a;
 
-    --danger: #f07a68;
-    --danger-soft: #3b201b;
-    --danger-fill: #c2412d;
+    --s-todo: #4a464f;
+    --s-draft: #f0a860;
+    --s-done: #a9c25a;
+    --s-reviewed: #a9c25a;
+
+    --danger: #ff6b78;
+    --danger-soft: #3a1d22;
+    --danger-fill: #d3263a;
     --warn: #e2a253;
     --warn-soft: #382a19;
     --calm: #7fb3cf;
@@ -69,6 +80,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -81,6 +96,11 @@ body {
 a {
   color: var(--accent);
   text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ginger);
+  outline-offset: 3px;
 }
 
 .wrap {
@@ -96,10 +116,9 @@ a {
 /* 顶栏 */
 .site-header {
   position: sticky;
-  top: 0;
   z-index: 10;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(8px);
+  top: env(safe-area-inset-top, 0px);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
 
@@ -119,6 +138,10 @@ a {
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.brand-paw {
+  fill: var(--ginger);
 }
 
 .site-nav {
@@ -178,8 +201,12 @@ h3 {
   line-height: 1.35;
 }
 
-.serif {
-  font-family: var(--serif);
+/* 手写标题：页面大标题、区域名、猫身上的标注 */
+.hand {
+  font-family: var(--hand);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
 }
 
 .eyebrow {

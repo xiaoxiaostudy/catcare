@@ -40,7 +40,7 @@ const reviewed = note.data.status === '已审核';
       <span>{String(moduleIndex + 1).padStart(2, '0')} {mod.name}</span>
     </nav>
 
-    <h1 class="serif">{note.data.title}</h1>
+    <h1 class="hand">{note.data.title}</h1>
     <p class="meta">
       <span class:list={['trust', { reviewed }]}>{reviewed ? '兽医审核过' : '整理自公开的兽医资料，还没经兽医审核'}</span>
       <span>更新于 {date}</span>
@@ -102,7 +102,7 @@ const reviewed = note.data.status === '已审核';
         </a>
       ) : (
         <a class="pager-link next" href={base}>
-          <span class="eyebrow">回到地图 →</span>
+          <span class="eyebrow">回到地图</span>
           <span>看看下一块要点亮哪里</span>
         </a>
       )}
@@ -149,8 +149,8 @@ const reviewed = note.data.status === '已审核';
   }
 
   h1 {
-    margin: 10px 0 8px;
-    font-size: clamp(28px, 5.5vw, 38px);
+    margin: 12px 0 10px;
+    font-size: clamp(38px, 7vw, 56px);
   }
 
   .meta {
@@ -180,8 +180,7 @@ const reviewed = note.data.status === '已审核';
 
   .takeaway-text {
     margin: 0;
-    font-family: var(--serif);
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.75;
   }
 
@@ -270,13 +269,13 @@ const reviewed = note.data.status === '已审核';
   }
 
   .learn.on .learn-btn {
-    border-color: #d98a3d;
-    background: color-mix(in srgb, #d98a3d 18%, var(--surface));
+    border-color: var(--ginger);
+    background: color-mix(in srgb, var(--ginger) 18%, var(--surface));
     color: var(--ink);
   }
 
   .learn.on .learn-paw {
-    fill: #d98a3d;
+    fill: var(--ginger);
     stroke: none;
     transform: rotate(-12deg) scale(1.15);
   }

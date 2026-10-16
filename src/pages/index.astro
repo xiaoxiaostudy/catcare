@@ -22,57 +22,45 @@ const availableCount = all.filter((t) => t.note).length;
 const firstNote = all.find((t) => t.note)!;
 const currentId = regions.find((r) => r.available > 0)?.id ?? regions[0].id;
 
-// 三花猫：七个区域是猫身上的七块花色。坐标都在 viewBox="-150 0 740 470" 里，
-// 猫本身占 x 84–392；左右两边留给区域名。
+// 三花猫：七个区域是猫身上的七块花色。坐标都在 viewBox="-175 0 800 480" 里，
+// 猫本身占 x 84–392；左右两边留给手写的区域名。
 // path 是花色形状（会被猫的轮廓裁掉），top/bottom 是花色在猫身上看得见的上下边，
 // 学会了多少就从 bottom 往上填多少；a 是引线在花色上的起点，l 是名字的位置。
 type Patch = { where: string; color: 'o' | 'k'; path: string; top: number; bottom: number; side: 'L' | 'R'; a: [number, number]; l: [number, number]; elbow?: [number, number] };
 const CALICO: Record<string, Patch> = {
-  recognize: { where: '头顶和左耳', color: 'o', path: 'M100 20 L205 20 C210 80 196 128 160 146 C128 160 104 140 100 20 Z', top: 34, bottom: 150, side: 'L', a: [140, 104], l: [52, 70] },
+  recognize: { where: '头顶和左耳', color: 'o', path: 'M100 20 L205 20 C210 80 196 128 160 146 C128 160 104 140 100 20 Z', top: 34, bottom: 150, side: 'L', a: [140, 100], l: [52, 70] },
   prevention: { where: '右耳和右脸', color: 'k', path: 'M222 64 C252 30 310 24 312 90 C316 160 292 196 254 186 C228 170 222 120 222 64 Z', top: 34, bottom: 190, side: 'R', a: [262, 116], l: [408, 90] },
-  nutrition: { where: '胸口', color: 'o', path: 'M118 214 C150 202 186 218 190 254 C192 292 160 312 126 302 C100 282 98 234 118 214 Z', top: 206, bottom: 306, side: 'L', a: [132, 252], l: [52, 236] },
-  diseases: { where: '右边身子', color: 'k', path: 'M252 222 C300 212 330 282 320 342 C302 384 262 374 246 334 C234 294 230 244 252 222 Z', top: 214, bottom: 378, side: 'R', a: [284, 270], l: [408, 200] },
-  behavior: { where: '左后腿', color: 'o', path: 'M92 318 C122 308 152 330 152 362 C150 398 120 414 92 404 Z', top: 312, bottom: 412, side: 'L', a: [112, 362], l: [52, 372] },
-  'life-stages': { where: '右前爪', color: 'k', path: 'M200 412 A32 20 0 1 0 264 412 A32 20 0 1 0 200 412 Z', top: 398, bottom: 426, side: 'R', a: [244, 416], l: [408, 440], elbow: [300, 440] },
-  'daily-care': { where: '尾巴', color: 'o', path: 'M330 250 L420 250 L420 440 L300 440 C340 390 372 330 330 250 Z', top: 262, bottom: 410, side: 'R', a: [380, 326], l: [408, 326] },
+  nutrition: { where: '胸口', color: 'o', path: 'M110 250 C140 238 176 252 182 286 C186 318 158 334 124 326 C100 310 96 266 110 250 Z', top: 244, bottom: 330, side: 'L', a: [126, 262], l: [52, 222] },
+  diseases: { where: '右边身子', color: 'k', path: 'M252 236 C300 226 330 292 320 348 C302 388 262 378 246 340 C234 300 230 256 252 236 Z', top: 230, bottom: 382, side: 'R', a: [284, 286], l: [408, 216] },
+  behavior: { where: '左后腿', color: 'o', path: 'M92 340 C122 330 152 350 152 378 C150 404 120 416 92 408 Z', top: 336, bottom: 412, side: 'L', a: [112, 372], l: [52, 400] },
+  'life-stages': { where: '右前爪', color: 'k', path: 'M200 412 A32 20 0 1 0 264 412 A32 20 0 1 0 200 412 Z', top: 398, bottom: 426, side: 'R', a: [244, 416], l: [408, 452], elbow: [300, 452] },
+  'daily-care': { where: '尾巴', color: 'o', path: 'M330 250 L420 250 L420 440 L300 440 C340 390 372 330 330 250 Z', top: 262, bottom: 410, side: 'R', a: [380, 334], l: [408, 334] },
 };
 const calico = regions.map((r) => {
   const p = CALICO[r.id];
-  const tipX = p.side === 'R' ? p.l[0] - 8 : p.l[0] + 8;
+  const tipX = p.side === 'R' ? p.l[0] - 10 : p.l[0] + 10;
   const line = [p.a, ...(p.elbow ? [p.elbow] : []), [tipX, p.l[1]]].map((xy) => xy.join(',')).join(' ');
-  return { ...r, p, line, fill: p.color === 'o' ? 'var(--calico-o)' : 'var(--calico-k)' };
+  return { ...r, p, line, fill: p.color === 'o' ? 'var(--ginger)' : 'var(--tortie)' };
 });
 ---
 
 <Base current="map">
   <section class="hero wrap">
-    <p class="eyebrow">学习地图</p>
-    <h1 class="serif">从认出急症开始，<br />一块一块点亮</h1>
-    <p class="hero-sub">
-      七个区域、{all.length} 个主题，就是这只三花猫身上的七块花色。每学会一篇，对应的那块就多上一点颜色。
-    </p>
-
-    <div class="overall">
-      <span class="overall-bar" aria-hidden="true"><i id="learned-bar"></i></span>
-      <span id="learned-text">共 {availableCount} 篇可以学，其余主题即将上线。</span>
+    <div class="words">
+      <h1 class="hand"><span>先认识它</span><span>平时的样子</span></h1>
+      <p class="sub">七块花色是七个知识区域。每学会一篇，猫身上那块就多一点颜色。</p>
     </div>
-    <a class="next-up" id="next-up" href={firstNote.href}>
-      <span class="next-label" id="next-label">从这里开始</span>
-      <span class="next-title" id="next-title">{firstNote.title}</span>
-      <span aria-hidden="true">→</span>
-    </a>
-    <p class="fine-print">学习进度只存在这台设备的浏览器里，不用注册。</p>
 
-    <a class="sos-banner" href={`${base}emergency/`}>
-      <span class="sos-dot" aria-hidden="true"></span>
-      <span><strong>猫现在不对劲？</strong>打开急症清单，先判断要不要马上去医院</span>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-  </section>
+    <div class="next-box">
+      <a class="next-link" id="next-up" href={firstNote.href}>
+        <small id="next-label">从这里开始</small>
+        <b id="next-title">{firstNote.title}</b>
+      </a>
+      <p class="progress" id="learned-text">已经写好 {availableCount} 篇，其余主题即将上线。进度只存在这台设备上。</p>
+    </div>
 
-  <section class="stage wrap">
     <div class="cat-box">
-      <svg class="cat" viewBox="-150 0 740 470" role="group" aria-label="三花猫学习地图：点一块花色或旁边的名字，查看这个区域的主题">
+      <svg class="cat" viewBox="-175 0 800 480" role="group" aria-label="三花猫学习地图：点一块花色或旁边的名字，查看这个区域的主题">
         <defs>
           <clipPath id="cat-clip">
             <ellipse cx="200" cy="140" rx="92" ry="80" />
@@ -89,15 +77,15 @@ const calico = regions.map((r) => {
           {calico.map((r) => (
             <g>
               <g clip-path={`url(#cp-${r.id})`}>
-                <rect x="0" y="0" width="420" height="460" fill={r.fill} opacity={r.p.color === 'o' ? 0.16 : 0.12} />
+                <rect x="0" y="0" width="420" height="460" fill={r.fill} opacity={r.p.color === 'o' ? 0.14 : 0.09} />
                 <rect x="0" y={r.p.bottom} width="420" height="460" fill={r.fill} class="fill" data-region={r.id} data-top={r.p.top} data-bottom={r.p.bottom} />
               </g>
-              <path d={r.p.path} fill="none" stroke={r.fill} stroke-width="1.6" stroke-dasharray="4 4" opacity="0.55" />
+              <path d={r.p.path} fill="none" stroke={r.fill} stroke-width="1.6" stroke-dasharray="4 4" opacity="0.5" />
             </g>
           ))}
         </g>
 
-        <g class="lineart" fill="none" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+        <g class="lineart" fill="none" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
           <path d="M138 196 C96 250 84 350 104 410 Q200 428 296 410 C316 350 304 250 262 196" />
           <path d="M292 408 C362 410 392 336 354 272 C346 260 330 264 336 280 C364 334 344 386 290 388" />
           <path d="M122 98 L126 34 L178 62 M278 98 L274 34 L222 62" />
@@ -113,73 +101,89 @@ const calico = regions.map((r) => {
             <ellipse cx={cx} cy="138" rx="12.5" ry="14.5" class="sclera" />
             <g class="pupil" data-cx={cx} data-cy="138">
               <ellipse cx={cx} cy="138" rx="8" ry="11" class="eye" />
-              <circle cx={cx + 3} cy="133" r="2.8" class="fur" />
+              <circle cx={cx + 3} cy="133" r="2.8" fill="#fff" />
             </g>
           </g>
         ))}
         <path d="M191 164 L209 164 L200 175 Z" class="nose" />
+        <path class="collar" d="M136 204 Q200 236 264 204" />
 
         <g clip-path="url(#cat-clip)">
           {calico.map((r) => <path d={r.p.path} class="hit" data-region={r.id} aria-hidden="true" />)}
         </g>
 
         {calico.map((r) => (
-          <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId }]} data-region={r.id}>
-            <rect class="bg" rx="10" />
+          <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId, soon: !r.available }]} data-region={r.id} aria-label={r.name}>
+            <rect class="bg" rx="4" />
             <polyline class="lead" points={r.line} />
             <circle class="anchor" cx={r.p.a[0]} cy={r.p.a[1]} r="5.5" fill={r.fill} />
-            <text x={r.p.l[0]} y={r.p.l[1] + 8} text-anchor={r.p.side === 'R' ? 'start' : 'end'}>
+            <text x={r.p.l[0]} y={r.p.l[1] + 10} text-anchor={r.p.side === 'R' ? 'start' : 'end'}>
               <tspan class="nm">{r.name}</tspan>
-              <tspan class="ct" dx="8" data-count={r.id}>{r.available ? `0/${r.available}` : '即将上线'}</tspan>
+              {r.available > 0 && <tspan class="ct" dx="10" data-count={r.id}>0/{r.available}</tspan>}
             </text>
           </a>
         ))}
-      </svg>
-      <p class="hint">点猫身上的花色或旁边的名字，看这一块有哪些主题</p>
-    </div>
 
-    {calico.map((r) => (
-      <article class="panel" id={r.id} data-region={r.id} data-available={r.available} hidden={r.id !== currentId}>
-        <h2 class="serif">{r.name}<small data-count={r.id}>{r.available ? `已学会 0 / ${r.available} 篇` : '即将上线'}</small></h2>
-        <p class="blurb">{r.blurb}</p>
-        <p class="where">在猫身上：{r.p.where}</p>
-        <ol class="paws">
-          {r.topics.map((t) => {
-            const Tag = t.href ? 'a' : 'span';
-            return (
-              <li class:list={{ soon: !t.note }} data-note={t.note}>
-                <svg class="paw" viewBox="-12 -12 24 24" aria-hidden="true">
-                  <ellipse cx="0" cy="4" rx="6.2" ry="5.2" /><circle cx="-6.6" cy="-3.6" r="2.7" /><circle cx="-2.3" cy="-8" r="2.7" /><circle cx="2.3" cy="-8" r="2.7" /><circle cx="6.6" cy="-3.6" r="2.7" />
-                </svg>
-                <span class="paw-text">
-                  <Tag class="paw-title" href={t.href}>{t.title}</Tag>
-                  <span class="stop-meta">
-                    {t.note && <span class="pill learned">已学会</span>}
-                    {!t.note && !t.tool && <span class="pill soon-pill">即将上线</span>}
-                    {t.tool && !t.note && <span class="pill tool">互动工具</span>}
-                    {t.tag && <span class="pill tag">{t.tag}</span>}
-                  </span>
-                </span>
-              </li>
-            );
-          })}
-        </ol>
-      </article>
-    ))}
+        <a class="tag-link" href={`${base}emergency/`} aria-label="猫不对劲？打开急症清单">
+          <g class="tagnote">
+            <polyline class="lead" points="186,246 120,300 62,300" />
+            <text x="52" y="310" text-anchor="end">不对劲？点这里</text>
+          </g>
+          <g class="tag">
+            <circle class="ring" cx="200" cy="222" r="5" />
+            <circle cx="200" cy="244" r="17" />
+            <path class="cross" d="M192 244 h16 M200 236 v16" />
+          </g>
+        </a>
+      </svg>
+    </div>
   </section>
+
+  {calico.map((r) => (
+    <section class="region wrap" id={r.id} data-region={r.id} hidden={r.id !== currentId}>
+      <div class="region-head">
+        <h2 class="hand">{r.name}</h2>
+        <p class="count" data-count={r.id}>{r.available ? `学会了 0 / ${r.available} 篇` : '这一块还在写，即将上线'}</p>
+        <p class="blurb">{r.blurb}</p>
+        <p class="where">在猫身上是{r.p.where}</p>
+      </div>
+      <ol class="paws">
+        {r.topics.map((t) => {
+          const Tag = t.href ? 'a' : 'span';
+          return (
+            <li class:list={{ soon: !t.note }} data-note={t.note}>
+              <svg class="paw" viewBox="-12 -12 24 24" aria-hidden="true">
+                <ellipse cx="0" cy="4" rx="6.2" ry="5.2" /><circle cx="-6.6" cy="-3.6" r="2.7" /><circle cx="-2.3" cy="-8" r="2.7" /><circle cx="2.3" cy="-8" r="2.7" /><circle cx="6.6" cy="-3.6" r="2.7" />
+              </svg>
+              <span class="t">
+                <Tag class="t-title" href={t.href}>{t.title}</Tag>
+                <span class="t-note">
+                  <span class="is-learned">学会了</span>
+                  <span class="is-next">下一篇</span>
+                  {!t.note && <span>{t.tool ? '先试试互动工具' : '即将上线'}</span>}
+                  {t.tag && <span class="t-tag">{t.tag}</span>}
+                </span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ))}
 
   <script>
     import { loadLearned } from '../lib/learned';
 
-    // 点花色或名字：换右边（窄屏是下面）的主题列表，并把选中的区域写进网址 #id
-    const panels = [...document.querySelectorAll<HTMLElement>('.panel')];
+    // 点花色或名字：换下面这一块的主题列表，并把选中的区域写进网址 #id
+    const regions = [...document.querySelectorAll<HTMLElement>('section.region')];
     const labels = [...document.querySelectorAll<SVGAElement>('.lbl')];
     const hits = [...document.querySelectorAll<SVGPathElement>('.hit')];
-    const narrow = matchMedia('(max-width: 760px)');
+    const cat = document.querySelector<SVGSVGElement>('svg.cat')!;
+    const narrow = matchMedia('(max-width: 780px)');
 
     function select(id: string, fromUser: boolean) {
-      if (!panels.some((p) => p.dataset.region === id)) return;
-      panels.forEach((p) => (p.hidden = p.dataset.region !== id));
+      if (!regions.some((r) => r.dataset.region === id)) return;
+      regions.forEach((r) => (r.hidden = r.dataset.region !== id));
       labels.forEach((l) => l.classList.toggle('on', l.dataset.region === id));
       hits.forEach((h) => h.classList.toggle('on', h.dataset.region === id));
       if (!fromUser) return;
@@ -187,15 +191,15 @@ const calico = regions.map((r) => {
       if (narrow.matches) document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 名字后面的底色框要按文字实际宽度画
+    // 名字后面那条肉垫粉的底色，要按手写字实际的宽度画
     function sizeLabels() {
       labels.forEach((l) => {
         const box = l.querySelector('text')!.getBBox();
         const bg = l.querySelector('.bg')!;
-        bg.setAttribute('x', String(box.x - 10));
-        bg.setAttribute('y', String(box.y - 6));
-        bg.setAttribute('width', String(box.width + 20));
-        bg.setAttribute('height', String(box.height + 12));
+        bg.setAttribute('x', String(box.x - 8));
+        bg.setAttribute('y', String(box.y + 4));
+        bg.setAttribute('width', String(box.width + 16));
+        bg.setAttribute('height', String(Math.max(box.height - 4, 0)));
       });
     }
 
@@ -208,9 +212,9 @@ const calico = regions.map((r) => {
     hits.forEach((h) => h.addEventListener('click', () => select(h.dataset.region!, true)));
     narrow.addEventListener('change', sizeLabels);
     sizeLabels();
+    document.fonts?.ready.then(sizeLabels);
 
     // 猫的眼睛跟着鼠标（手机上是手指）看；指针离开页面就看回正前方
-    const cat = document.querySelector<SVGSVGElement>('svg.cat')!;
     const pupils = [...cat.querySelectorAll<SVGGElement>('.pupil')];
     let frame = 0;
     function look(x?: number, y?: number) {
@@ -243,16 +247,18 @@ const calico = regions.map((r) => {
       let total = 0;
       let done = 0;
       let next: HTMLLIElement | undefined;
-      panels.forEach((panel) => {
-        const id = panel.dataset.region!;
-        const items = [...panel.querySelectorAll<HTMLLIElement>('li[data-note]')];
+      regions.forEach((region) => {
+        const id = region.dataset.region!;
+        const items = [...region.querySelectorAll<HTMLLIElement>('li[data-note]')];
         const n = items.filter((li) => learned.has(li.dataset.note!)).length;
         const avail = items.length;
         total += avail;
         done += n;
-        items.forEach((li) => li.classList.toggle('learned', learned.has(li.dataset.note!)));
         const first = items.find((li) => !learned.has(li.dataset.note!));
-        items.forEach((li) => li.classList.toggle('next', li === first));
+        items.forEach((li) => {
+          li.classList.toggle('learned', learned.has(li.dataset.note!));
+          li.classList.toggle('next', li === first);
+        });
         next ??= first;
         const rect = cat.querySelector<SVGRectElement>(`.fill[data-region="${id}"]`)!;
         const top = Number(rect.dataset.top);
@@ -260,24 +266,31 @@ const calico = regions.map((r) => {
         rect.setAttribute('y', String(avail ? bottom - (bottom - top) * (n / avail) : bottom));
         document.querySelectorAll(`[data-count="${id}"]`).forEach((el) => {
           if (!avail) return;
-          el.textContent = el instanceof HTMLElement ? `已学会 ${n} / ${avail} 篇` : `${n}/${avail}`;
+          if (el instanceof HTMLElement) el.innerHTML = `学会了 <b>${n}</b> / ${avail} 篇`;
+          else {
+            el.textContent = `${n}/${avail}`;
+            el.classList.toggle('some', n > 0);
+          }
         });
       });
 
-      const bar = document.getElementById('learned-bar')!;
-      bar.style.width = `${total ? (done / total) * 100 : 0}%`;
-      document.getElementById('learned-text')!.textContent =
-        done === 0 ? `共 ${total} 篇可以学，其余主题即将上线。` : done === total ? `已上线的 ${total} 篇都学会了，新的主题写好会出现在这里。` : `你已学会 ${done} / ${total} 篇`;
+      document.getElementById('learned-text')!.innerHTML =
+        done === 0
+          ? `已经写好 ${total} 篇，其余主题即将上线。进度只存在这台设备上。`
+          : done === total
+            ? `写好的 ${total} 篇都学会了。新主题上线后会接着点亮。`
+            : `你学会了 <b>${done}</b> 篇，共 ${total} 篇可以学。`;
 
       const link = document.getElementById('next-up') as HTMLAnchorElement;
       link.hidden = !next;
       if (next) {
-        const a = next.querySelector<HTMLAnchorElement>('.paw-title')!;
+        const a = next.querySelector<HTMLAnchorElement>('.t-title')!;
         link.href = a.href;
         document.getElementById('next-label')!.textContent = done === 0 ? '从这里开始' : '下一篇';
         document.getElementById('next-title')!.textContent = a.textContent!;
       }
-      return next?.closest<HTMLElement>('.panel')?.dataset.region;
+      sizeLabels();
+      return next?.closest<HTMLElement>('section.region')?.dataset.region;
     }
 
     const nextRegion = applyProgress();
@@ -288,156 +301,101 @@ const calico = regions.map((r) => {
 </Base>
 
 <style>
+  /* 首页：左边一句手写标题和「下一篇」，右边是主角三花猫；下面是选中区域的爪印小路。全部左对齐。 */
   .hero {
+    --fur: #ffffff;
+    --cat-line: #2c2a2e;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas: 'words cat' 'next cat';
+    column-gap: 24px;
+    align-items: start;
     padding-top: 40px;
     padding-bottom: 8px;
   }
 
-  .hero h1 {
-    margin: 4px 0 12px;
-    font-size: clamp(30px, 6vw, 44px);
-    font-weight: 700;
+  @media (prefers-color-scheme: dark) {
+    .hero {
+      --fur: #f4f1ec;
+    }
   }
 
-  .hero-sub {
-    margin: 0 0 20px;
-    color: var(--ink-2);
+  .words {
+    grid-area: words;
+    align-self: end;
   }
 
-  .overall {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    color: var(--ink-2);
-    font-size: 14px;
-    font-variant-numeric: tabular-nums;
+  .next-box {
+    grid-area: next;
   }
 
-  .overall-bar {
-    flex: 1 1 200px;
-    max-width: 420px;
-    height: 10px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: var(--s-todo);
+  .cat-box {
+    grid-area: cat;
   }
 
-  .overall-bar i {
+  h1 {
+    margin: 0;
+    font-size: clamp(46px, 6.4vw, 80px);
+    line-height: 1.02;
+  }
+
+  h1 span {
     display: block;
-    width: 0;
-    height: 100%;
-    border-radius: 999px;
-    background: var(--calico-o);
+    white-space: nowrap;
   }
 
-  .next-up {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 10px;
-    margin-top: 16px;
-    padding: 6px 14px;
-    background: color-mix(in srgb, var(--calico-o) 22%, transparent);
-    color: var(--ink);
+  .sub {
+    max-width: 22em;
+    margin: 18px 0 0;
+    color: var(--muted);
+  }
+
+  .next-link {
+    display: inline-grid;
+    margin-top: 22px;
+    padding: 8px 16px 10px;
+    background: color-mix(in srgb, var(--pad) 60%, transparent);
+    color: var(--on-pad);
     text-decoration: none;
-    transform: rotate(-1deg);
+    transform: rotate(-1.2deg);
   }
 
-  .next-up:hover .next-title {
-    text-decoration: underline;
+  @media (prefers-color-scheme: dark) {
+    .next-link {
+      background: var(--pad);
+    }
   }
 
-  .next-label {
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 600;
+  .next-link small {
+    font-size: 13px;
   }
 
-  .next-title {
-    font-family: var(--serif);
+  .next-link b {
     font-size: 18px;
     font-weight: 600;
   }
 
-  .fine-print {
-    margin: 8px 0 0;
+  .next-link:hover b {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .progress {
+    margin: 14px 0 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
   }
 
-  .sos-banner {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 24px;
-    padding: 14px 16px;
-    border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent);
-    border-radius: var(--radius);
-    background: var(--danger-soft);
-    color: var(--ink);
-    text-decoration: none;
+  .progress :global(b) {
+    color: var(--ginger);
+    font-weight: 600;
   }
 
-  .sos-banner strong {
-    margin-right: 6px;
-    color: var(--danger);
-  }
-
-  .sos-banner .arrow {
-    margin-left: auto;
-    color: var(--danger);
-    font-size: 20px;
-  }
-
-  .sos-dot {
-    flex: none;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--danger);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--danger) 20%, transparent);
-  }
-
-  /* 三花猫 */
-  .stage {
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-    padding-top: 24px;
-    padding-bottom: 48px;
-  }
-
-  .hero,
-  .stage {
-    --calico-o: #d98a3d;
-  }
-
-  .cat-box {
-    --fur: #fffaf2;
-    --fur-line: #2b2520;
-    --calico-o: #d98a3d;
-    --calico-k: #3a312b;
-    --nose: #e7a39a;
-    --sclera: #ffffff;
-    display: grid;
-    gap: 10px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .cat-box {
-      --fur: #efe6d8;
-      --fur-line: #120f0d;
-      --calico-k: #2a231e;
-      --nose: #d98f86;
-    }
-  }
-
+  /* 猫 */
   .cat {
+    display: block;
     width: 100%;
-    max-width: 640px;
-    justify-self: center;
     overflow: visible;
   }
 
@@ -446,12 +404,12 @@ const calico = regions.map((r) => {
   }
 
   .lineart {
-    stroke: var(--fur-line);
+    stroke: var(--cat-line);
   }
 
   .sclera {
-    fill: var(--sclera);
-    stroke: var(--fur-line);
+    fill: #fff;
+    stroke: var(--cat-line);
     stroke-width: 2;
   }
 
@@ -459,18 +417,12 @@ const calico = regions.map((r) => {
     transition: transform 0.12s ease-out;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .pupil {
-      transition: none;
-    }
-  }
-
   .eye {
-    fill: var(--fur-line);
+    fill: var(--cat-line);
   }
 
   .nose {
-    fill: var(--nose);
+    fill: var(--pad);
   }
 
   .hit {
@@ -482,12 +434,12 @@ const calico = regions.map((r) => {
 
   .hit:hover,
   .hit.on {
-    stroke: var(--accent);
+    stroke: var(--pad);
   }
 
   .hit:hover:not(.on) {
-    stroke-width: 3;
-    stroke-dasharray: 5 4;
+    stroke-width: 4;
+    stroke-dasharray: 6 5;
   }
 
   .lbl {
@@ -500,10 +452,21 @@ const calico = regions.map((r) => {
     fill: transparent;
   }
 
+  .lbl.on .bg,
+  .lbl:focus-visible .bg {
+    fill: var(--pad);
+    opacity: 0.6;
+  }
+
   .lbl .lead {
     fill: none;
     stroke: var(--muted);
-    stroke-width: 1.4;
+    stroke-width: 1.3;
+  }
+
+  .lbl.on .lead {
+    stroke: var(--ink);
+    stroke-width: 1.8;
   }
 
   .lbl .anchor {
@@ -511,101 +474,158 @@ const calico = regions.map((r) => {
     stroke-width: 2.5;
   }
 
+  .lbl text,
+  .tagnote text {
+    font-family: var(--hand);
+  }
+
   .lbl .nm {
     fill: var(--ink);
-    font: 600 24px var(--sans);
+    font-size: 34px;
   }
 
   .lbl .ct {
     fill: var(--muted);
-    font: 400 20px var(--sans);
+    font-size: 26px;
+  }
+
+  .lbl .ct.some {
+    fill: var(--ginger);
+  }
+
+  .lbl.soon .nm {
+    fill: var(--muted);
+    opacity: 0.75;
+  }
+
+  .lbl.on .nm,
+  .lbl.on .ct {
+    fill: var(--on-pad);
+    opacity: 1;
+  }
+
+  /* 红项圈和急救牌：急症入口 */
+  .collar {
+    fill: none;
+    stroke: var(--danger-fill);
+    stroke-width: 9;
+    stroke-linecap: round;
+  }
+
+  .tag circle {
+    fill: var(--danger-fill);
+  }
+
+  .tag .ring {
+    fill: none;
+    stroke: var(--danger-fill);
+    stroke-width: 2.5;
+  }
+
+  .tag .cross {
+    stroke: #fff;
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+
+  .tag {
+    transform-box: view-box;
+    transform-origin: 200px 222px;
+  }
+
+  .tagnote text {
+    fill: var(--danger);
+    font-size: 30px;
+  }
+
+  .tagnote .lead {
+    fill: none;
+    stroke: var(--danger);
+    stroke-width: 1.3;
+  }
+
+  .tag-link {
+    outline: none;
+  }
+
+  .tag-link:hover .tag {
+    animation: swing 0.7s ease-in-out;
+  }
+
+  .tag-link:focus-visible .ring {
+    stroke-width: 5;
+  }
+
+  @keyframes swing {
+    30% {
+      transform: rotate(9deg);
+    }
+    65% {
+      transform: rotate(-6deg);
+    }
+  }
+
+  /* 选中的区域 */
+  .region {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 24px;
+    margin-top: 20px;
+    padding-top: 28px;
+    padding-bottom: 32px;
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 64px;
+  }
+
+  .region h2 {
+    margin: 0;
+    font-size: 52px;
+    line-height: 1.1;
+  }
+
+  .count {
+    margin: 6px 0 0;
+    color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
 
-  .lbl:hover .nm,
-  .lbl:focus-visible .nm,
-  .lbl.on .nm {
-    fill: var(--accent);
-  }
-
-  .lbl:focus-visible .bg {
-    stroke: var(--accent);
-    stroke-width: 2;
-  }
-
-  .lbl.on .bg {
-    fill: var(--accent-soft);
-  }
-
-  .lbl.on .lead {
-    stroke: var(--accent);
-    stroke-width: 2;
-  }
-
-  .hint {
-    margin: 0;
-    color: var(--muted);
-    font-size: 13px;
-    text-align: center;
-  }
-
-  .panel {
-    min-width: 0;
-    padding: 20px 20px 12px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--surface);
-    scroll-margin-top: 72px;
-  }
-
-  .panel h2 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 10px;
-    margin: 0 0 4px;
-    font-size: 24px;
-  }
-
-  .panel h2 small {
-    color: var(--muted);
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 400;
+  .count :global(b) {
+    color: var(--ginger);
+    font-weight: 600;
   }
 
   .blurb {
-    margin: 0;
-    color: var(--ink-2);
+    max-width: 20em;
+    margin: 10px 0 0;
   }
 
   .where {
     margin: 4px 0 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .paws {
-    margin: 16px 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
 
   .paws li {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-columns: 46px minmax(0, 1fr);
     gap: 12px;
     align-items: center;
-    padding: 6px 0 6px var(--x, 0px);
+    padding: 7px 0 7px var(--x, 0px);
   }
 
   .paws li:nth-child(4n + 2),
   .paws li:nth-child(4n) {
-    --x: 22px;
+    --x: 26px;
   }
 
   .paws li:nth-child(4n + 3) {
-    --x: 40px;
+    --x: 48px;
   }
 
   .paw {
@@ -613,7 +633,7 @@ const calico = regions.map((r) => {
     height: 40px;
     transform: rotate(-12deg);
     fill: none;
-    stroke: var(--ink-2);
+    stroke: var(--ink);
     stroke-width: 1.1;
   }
 
@@ -621,100 +641,123 @@ const calico = regions.map((r) => {
     transform: rotate(14deg);
   }
 
+  .paws li.learned .paw {
+    fill: var(--ginger);
+    stroke: none;
+  }
+
   .paws li.next .paw {
     width: 46px;
     height: 46px;
-    stroke: var(--accent);
-    stroke-width: 1.6;
-  }
-
-  .paws li.learned .paw {
-    fill: var(--calico-o);
+    fill: var(--pad);
     stroke: none;
   }
 
   .paws li.soon .paw {
     stroke: var(--muted);
     stroke-dasharray: 2 2;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
-  .paw-text {
+  .t {
     display: grid;
-    gap: 2px;
     min-width: 0;
   }
 
-  .paw-title {
+  .t-title {
     color: var(--ink);
     font-weight: 500;
     text-decoration: none;
   }
 
-  a.paw-title:hover {
-    color: var(--accent);
+  a.t-title:hover {
     text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
-  .paws li.soon .paw-title {
+  .paws li.soon .t-title {
     color: var(--muted);
     font-weight: 400;
   }
 
-  .pill.learned {
-    display: none;
-    background: color-mix(in srgb, var(--calico-o) 22%, transparent);
-    color: var(--ink);
-  }
-
-  .paws li.learned .pill.learned {
-    display: inline-block;
-  }
-
-  .soon-pill {
-    background: var(--surface-2);
-    color: var(--muted);
-  }
-
-  .stop-meta {
+  .t-note {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 13px;
   }
 
-  .stop-meta:empty {
+  .is-learned,
+  .is-next {
     display: none;
   }
 
-  @media (max-width: 760px) {
-    .stage {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 16px;
-    }
-
-    .cat {
-      max-width: none;
-      width: calc(100% + 24px);
-      margin-inline: -12px;
-    }
-
-    .lbl .nm {
-      font-size: 28px;
-    }
-
-    .lbl .ct {
-      font-size: 22px;
-    }
-  }
-
-  .tool {
-    background: var(--calm-soft);
-    color: var(--calm);
-  }
-
-  .tag {
-    background: var(--accent-soft);
+  .paws li.learned .is-learned {
+    display: inline;
     color: var(--accent);
   }
 
+  .paws li.next .is-next {
+    display: inline;
+    color: var(--ink);
+  }
+
+  .t-tag {
+    color: var(--accent);
+  }
+
+  @media (max-width: 780px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'words' 'cat' 'next';
+      padding-top: 28px;
+    }
+
+    .cat {
+      width: calc(100% + 8px);
+      margin-inline: -4px;
+    }
+
+    .lbl .nm {
+      font-size: 38px;
+    }
+
+    .lbl .ct {
+      font-size: 30px;
+    }
+
+    .tagnote text {
+      font-size: 32px;
+    }
+
+    .region {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .region h2 {
+      font-size: 44px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .paws li:nth-child(4n + 2),
+    .paws li:nth-child(4n) {
+      --x: 17px;
+    }
+
+    .paws li:nth-child(4n + 3) {
+      --x: 34px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pupil {
+      transition: none;
+    }
+
+    .tag-link:hover .tag {
+      animation: none;
+    }
+  }
 </style>

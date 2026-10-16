@@ -63,9 +63,9 @@ export default function CatPage() {
       <header class="cat-head">
         <span class="avatar big" aria-hidden="true">{cat.name.slice(0, 1)}</span>
         <div>
-          <h1 class="serif">{cat.name}</h1>
+          <h1 class="hand">{cat.name}</h1>
           <p class="cat-meta">
-            {[cat.breed, cat.sex + '猫', cat.neutered ? '已绝育' : '未绝育', ageText(cat.birth)].filter(Boolean).join(' · ')}
+            {[cat.breed, cat.sex + '猫', cat.neutered ? '已绝育' : '未绝育', ageText(cat.birth)].filter(Boolean).join('，')}
           </p>
         </div>
         <button class="btn small" onClick={() => setEditing(!editing)}>{editing ? '收起' : '编辑'}</button>
@@ -99,7 +99,7 @@ export default function CatPage() {
               {alerts.map((a) => (
                 <div class={`alert ${a.level}`}>
                   <p>{a.text}</p>
-                  {a.link && <a href={a.link.href}>{a.link.label} →</a>}
+                  {a.link && <a href={a.link.href}>{a.link.label}</a>}
                 </div>
               ))}
               <p class="fine">这些提醒只是和它自己的记录比较，不是诊断。拿不准就联系兽医。</p>
