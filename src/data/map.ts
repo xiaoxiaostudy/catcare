@@ -97,7 +97,7 @@ export const MODULES: Module[] = [
       { title: '乱尿', note: 'house-soiling' },
       { title: '过度舔毛', note: 'over-grooming' },
       { title: '攻击行为', note: 'aggression' },
-      { title: '环境丰容' },
+      { title: '环境丰容', note: 'enrichment' },
       { title: '多猫家庭' },
     ],
   },
