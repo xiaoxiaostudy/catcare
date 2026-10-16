@@ -26,8 +26,10 @@ const pos = siblings.findIndex((t) => t.note === note.id);
 const prev = siblings[pos - 1];
 const next = siblings[pos + 1];
 
-const toc = headings.filter((h) => h.depth === 2).map((h) => ({ ...h, text: h.text.replace(/^\d+\.\s*/, '') }));
+// 「存疑点」「我家猫」两节只给作者看，网页上不显示（见 rehype-note-sections），目录里也去掉
+const toc = headings.filter((h) => h.depth === 2 && !/存疑点|我家猫/.test(h.text)).map((h) => ({ ...h, text: h.text.replace(/^\d+\.\s*/, '') }));
 const date = note.data.date.toISOString().slice(0, 10);
+const reviewed = note.data.status === '已审核';
 ---
 
 <Base title={note.data.title} description={note.data.summary}>
@@ -40,8 +42,8 @@ const date = note.data.date.toISOString().slice(0, 10);
 
     <h1 class="serif">{note.data.title}</h1>
     <p class="meta">
-      <span class="pill status" data-status={note.data.status}>{note.data.status}</span>
-      <span>{date} · @{note.data.author}</span>
+      <span class:list={['trust', { reviewed }]}>{reviewed ? '兽医审核过' : '整理自公开的兽医资料，还没经兽医审核'}</span>
+      <span>更新于 {date}</span>
     </p>
 
     <aside class="takeaway">
@@ -73,6 +75,19 @@ const date = note.data.date.toISOString().slice(0, 10);
       <Content />
     </div>
 
+    <section class="learn" data-note={note.id}>
+      <button type="button" class="learn-btn" aria-pressed="false">
+        <svg class="learn-paw" viewBox="-12 -12 24 24" aria-hidden="true">
+          <ellipse cx="0" cy="4" rx="6.2" ry="5.2" /><circle cx="-6.6" cy="-3.6" r="2.7" /><circle cx="-2.3" cy="-8" r="2.7" /><circle cx="2.3" cy="-8" r="2.7" /><circle cx="6.6" cy="-3.6" r="2.7" />
+        </svg>
+        <span class="learn-label">我学会了这一篇</span>
+      </button>
+      <p class="learn-msg">
+        <span class="learn-todo">点一下，首页三花猫的「{mod.name}」那块就会多上一点颜色。</span>
+        <span class="learn-done">已记下。<a href={`${base}#${mod.id}`}>回地图看看你的三花猫</a>；再点一下按钮可以撤销。</span>
+      </p>
+    </section>
+
     <nav class="pager" aria-label="上一篇和下一篇">
       {prev ? (
         <a class="pager-link" href={`${base}notes/${prev.note}/`}>
@@ -93,6 +108,28 @@ const date = note.data.date.toISOString().slice(0, 10);
       )}
     </nav>
   </article>
+
+  <script>
+    import { loadLearned, setLearned } from '../../lib/learned';
+
+    // 「我学会了这一篇」：记在这台设备的浏览器里，首页的三花猫按它填色
+    const box = document.querySelector<HTMLElement>('.learn')!;
+    const btn = box.querySelector<HTMLButtonElement>('.learn-btn')!;
+    const note = box.dataset.note!;
+
+    function show(on: boolean) {
+      box.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', String(on));
+      btn.querySelector('.learn-label')!.textContent = on ? '已学会' : '我学会了这一篇';
+    }
+
+    show(loadLearned().has(note));
+    btn.addEventListener('click', () => {
+      const on = !loadLearned().has(note);
+      if (setLearned(note, on)) show(on);
+      else box.querySelector('.learn-msg')!.textContent = '这台设备的浏览器不允许保存（可能是无痕模式），学习进度记不下来。';
+    });
+  </script>
 </Base>
 
 <style>
@@ -170,6 +207,99 @@ const date = note.data.date.toISOString().slice(0, 10);
   .toc a:hover {
     border-color: var(--accent);
     color: var(--accent);
+  }
+
+  .trust {
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink-2);
+    line-height: 26px;
+  }
+
+  .trust.reviewed {
+    background: color-mix(in srgb, var(--s-done) 18%, transparent);
+    color: var(--ink);
+  }
+
+  .trust.reviewed::before {
+    content: '✓ ';
+    color: var(--s-done);
+  }
+
+  .learn {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    margin: 40px 0 0;
+    padding: 24px 20px;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  .learn-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 8px 22px 8px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .learn-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .learn-paw {
+    width: 30px;
+    height: 30px;
+    transform: rotate(-12deg);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.3;
+    transition: transform 0.25s;
+  }
+
+  .learn.on .learn-btn {
+    border-color: #d98a3d;
+    background: color-mix(in srgb, #d98a3d 18%, var(--surface));
+    color: var(--ink);
+  }
+
+  .learn.on .learn-paw {
+    fill: #d98a3d;
+    stroke: none;
+    transform: rotate(-12deg) scale(1.15);
+  }
+
+  .learn-msg {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .learn-done,
+  .learn.on .learn-todo {
+    display: none;
+  }
+
+  .learn.on .learn-done {
+    display: inline;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .learn-paw {
+      transition: none;
+    }
   }
 
   .pager {

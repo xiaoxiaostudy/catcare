@@ -10,7 +10,9 @@ const KINDS = [
   [/我家猫/, 'mycat'],
 ];
 
-const COLLAPSED = new Set(['sources', 'mycat']);
+const COLLAPSED = new Set(['sources']);
+// 作者自己的工作区（待问兽医、我家猫的实际情况）留在 Markdown 里，网站上不给读者看
+const HIDDEN = new Set(['questions', 'mycat']);
 
 function text(node) {
   if (node.type === 'text') return node.value;
@@ -37,7 +39,9 @@ export default function rehypeNoteSections() {
         const title = text(node).replace(/^\d+\.\s*/, '');
         const kind = KINDS.find(([re]) => re.test(title))?.[1] || 'plain';
         node.children = [{ type: 'text', value: title }];
-        if (COLLAPSED.has(kind)) {
+        if (HIDDEN.has(kind)) {
+          current = { type: 'element', tagName: 'template', properties: {}, children: [] };
+        } else if (COLLAPSED.has(kind)) {
           current = {
             type: 'element',
             tagName: 'details',
@@ -59,6 +63,6 @@ export default function rehypeNoteSections() {
         out.push(node);
       }
     }
-    tree.children = out;
+    tree.children = out.filter((n) => n.tagName !== 'template');
   };
 }
