@@ -78,7 +78,7 @@ export const MODULES: Module[] = [
     name: '常见疾病',
     blurb: '最常见的几种病，早期长什么样',
     topics: [
-      { title: '下泌尿道疾病' },
+      { title: '下泌尿道疾病', note: 'flutd' },
       { title: '慢性肾病' },
       { title: '牙周病和口炎' },
       { title: '上呼吸道感染' },
