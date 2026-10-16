@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { MODULES } from '../../data/map';
 import BreathTimer from '../../components/tools/BreathTimer';
+import BodyCondition from '../../components/tools/BodyCondition';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -52,6 +53,13 @@ const date = note.data.date.toISOString().slice(0, 10);
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：现在就数一次</h2>
         <BreathTimer client:only="preact" />
+      </section>
+    )}
+
+    {note.data.widget === 'body-condition' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：它现在是几分？</h2>
+        <BodyCondition client:only="preact" />
       </section>
     )}
 
