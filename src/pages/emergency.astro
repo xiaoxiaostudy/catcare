@@ -14,8 +14,7 @@ const tiers = (Object.keys(TIERS) as Tier[]).map((t) => ({
 
 <Base title="急症清单" current="emergency" description="猫不对劲时，先判断要不要马上去医院">
   <div class="wrap narrow sos">
-    <p class="eyebrow">急症清单</p>
-    <h1 class="serif">猫现在怎么了？</h1>
+    <h1>猫现在怎么了？</h1>
     <p class="lead">从上往下看，找到最像的一条，点开看现在该做什么。<strong>拿不准，就直接打电话给兽医。</strong></p>
 
     <section class="contacts" data-contacts>
@@ -40,7 +39,7 @@ const tiers = (Object.keys(TIERS) as Tier[]).map((t) => ({
     </section>
 
     <a class="howto" href={`${base}notes/before-the-vet/`}>
-      <b>决定去医院了？</b>先打电话、保护好自己、用毛巾裹好装箱。看「送医前的正确做法」 →
+      <b>决定去医院了？</b>先打电话、保护好自己、用毛巾裹好装箱。看「送医前的正确做法」
     </a>
 
     {tiers.map((tier) => (

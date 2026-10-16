@@ -9,7 +9,7 @@ interface Props {
 
 const { title, description = '一边学、一边记录自家猫的养猫知识笔记库', current } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const fullTitle = title ? `${title} · 猫咪知识笔记库` : '猫咪知识笔记库';
+const fullTitle = title ? `${title}｜猫咪知识笔记库` : '猫咪知识笔记库';
 ---
 
 <!doctype html>
@@ -19,13 +19,16 @@ const fullTitle = title ? `${title} · 猫咪知识笔记库` : '猫咪知识笔
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" />
     <title>{fullTitle}</title>
   </head>
   <body>
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="brand" href={base}>
-          <img src={`${base}favicon.svg`} alt="" width="22" height="22" />
+          <svg class="brand-paw" width="22" height="22" viewBox="-12 -12 24 24" aria-hidden="true"><ellipse cx="0" cy="4" rx="6.2" ry="5.2" /><circle cx="-6.6" cy="-3.6" r="2.7" /><circle cx="-2.3" cy="-8" r="2.7" /><circle cx="2.3" cy="-8" r="2.7" /><circle cx="6.6" cy="-3.6" r="2.7" /></svg>
           <span>猫咪知识笔记库</span>
         </a>
         <nav class="site-nav" aria-label="主导航">

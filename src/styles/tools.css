@@ -5,8 +5,8 @@
 }
 
 .tool-page h1 {
-  margin: 4px 0 8px;
-  font-size: clamp(28px, 6vw, 38px);
+  margin: 4px 0 10px;
+  font-size: clamp(38px, 7vw, 56px);
 }
 
 .tool-page .lead {

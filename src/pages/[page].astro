@@ -13,7 +13,7 @@ const { Content } = await render(page);
 
 <Base title={page.data.title} current={page.id === 'toolbox' ? 'toolbox' : undefined}>
   <article class="wrap narrow doc">
-    <h1 class="serif">{page.data.title}</h1>
+    <h1 class="hand">{page.data.title}</h1>
     <div class="prose">
       <Content />
     </div>
@@ -27,7 +27,7 @@ const { Content } = await render(page);
 
   h1 {
     margin: 0 0 12px;
-    font-size: clamp(28px, 5.5vw, 38px);
+    font-size: clamp(38px, 7vw, 56px);
   }
 
   .prose :global(h2) {

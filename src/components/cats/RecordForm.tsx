@@ -125,8 +125,8 @@ export function RecordForm({ catId, date, existing, onSave }: Props) {
             <span class="field-label">粪便评分（1–7）</span>
             <select value={rec.stoolScore ?? ''} onChange={(e) => set('stoolScore', num(e.currentTarget.value))}>
               <option value="">没记</option>
-              <option value="1">1 · 又干又硬，可能便秘</option>
-              <option value="2">2 · 理想</option>
+              <option value="1">1：又干又硬，可能便秘</option>
+              <option value="2">2：理想</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
