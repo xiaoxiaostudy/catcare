@@ -65,6 +65,16 @@ export const SITUATIONS: Situation[] = [
     note: 'household-toxins',
   },
   {
+    id: 'fall',
+    tier: 'now',
+    title: '从窗户、阳台或高处掉下来',
+    signs: '就算看起来没受伤、还能走能跳',
+    action: '马上联系兽医，通常需要急诊处理。',
+    why: 'iCatCare 说，猫从高处掉下来可能骨折、伤到韧带，还可能伤到膀胱、肺这些内脏；内伤从外面不一定看得出来。摔伤的猫大部分是不到一岁的年轻猫。',
+    sources: [{ name: 'iCatCare：High-rise cats', url: 'https://icatcare.org/articles/high-rise-cats' }],
+    note: 'accidents-foreign-bodies',
+  },
+  {
     id: 'not-eating',
     tier: 'soon',
     title: '持续不吃东西',
@@ -86,6 +96,19 @@ export const SITUATIONS: Situation[] = [
     why: 'Cornell 建议出现脱水迹象并且不吃、虚弱时尽快联系兽医。',
     sources: [{ name: 'Cornell：Hydration', url: `${CORNELL}/hydration` }],
     note: 'eating-drinking-elimination',
+  },
+  {
+    id: 'foreign-body',
+    tier: 'soon',
+    title: '吞了线、针、发圈或其他不该吃的东西',
+    signs: '知道或怀疑它吞了；或者出现不吃、干呕、呕吐、肚子疼、没精神',
+    action: '尽快联系兽医，别等它自己拉出来。看到线从嘴里露出来，不要往外拉。告诉兽医家里不见了什么。',
+    why: 'iCatCare 说吞下的东西很多时候排不出来，线状物会让肠子挤成一团，通常要手术。Merck 说线可能缠在舌根，随着肠子蠕动像锯子一样割破肠壁。「不要拉线」目前只有 B 级来源。',
+    sources: [
+      { name: 'iCatCare：Cats and foreign bodies', url: 'https://icatcare.org/articles/cats-and-foreign-bodies' },
+      { name: 'Merck：胃肠道梗阻', url: 'https://www.merckvetmanual.com/cat-owners/digestive-disorders-of-cats/disorders-of-the-stomach-and-intestines-in-cats' },
+    ],
+    note: 'accidents-foreign-bodies',
   },
   {
     id: 'urinary-signs',
