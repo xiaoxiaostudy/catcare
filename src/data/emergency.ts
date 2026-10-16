@@ -52,6 +52,19 @@ export const SITUATIONS: Situation[] = [
     note: 'resting-breathing',
   },
   {
+    id: 'poison',
+    tier: 'now',
+    title: '怀疑吃了、舔了或碰了有毒的东西',
+    signs: '比如百合（花粉、花瓶水也算）、人吃的药、狗用的跳蚤药、清洁剂、灭鼠药；可能出现呕吐、流口水、抽搐、呼吸困难，也可能还没有任何症状',
+    action: '立刻打电话给兽医或急诊，不要等症状出现。不要自己催吐，除非兽医让你这么做。带上包装、标签或植物，记下大概的时间。',
+    why: 'Cornell 说，等主人发现不对劲时，猫可能已经有严重的风险；有些毒物在呕吐时伤害更大。iCatCare 说百合中毒是急症，发展很快，越早治疗活下来的机会越大。',
+    sources: [
+      { name: 'Cornell：Common Cat Hazards', url: `${CORNELL}/common-cat-hazards` },
+      { name: 'iCatCare：Lily poisoning in cats', url: 'https://icatcare.org/articles/lily-poisoning-in-cats' },
+    ],
+    note: 'household-toxins',
+  },
+  {
     id: 'not-eating',
     tier: 'soon',
     title: '持续不吃东西',
