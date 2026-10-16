@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import CatPage from '../../components/cats/CatPage';
+import '../../styles/cats.css';
+---
+
+<Base title="我的猫" current="cats">
+  <div class="wrap narrow cats-page">
+    <CatPage client:only="preact">
+      <p class="fine" slot="fallback">正在读取这台设备上的记录…</p>
+    </CatPage>
+  </div>
+</Base>

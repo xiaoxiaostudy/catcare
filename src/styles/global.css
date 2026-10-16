@@ -156,6 +156,11 @@ a {
   .brand span {
     display: none;
   }
+
+  .site-nav a {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
 }
 
 .site-footer {
