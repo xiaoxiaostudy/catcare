@@ -1,0 +1,54 @@
+site_name: 猫咪知识笔记库
+site_description: 绵绵和妙妙的养猫知识笔记与健康档案
+site_url: https://xiaoxiaostudy.github.io/catcare/
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: brown
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: brown
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色
+  icon:
+    logo: material/cat
+  favicon: assets/favicon.svg
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - toc.follow
+
+plugins:
+  - search:
+      separator: '[\s​\-，。、：；！？（）《》“”]+'
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - attr_list
+
+# 新写完一篇笔记，就把它加到对应模块下面
+nav:
+  - 首页: index.md
+  - 总目录与工具箱: 猫咪知识笔记库.md
+  - 模块 1 · 急症识别（含正常基线）:
+      - 猫的正常生命体征: 笔记：猫的正常生命体征.md
+      - 怎么数静息呼吸: 笔记：怎么数静息呼吸.md
+      - 吃喝拉撒的正常范围与异常信号: 笔记：吃喝拉撒的正常范围与异常信号.md
+      - 猫很会忍，哪些细微变化要警惕: 笔记：猫很会忍，哪些细微变化要警惕.md
+  - 绵绵和妙妙:
+      - 基线记录表: 绵绵和妙妙的基线记录表.md
