@@ -47,7 +47,7 @@ export const MODULES: Module[] = [
       { title: '家里哪些东西对猫有毒', note: 'household-toxins' },
       { title: '意外和异物：哪些要马上送医', note: 'accidents-foreign-bodies' },
       { title: '送医前的正确做法', note: 'before-the-vet' },
-      { title: '急症清单（一页成稿）' },
+      { title: '急症清单（一页成稿）', note: 'emergency-checklist' },
     ],
   },
   {
