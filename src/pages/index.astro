@@ -18,23 +18,29 @@ const regions = MODULES.map((m) => {
 
 const all = regions.flatMap((r) => r.topics);
 const counts = Object.fromEntries(STATUSES.map((s) => [s, all.filter((t) => t.status === s).length])) as Record<Status, number>;
-const currentId = regions.find((r) => r.topics.some((t) => t.status !== '已审核'))?.id;
+const currentId = regions.find((r) => r.topics.some((t) => t.status !== '已审核'))?.id ?? regions[0].id;
 
-// 小路的形状：节点左右摆动，像一条蜿蜒的山路
-const ROW = 68;
-const SWAY = [0, 1, 2, 1, 0, 1, 2, 3, 2, 1];
-const STEP = 26;
-const nodeX = (i: number) => 22 + SWAY[i % SWAY.length] * STEP;
-const nodeY = (i: number) => ROW / 2 + i * ROW;
-
-function trailPath(n: number) {
-  let d = `M ${nodeX(0)} ${nodeY(0)}`;
-  for (let i = 1; i < n; i++) {
-    const midY = (nodeY(i - 1) + nodeY(i)) / 2;
-    d += ` C ${nodeX(i - 1)} ${midY}, ${nodeX(i)} ${midY}, ${nodeX(i)} ${nodeY(i)}`;
-  }
-  return d;
-}
+// 三花猫：七个区域是猫身上的七块花色。坐标都在 viewBox="-150 0 740 470" 里，
+// 猫本身占 x 84–392；左右两边留给区域名。
+// path 是花色形状（会被猫的轮廓裁掉），top/bottom 是花色在猫身上看得见的上下边，
+// 写了多少就从 bottom 往上填多少；a 是引线在花色上的起点，l 是名字的位置。
+type Patch = { where: string; color: 'o' | 'k'; path: string; top: number; bottom: number; side: 'L' | 'R'; a: [number, number]; l: [number, number]; elbow?: [number, number] };
+const CALICO: Record<string, Patch> = {
+  recognize: { where: '头顶和左耳', color: 'o', path: 'M100 20 L205 20 C210 80 196 128 160 146 C128 160 104 140 100 20 Z', top: 34, bottom: 150, side: 'L', a: [140, 104], l: [52, 70] },
+  prevention: { where: '右耳和右脸', color: 'k', path: 'M222 64 C252 30 310 24 312 90 C316 160 292 196 254 186 C228 170 222 120 222 64 Z', top: 34, bottom: 190, side: 'R', a: [262, 116], l: [408, 90] },
+  nutrition: { where: '胸口', color: 'o', path: 'M118 214 C150 202 186 218 190 254 C192 292 160 312 126 302 C100 282 98 234 118 214 Z', top: 206, bottom: 306, side: 'L', a: [132, 252], l: [52, 236] },
+  diseases: { where: '右边身子', color: 'k', path: 'M252 222 C300 212 330 282 320 342 C302 384 262 374 246 334 C234 294 230 244 252 222 Z', top: 214, bottom: 378, side: 'R', a: [284, 270], l: [408, 200] },
+  behavior: { where: '左后腿', color: 'o', path: 'M92 318 C122 308 152 330 152 362 C150 398 120 414 92 404 Z', top: 312, bottom: 412, side: 'L', a: [112, 362], l: [52, 372] },
+  'life-stages': { where: '右前爪', color: 'k', path: 'M200 412 A32 20 0 1 0 264 412 A32 20 0 1 0 200 412 Z', top: 398, bottom: 426, side: 'R', a: [244, 416], l: [408, 440], elbow: [300, 440] },
+  'daily-care': { where: '尾巴', color: 'o', path: 'M330 250 L420 250 L420 440 L300 440 C340 390 372 330 330 250 Z', top: 262, bottom: 410, side: 'R', a: [380, 326], l: [408, 326] },
+};
+const calico = regions.map((r) => {
+  const p = CALICO[r.id];
+  const fillY = p.top + (p.bottom - p.top) * (1 - r.written / r.topics.length);
+  const tipX = p.side === 'R' ? p.l[0] - 8 : p.l[0] + 8;
+  const line = [p.a, ...(p.elbow ? [p.elbow] : []), [tipX, p.l[1]]].map((xy) => xy.join(',')).join(' ');
+  return { ...r, p, fillY, line, fill: p.color === 'o' ? 'var(--calico-o)' : 'var(--calico-k)' };
+});
 ---
 
 <Base current="map">
@@ -42,7 +48,7 @@ function trailPath(n: number) {
     <p class="eyebrow">学习地图</p>
     <h1 class="serif">从认出急症开始，<br />一块一块点亮</h1>
     <p class="hero-sub">
-      七个区域、{all.length} 个主题。写好一篇点亮一块，经兽医审核后盖章。
+      七个区域、{all.length} 个主题，就是这只三花猫身上的七块花色。写好一篇，对应的那块就多上一点颜色；经兽医审核后盖章。
     </p>
 
     <div class="overall" role="img" aria-label={`已写 ${all.length - counts['未开始']} 个，共 ${all.length} 个`}>
@@ -68,49 +74,139 @@ function trailPath(n: number) {
     </a>
   </section>
 
-  <section class="regions wrap">
-    {regions.map((r, ri) => (
-      <details class="region" open={r.id === currentId} data-empty={r.written === 0 ? '' : undefined}>
-        <summary>
-          <span class="region-no serif">{String(ri + 1).padStart(2, '0')}</span>
-          <span class="region-head">
-            <span class="region-name">{r.name}</span>
-            <span class="region-blurb">{r.blurb}</span>
-            <span class="dots" aria-hidden="true">
-              {r.topics.map((t) => <span class="dot" data-status={t.status} />)}
-            </span>
-          </span>
-          <span class="region-count">
-            <b>{r.written}</b>/{r.topics.length}
-          </span>
-        </summary>
+  <section class="stage wrap">
+    <div class="cat-box">
+      <svg class="cat" viewBox="-150 0 740 470" role="group" aria-label="三花猫学习地图：点一块花色或旁边的名字，查看这个区域的主题">
+        <defs>
+          <clipPath id="cat-clip">
+            <ellipse cx="200" cy="140" rx="92" ry="80" />
+            <path d="M118 112 L126 34 L182 82 Z" /><path d="M282 112 L274 34 L218 82 Z" />
+            <path d="M138 196 C96 250 84 350 104 410 Q200 428 296 410 C316 350 304 250 262 196 Z" />
+            <ellipse cx="168" cy="412" rx="26" ry="14" /><ellipse cx="232" cy="412" rx="26" ry="14" />
+            <path d="M292 408 C362 410 392 336 354 272 C346 260 330 264 336 280 C364 334 344 386 290 388 Z" />
+          </clipPath>
+          {calico.map((r) => <clipPath id={`cp-${r.id}`}><path d={r.p.path} /></clipPath>)}
+        </defs>
 
-        <ol class="trail" style={`height:${r.topics.length * ROW}px`}>
-          <svg class="trail-line" width="140" height={r.topics.length * ROW} aria-hidden="true">
-            <path d={trailPath(r.topics.length)} />
-          </svg>
-          {r.topics.map((t, i) => {
-            const Tag = t.href ? 'a' : 'div';
-            return (
-              <li style={`top:${i * ROW}px;--x:${nodeX(i)}px`}>
-                <Tag class="stop" href={t.href} data-status={t.status}>
-                  <span class="node" data-status={t.status} aria-hidden="true" />
-                  <span class="stop-text">
-                    <span class="stop-title">{t.title}</span>
+        <g clip-path="url(#cat-clip)">
+          <rect x="0" y="0" width="420" height="460" class="fur" />
+          {calico.map((r) => (
+            <g>
+              <g clip-path={`url(#cp-${r.id})`}>
+                <rect x="0" y="0" width="420" height="460" fill={r.fill} opacity={r.p.color === 'o' ? 0.16 : 0.12} />
+                <rect x="0" y={r.fillY} width="420" height="460" fill={r.fill} />
+              </g>
+              <path d={r.p.path} fill="none" stroke={r.fill} stroke-width="1.6" stroke-dasharray="4 4" opacity="0.55" />
+            </g>
+          ))}
+        </g>
+
+        <g class="lineart" fill="none" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M138 196 C96 250 84 350 104 410 Q200 428 296 410 C316 350 304 250 262 196" />
+          <path d="M292 408 C362 410 392 336 354 272 C346 260 330 264 336 280 C364 334 344 386 290 388" />
+          <path d="M122 98 L126 34 L178 62 M278 98 L274 34 L222 62" />
+          <ellipse cx="200" cy="140" rx="92" ry="80" />
+          <ellipse cx="168" cy="412" rx="26" ry="14" class="fur" /><ellipse cx="232" cy="412" rx="26" ry="14" />
+          <path d="M172 290 C168 330 166 370 168 398 M228 290 C232 330 234 370 232 398" stroke-width="2" />
+          <path d="M136 52 L140 82 M264 52 L260 82" stroke-width="1.6" opacity=".5" />
+          <path d="M200 176 Q192 188 182 182 M200 176 Q208 188 218 182" stroke-width="2" />
+          <path d="M150 168 L104 160 M150 176 L106 182 M250 168 L296 160 M250 176 L294 182" stroke-width="1.4" opacity=".7" />
+        </g>
+        <ellipse cx="166" cy="138" rx="9" ry="12" class="eye" /><ellipse cx="234" cy="138" rx="9" ry="12" class="eye" />
+        <circle cx="169" cy="133" r="3" class="fur" /><circle cx="237" cy="133" r="3" class="fur" />
+        <path d="M191 164 L209 164 L200 175 Z" class="nose" />
+
+        <g clip-path="url(#cat-clip)">
+          {calico.map((r) => <path d={r.p.path} class="hit" data-region={r.id} aria-hidden="true" />)}
+        </g>
+
+        {calico.map((r) => (
+          <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId }]} data-region={r.id} aria-label={`${r.name}，${r.written}/${r.topics.length} 篇已动笔`}>
+            <rect class="bg" rx="10" />
+            <polyline class="lead" points={r.line} />
+            <circle class="anchor" cx={r.p.a[0]} cy={r.p.a[1]} r="5.5" fill={r.fill} />
+            <text x={r.p.l[0]} y={r.p.l[1] + 8} text-anchor={r.p.side === 'R' ? 'start' : 'end'}>
+              <tspan class="nm">{r.name}</tspan>
+              <tspan class="ct" dx="8">{r.written}/{r.topics.length}</tspan>
+            </text>
+          </a>
+        ))}
+      </svg>
+      <p class="hint">点猫身上的花色或旁边的名字，看这一块有哪些主题</p>
+    </div>
+
+    {calico.map((r) => {
+      const firstDraft = r.topics.findIndex((t) => t.status === '写作中');
+      return (
+        <article class="panel" id={r.id} data-region={r.id} hidden={r.id !== currentId}>
+          <h2 class="serif">{r.name}<small>{r.written} / {r.topics.length} 篇已动笔</small></h2>
+          <p class="blurb">{r.blurb}</p>
+          <p class="where">在猫身上：{r.p.where}</p>
+          <ol class="paws">
+            {r.topics.map((t, i) => {
+              const Tag = t.href ? 'a' : 'span';
+              return (
+                <li data-status={t.status}>
+                  <svg class:list={['paw', { big: i === firstDraft }]} viewBox="-12 -12 24 24" aria-hidden="true">
+                    <ellipse cx="0" cy="4" rx="6.2" ry="5.2" /><circle cx="-6.6" cy="-3.6" r="2.7" /><circle cx="-2.3" cy="-8" r="2.7" /><circle cx="2.3" cy="-8" r="2.7" /><circle cx="6.6" cy="-3.6" r="2.7" />
+                  </svg>
+                  <span class="paw-text">
+                    <Tag class="paw-title" href={t.href}>{t.title}</Tag>
                     <span class="stop-meta">
                       {t.status !== '未开始' && <span class="pill status" data-status={t.status}>{t.status}</span>}
                       {t.tool && !t.note && <span class="pill tool">互动工具</span>}
                       {t.tag && <span class="pill tag">{t.tag}</span>}
                     </span>
                   </span>
-                </Tag>
-              </li>
-            );
-          })}
-        </ol>
-      </details>
-    ))}
+                </li>
+              );
+            })}
+          </ol>
+        </article>
+      );
+    })}
   </section>
+
+  <script>
+    // 点花色或名字：换右边（窄屏是下面）的主题列表，并把选中的区域写进网址 #id
+    const panels = [...document.querySelectorAll<HTMLElement>('.panel')];
+    const labels = [...document.querySelectorAll<SVGAElement>('.lbl')];
+    const hits = [...document.querySelectorAll<SVGPathElement>('.hit')];
+    const narrow = matchMedia('(max-width: 760px)');
+
+    function select(id: string, fromUser: boolean) {
+      if (!panels.some((p) => p.dataset.region === id)) return;
+      panels.forEach((p) => (p.hidden = p.dataset.region !== id));
+      labels.forEach((l) => l.classList.toggle('on', l.dataset.region === id));
+      hits.forEach((h) => h.classList.toggle('on', h.dataset.region === id));
+      if (!fromUser) return;
+      history.replaceState(null, '', `#${id}`);
+      if (narrow.matches) document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 名字后面的底色框要按文字实际宽度画
+    function sizeLabels() {
+      labels.forEach((l) => {
+        const box = l.querySelector('text')!.getBBox();
+        const bg = l.querySelector('.bg')!;
+        bg.setAttribute('x', String(box.x - 10));
+        bg.setAttribute('y', String(box.y - 6));
+        bg.setAttribute('width', String(box.width + 20));
+        bg.setAttribute('height', String(box.height + 12));
+      });
+    }
+
+    labels.forEach((l) =>
+      l.addEventListener('click', (e) => {
+        e.preventDefault();
+        select(l.dataset.region!, true);
+      }),
+    );
+    hits.forEach((h) => h.addEventListener('click', () => select(h.dataset.region!, true)));
+    narrow.addEventListener('change', sizeLabels);
+    sizeLabels();
+    select(location.hash.slice(1) || (labels.find((l) => l.classList.contains('on'))?.dataset.region ?? ''), false);
+  </script>
 </Base>
 
 <style>
@@ -205,176 +301,275 @@ function trailPath(n: number) {
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--danger) 20%, transparent);
   }
 
-  /* 区域 */
-  .regions {
+  /* 三花猫 */
+  .stage {
     display: grid;
-    gap: 14px;
-    margin-top: 28px;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding-top: 24px;
+    padding-bottom: 48px;
   }
 
-  .region {
+  .cat-box {
+    --fur: #fffaf2;
+    --fur-line: #2b2520;
+    --calico-o: #d98a3d;
+    --calico-k: #3a312b;
+    --nose: #e7a39a;
+    display: grid;
+    gap: 10px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .cat-box {
+      --fur: #efe6d8;
+      --fur-line: #120f0d;
+      --calico-k: #2a231e;
+      --nose: #d98f86;
+    }
+  }
+
+  .cat {
+    width: 100%;
+    max-width: 640px;
+    justify-self: center;
+    overflow: visible;
+  }
+
+  .fur {
+    fill: var(--fur);
+  }
+
+  .lineart {
+    stroke: var(--fur-line);
+  }
+
+  .eye {
+    fill: var(--fur-line);
+  }
+
+  .nose {
+    fill: var(--nose);
+  }
+
+  .hit {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 6;
+    cursor: pointer;
+  }
+
+  .hit:hover,
+  .hit.on {
+    stroke: var(--accent);
+  }
+
+  .hit:hover:not(.on) {
+    stroke-width: 3;
+    stroke-dasharray: 5 4;
+  }
+
+  .lbl {
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+  }
+
+  .lbl .bg {
+    fill: transparent;
+  }
+
+  .lbl .lead {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.4;
+  }
+
+  .lbl .anchor {
+    stroke: var(--fur);
+    stroke-width: 2.5;
+  }
+
+  .lbl .nm {
+    fill: var(--ink);
+    font: 600 24px var(--sans);
+  }
+
+  .lbl .ct {
+    fill: var(--muted);
+    font: 400 20px var(--sans);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lbl:hover .nm,
+  .lbl:focus-visible .nm,
+  .lbl.on .nm {
+    fill: var(--accent);
+  }
+
+  .lbl:focus-visible .bg {
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+
+  .lbl.on .bg {
+    fill: var(--accent-soft);
+  }
+
+  .lbl.on .lead {
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+
+  .hint {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .panel {
+    min-width: 0;
+    padding: 20px 20px 12px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
-    box-shadow: var(--shadow);
+    scroll-margin-top: 72px;
   }
 
-  .region[data-empty]:not([open]) {
-    box-shadow: none;
-    background: transparent;
-  }
-
-  .region summary {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px;
-    cursor: pointer;
-    list-style: none;
-  }
-
-  .region summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .region-no {
-    flex: none;
-    width: 40px;
-    color: var(--accent);
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .region[data-empty] .region-no {
-    color: var(--muted);
-  }
-
-  .region-head {
-    display: grid;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  .region-name {
-    font-size: 18px;
-    font-weight: 650;
-  }
-
-  .region-blurb {
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .dots {
+  .panel h2 {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
-    margin-top: 6px;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 4px;
+    font-size: 24px;
   }
 
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    background: var(--s-todo);
-  }
-
-  .dot[data-status='写作中'] {
-    background: var(--s-draft);
-  }
-  .dot[data-status='已完成'] {
-    background: var(--s-done);
-  }
-  .dot[data-status='已审核'] {
-    background: var(--s-reviewed);
-  }
-
-  .region-count {
-    margin-left: auto;
+  .panel h2 small {
     color: var(--muted);
+    font-family: var(--sans);
     font-size: 14px;
-    white-space: nowrap;
+    font-weight: 400;
   }
 
-  .region-count b {
-    color: var(--ink);
-    font-size: 18px;
+  .blurb {
+    margin: 0;
+    color: var(--ink-2);
   }
 
-  /* 蜿蜒的小路 */
-  .trail {
-    position: relative;
-    margin: 0 16px 16px;
+  .where {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .paws {
+    margin: 16px 0 0;
     padding: 0;
     list-style: none;
   }
 
-  .trail-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .trail-line path {
-    fill: none;
-    stroke: var(--line);
-    stroke-width: 3;
-    stroke-dasharray: 2 7;
-    stroke-linecap: round;
-  }
-
-  .trail li {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 68px;
-  }
-
-  .stop {
-    position: absolute;
-    top: 50%;
-    left: calc(var(--x) - 15px);
-    right: 0;
-    display: flex;
-    align-items: center;
+  .paws li {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
     gap: 12px;
-    transform: translateY(-50%);
-    color: var(--muted);
-    text-decoration: none;
+    align-items: center;
+    padding: 6px 0 6px var(--x, 0px);
   }
 
-  a.stop {
-    color: var(--ink);
+  .paws li:nth-child(4n + 2),
+  .paws li:nth-child(4n) {
+    --x: 22px;
   }
 
-  a.stop:hover .stop-title {
-    color: var(--accent);
-    text-decoration: underline;
+  .paws li:nth-child(4n + 3) {
+    --x: 40px;
   }
 
-  .stop-text {
+  .paw {
+    width: 40px;
+    height: 40px;
+    transform: rotate(-12deg);
+    fill: var(--s-draft);
+  }
+
+  .paws li:nth-child(even) .paw {
+    transform: rotate(14deg);
+  }
+
+  .paw.big {
+    width: 46px;
+    height: 46px;
+  }
+
+  .paws li[data-status='已完成'] .paw {
+    fill: var(--s-done);
+  }
+
+  .paws li[data-status='已审核'] .paw {
+    fill: var(--s-reviewed);
+  }
+
+  .paws li[data-status='未开始'] .paw {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.1;
+    stroke-dasharray: 2 2;
+  }
+
+  .paw-text {
     display: grid;
     gap: 2px;
     min-width: 0;
   }
 
-  .stop-title {
-    font-size: 15px;
-    line-height: 1.4;
+  .paw-title {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
   }
 
-  a.stop .stop-title {
-    font-weight: 600;
+  a.paw-title:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .paws li[data-status='未开始'] .paw-title {
+    color: var(--muted);
+    font-weight: 400;
   }
 
   .stop-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
   }
 
   .stop-meta:empty {
     display: none;
+  }
+
+  @media (max-width: 760px) {
+    .stage {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .cat {
+      max-width: none;
+      width: calc(100% + 24px);
+      margin-inline: -12px;
+    }
+
+    .lbl .nm {
+      font-size: 28px;
+    }
+
+    .lbl .ct {
+      font-size: 22px;
+    }
   }
 
   .tool {
