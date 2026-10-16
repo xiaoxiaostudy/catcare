@@ -66,7 +66,7 @@ export const MODULES: Module[] = [
     name: '营养与饮食',
     blurb: '猫是肉食动物，吃什么、怎么吃',
     topics: [
-      { title: '猫是肉食动物：蛋白质、水分、牛磺酸' },
+      { title: '猫是肉食动物：蛋白质、水分、牛磺酸', note: 'carnivore' },
       { title: '看懂成分表和营养标注' },
       { title: '干粮、湿粮、自制饮食的利弊' },
       { title: '喂食方式和饮水' },
