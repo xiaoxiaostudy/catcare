@@ -97,6 +97,19 @@ export const SITUATIONS: Situation[] = [
     note: 'accidents-foreign-bodies',
   },
   {
+    id: 'panleukopenia',
+    tier: 'now',
+    title: '小猫又发烧、又吐、又拉、不吃',
+    signs: '尤其是还没打完疫苗的小猫；腹泻可能带血，很快没精神、脱水',
+    action: '立刻联系兽医，先打电话说明可能是猫瘟，病猫需要在医院隔离。',
+    why: 'iCatCare 说猫瘟传染性极强、常常致命，出现这些信号要立刻联系兽医。Merck 说 5 个月以下的小猫最容易死，严重的会很快严重脱水，可能几乎没有预兆就死亡。',
+    sources: [
+      { name: 'iCatCare：Feline infectious enteritis', url: 'https://icatcare.org/articles/feline-infectious-enteritis-feline-parvovirus-panleukopenia-virus' },
+      { name: 'Merck：Feline Panleukopenia', url: 'https://www.merckvetmanual.com/cat-owners/disorders-affecting-multiple-body-systems-of-cats/feline-panleukopenia' },
+    ],
+    note: 'panleukopenia',
+  },
+  {
     id: 'not-eating',
     tier: 'soon',
     title: '持续不吃东西',
