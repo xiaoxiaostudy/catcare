@@ -80,7 +80,7 @@ export const MODULES: Module[] = [
     topics: [
       { title: '下泌尿道疾病', note: 'flutd' },
       { title: '慢性肾病', note: 'kidney-disease' },
-      { title: '牙周病和口炎' },
+      { title: '牙周病和口炎', note: 'dental-disease' },
       { title: '上呼吸道感染' },
       { title: '猫瘟' },
       { title: '肥胖与糖尿病' },
