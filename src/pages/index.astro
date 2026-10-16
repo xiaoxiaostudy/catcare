@@ -112,8 +112,15 @@ const calico = regions.map((r) => {
           <path d="M200 176 Q192 188 182 182 M200 176 Q208 188 218 182" stroke-width="2" />
           <path d="M150 168 L104 160 M150 176 L106 182 M250 168 L296 160 M250 176 L294 182" stroke-width="1.4" opacity=".7" />
         </g>
-        <ellipse cx="166" cy="138" rx="9" ry="12" class="eye" /><ellipse cx="234" cy="138" rx="9" ry="12" class="eye" />
-        <circle cx="169" cy="133" r="3" class="fur" /><circle cx="237" cy="133" r="3" class="fur" />
+        {[166, 234].map((cx) => (
+          <g>
+            <ellipse cx={cx} cy="138" rx="12.5" ry="14.5" class="sclera" />
+            <g class="pupil" data-cx={cx} data-cy="138">
+              <ellipse cx={cx} cy="138" rx="8" ry="11" class="eye" />
+              <circle cx={cx + 3} cy="133" r="2.8" class="fur" />
+            </g>
+          </g>
+        ))}
         <path d="M191 164 L209 164 L200 175 Z" class="nose" />
 
         <g clip-path="url(#cat-clip)">
@@ -205,6 +212,34 @@ const calico = regions.map((r) => {
     hits.forEach((h) => h.addEventListener('click', () => select(h.dataset.region!, true)));
     narrow.addEventListener('change', sizeLabels);
     sizeLabels();
+
+    // 猫的眼睛跟着鼠标（手机上是手指）看；指针离开页面就看回正前方
+    const cat = document.querySelector<SVGSVGElement>('svg.cat')!;
+    const pupils = [...cat.querySelectorAll<SVGGElement>('.pupil')];
+    let frame = 0;
+    function look(x?: number, y?: number) {
+      const m = cat.getScreenCTM();
+      const p = m && x !== undefined && y !== undefined ? new DOMPoint(x, y).matrixTransform(m.inverse()) : undefined;
+      pupils.forEach((g) => {
+        let tx = 0;
+        let ty = 0;
+        if (p) {
+          const dx = p.x - Number(g.dataset.cx);
+          const dy = p.y - Number(g.dataset.cy);
+          const d = Math.hypot(dx, dy) || 1;
+          const k = Math.min(d / 120, 1); // 指针离眼睛很近时只转一点
+          tx = (dx / d) * 4 * k;
+          ty = (dy / d) * 3.2 * k;
+        }
+        g.style.transform = `translate(${tx}px, ${ty}px)`;
+      });
+    }
+    addEventListener('pointermove', (e) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => look(e.clientX, e.clientY));
+    });
+    document.documentElement.addEventListener('pointerleave', () => look());
+    addEventListener('blur', () => look());
     select(location.hash.slice(1) || (labels.find((l) => l.classList.contains('on'))?.dataset.region ?? ''), false);
   </script>
 </Base>
@@ -317,6 +352,7 @@ const calico = regions.map((r) => {
     --calico-o: #d98a3d;
     --calico-k: #3a312b;
     --nose: #e7a39a;
+    --sclera: #ffffff;
     display: grid;
     gap: 10px;
   }
@@ -343,6 +379,22 @@ const calico = regions.map((r) => {
 
   .lineart {
     stroke: var(--fur-line);
+  }
+
+  .sclera {
+    fill: var(--sclera);
+    stroke: var(--fur-line);
+    stroke-width: 2;
+  }
+
+  .pupil {
+    transition: transform 0.12s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pupil {
+      transition: none;
+    }
   }
 
   .eye {
