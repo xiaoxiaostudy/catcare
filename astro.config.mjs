@@ -9,6 +9,8 @@ export default defineConfig({
   trailingSlash: 'always',
 
   markdown: {
+    // 自动弯引号不认识中文，会把汉字后面的引号都变成右引号，所以关掉，引号按原样显示
+    smartypants: false,
     rehypePlugins: [rehypeNoteSections],
   },
 
