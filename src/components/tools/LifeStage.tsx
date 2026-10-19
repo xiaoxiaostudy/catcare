@@ -7,8 +7,8 @@ import { BASE, useData } from '../cats/useData';
  * 分段、换算和每个阶段的要点都来自笔记 kitten、adult-cat、senior-cat，措辞跟笔记一致。
  */
 
-// 滑块的刻度：头两年按月，之后按年，免得小猫阶段挤成一条缝
-const STEPS = [...Array.from({ length: 24 }, (_, i) => i + 1), ...Array.from({ length: 18 }, (_, i) => (i + 3) * 12)];
+// 滑块的刻度：第一年按月，第二年每三个月，之后按年，免得小猫阶段挤成一条缝
+const STEPS = [...Array.from({ length: 12 }, (_, i) => i + 1), 15, 18, 21, 24, ...Array.from({ length: 18 }, (_, i) => (i + 3) * 12)];
 const MAX = STEPS.length - 1;
 
 const indexOf = (months: number) => {
@@ -164,7 +164,7 @@ export default function LifeStage({ start = 48 }: { start?: number }) {
             <div class="ls-bars">
               {(list as ReturnType<typeof bars>).map((b) => (
                 <span class={b.on ? 'ls-bar on' : 'ls-bar'} style={{ left: `${b.left}%`, width: `${b.width}%` }}>
-                  {b.width > 9 ? b.name : ''}
+                  {b.width > 11 ? b.name : ''}
                 </span>
               ))}
               <span class="ls-pin" style={{ left: `${(i / MAX) * 100}%` }} />
@@ -176,8 +176,8 @@ export default function LifeStage({ start = 48 }: { start?: number }) {
           <span style={{ left: '0%' }}>出生</span>
           <span style={{ left: `${pos(12)}%` }}>1 岁</span>
           <span style={{ left: `${pos(84)}%` }}>7 岁</span>
-          <span style={{ left: `${pos(132)}%` }}>11 岁</span>
-          <span style={{ left: `${pos(180)}%` }}>15 岁</span>
+          <span class="wide" style={{ left: `${pos(132)}%` }}>11 岁</span>
+          <span class="wide" style={{ left: `${pos(180)}%` }}>15 岁</span>
           <span style={{ left: '100%' }}>20 岁</span>
         </div>
       </div>
