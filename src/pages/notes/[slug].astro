@@ -5,6 +5,7 @@ import { MODULES } from '../../data/map';
 import BreathTimer from '../../components/tools/BreathTimer';
 import BodyCondition from '../../components/tools/BodyCondition';
 import LitterWatch from '../../components/tools/LitterWatch';
+import SpotChange from '../../components/tools/SpotChange';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -63,6 +64,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：数一次心跳</h2>
         <BreathTimer client:only="preact" kind="heart" />
+      </section>
+    )}
+
+    {note.data.widget === 'spot-change' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：找出哪里不一样</h2>
+        <SpotChange client:only="preact" base={base} />
       </section>
     )}
 
