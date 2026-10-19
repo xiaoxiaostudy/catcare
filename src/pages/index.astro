@@ -18,7 +18,6 @@ const regions = MODULES.map((m) => {
 });
 
 const all = regions.flatMap((r) => r.topics);
-const availableCount = all.filter((t) => t.note).length;
 const firstNote = all.find((t) => t.note)!;
 const currentId = regions.find((r) => r.available > 0)?.id ?? regions[0].id;
 
@@ -56,7 +55,7 @@ const calico = regions.map((r) => {
         <small id="next-label">从这里开始</small>
         <b id="next-title">{firstNote.title}</b>
       </a>
-      <p class="progress" id="learned-text">已经写好 {availableCount} 篇，其余主题即将上线。进度只存在这台设备上。</p>
+      <p class="progress" id="learned-text" hidden></p>
     </div>
 
     <div class="cat-box">
@@ -274,10 +273,11 @@ const calico = regions.map((r) => {
         });
       });
 
-      document.getElementById('learned-text')!.innerHTML =
-        done === 0
-          ? `已经写好 ${total} 篇，其余主题即将上线。进度只存在这台设备上。`
-          : done === total
+      // 还没学过的新访客不显示这一行
+      const text = document.getElementById('learned-text')!;
+      text.hidden = done === 0;
+      text.innerHTML =
+        done === total
             ? `写好的 ${total} 篇都学会了。新主题上线后会接着点亮。`
             : `你学会了 <b>${done}</b> 篇，共 ${total} 篇可以学。`;
 
