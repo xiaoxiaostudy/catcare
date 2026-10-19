@@ -6,6 +6,7 @@ import BreathTimer from '../../components/tools/BreathTimer';
 import BodyCondition from '../../components/tools/BodyCondition';
 import LitterWatch from '../../components/tools/LitterWatch';
 import SpotChange from '../../components/tools/SpotChange';
+import BodyLanguage from '../../components/tools/BodyLanguage';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -71,6 +72,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：找出哪里不一样</h2>
         <SpotChange client:only="preact" base={base} />
+      </section>
+    )}
+
+    {note.data.widget === 'body-language' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：它在说什么？</h2>
+        <BodyLanguage client:only="preact" />
       </section>
     )}
 
