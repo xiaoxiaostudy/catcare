@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { MODULES } from '../../data/map';
+import { sourcesOf } from '../../lib/sources';
 import BreathTimer from '../../components/tools/BreathTimer';
 import BodyCondition from '../../components/tools/BodyCondition';
 import LitterWatch from '../../components/tools/LitterWatch';
@@ -36,6 +37,7 @@ const next = siblings[pos + 1];
 const toc = headings.filter((h) => h.depth === 2 && !/存疑点|我家猫/.test(h.text)).map((h) => ({ ...h, text: h.text.replace(/^\d+\.\s*/, '') }));
 const date = note.data.date.toISOString().slice(0, 10);
 const reviewed = note.data.status === '已审核';
+const sources = sourcesOf(note.body);
 // 年龄滑块在三篇生命阶段笔记里，各自从这个阶段的典型年龄开始（单位：月）
 const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<string, number>)[note.id];
 ---
@@ -50,9 +52,12 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
 
     <h1 class="hand">{note.data.title}</h1>
     <p class="meta">
-      <span class:list={['trust', { reviewed }]}>{reviewed ? '兽医审核过' : '整理自公开的兽医资料，还没经兽医审核'}</span>
+      <a class:list={['trust', { reviewed }]} href={`${base}about/`}>{reviewed ? '兽医审核过' : '整理自公开的兽医资料，还没经兽医审核'}</a>
       <span>更新于 {date}</span>
     </p>
+    {sources.length > 0 && (
+      <p class="basis">依据：{sources.map((s) => s.short).join('、')}。<a href={`${base}about/`}>内容从哪来</a></p>
+    )}
 
     <aside class="takeaway">
       <p class="takeaway-label">一句话结论</p>
@@ -271,6 +276,24 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
     background: var(--surface-2);
     color: var(--ink-2);
     line-height: 26px;
+  }
+
+  a.trust {
+    text-decoration: none;
+  }
+
+  a.trust:hover {
+    color: var(--ink);
+  }
+
+  .basis {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .basis a {
+    color: var(--ink-2);
   }
 
   .trust.reviewed {
