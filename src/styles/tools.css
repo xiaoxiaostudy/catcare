@@ -875,3 +875,191 @@ p.save-to-cat {
     transition: none;
   }
 }
+
+/* 找危险物 */
+.toxin-room {
+  display: grid;
+  gap: 12px;
+}
+
+.tr-svg {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.tr-wall {
+  fill: var(--surface);
+}
+
+.tr-floor {
+  fill: var(--surface-2);
+}
+
+.tr-window {
+  fill: var(--calm-soft);
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.tr-frame {
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.tr-wood {
+  fill: color-mix(in srgb, var(--ginger) 35%, var(--muted));
+}
+
+.tr-pack {
+  fill: var(--calm-soft);
+  stroke: var(--calm);
+}
+
+.tr-paw {
+  fill: var(--calm);
+}
+
+.tr-oil {
+  fill: color-mix(in srgb, var(--warn) 40%, var(--surface));
+  stroke: var(--warn);
+}
+
+.tr-cap {
+  fill: var(--ink-2);
+}
+
+.tr-book {
+  fill: var(--muted);
+}
+
+.tr-book.alt {
+  fill: var(--s-todo);
+}
+
+.tr-stem {
+  fill: none;
+  stroke: var(--eye);
+  stroke-width: 2;
+}
+
+.tr-lily ellipse {
+  fill: var(--surface);
+  stroke: var(--muted);
+  stroke-width: 0.8;
+}
+
+.tr-pollen {
+  fill: var(--ginger);
+}
+
+.tr-vase {
+  fill: var(--calm-soft);
+  stroke: var(--calm);
+}
+
+.tr-plate {
+  fill: var(--surface);
+  stroke: var(--ink-2);
+}
+
+.tr-grape {
+  fill: color-mix(in srgb, #7a4b8c 80%, var(--ink));
+}
+
+.tr-pill {
+  fill: var(--surface);
+  stroke: var(--muted);
+}
+
+.tr-pot {
+  fill: color-mix(in srgb, var(--ginger) 45%, var(--muted));
+}
+
+.tr-bract {
+  fill: #c8323f;
+}
+
+.tr-leaf {
+  fill: var(--eye);
+}
+
+.tr-bottle {
+  fill: var(--calm-soft);
+  stroke: var(--ink-2);
+}
+
+.tr-label {
+  fill: var(--surface);
+  stroke: var(--line);
+}
+
+.tr-cat {
+  fill: var(--surface);
+  stroke: var(--tortie);
+  stroke-width: 1.5;
+}
+
+.tr-cat .tr-tail {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.tr-cat .tr-eye {
+  fill: var(--eye);
+  stroke: none;
+}
+
+.tr-mark {
+  fill: none;
+  stroke: var(--pad);
+  stroke-width: 3;
+}
+
+.tr-mark.on {
+  stroke: var(--accent);
+}
+
+.tr-card {
+  padding: 12px 14px;
+  border-left: 4px solid var(--warn);
+  border-radius: 10px;
+  background: var(--warn-soft);
+}
+
+.tr-card.urgent {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.tr-card p {
+  margin: 4px 0 0;
+}
+
+.tr-all {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--ink-2);
+}
+
+.tr-all b {
+  margin-right: 6px;
+  color: var(--ink);
+}
+
+.tr-sos {
+  margin: 0;
+  padding: 10px 14px;
+  border: 1.5px solid var(--danger);
+  border-radius: 10px;
+}
+
+.tr-sos b {
+  color: var(--danger);
+}
