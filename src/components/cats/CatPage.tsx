@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'preact/hooks';
-import { addDays, ageText, breathsPerMinute, recordsOf, today, upsertRecord, type Cat, type DayRecord } from '../../lib/store';
+import { addDays, ageText, breathsPerMinute, careDue, careOf, recordsOf, today, upsertRecord, type Cat, type DayRecord } from '../../lib/store';
 import { alertsFor, METRICS } from '../../lib/baseline';
 import { CatForm } from './CatForm';
 import { RecordForm } from './RecordForm';
 import { TrendChart } from './TrendChart';
 import { DotStrip } from './DotStrip';
+import { CareLog } from './CareLog';
 import { BASE, useData } from './useData';
 
-type Tab = 'log' | 'trend';
+type Tab = 'log' | 'trend' | 'care';
+const HASH: Record<Tab, string> = { log: '', trend: '#trend', care: '#care' };
 
 const LABEL: Record<string, string> = {
   none: '没吃', less: '偏少', normal: '正常', more: '偏多', low: '没精神', high: '活跃', s: '小', m: '中', l: '大',
@@ -19,11 +21,11 @@ export default function CatPage() {
   const { data, update, saveFailed } = useData();
   const [id] = useState(() => new URLSearchParams(location.search).get('id') ?? '');
   const [date, setDate] = useState(today);
-  const [tab, setTab] = useState<Tab>(() => (location.hash === '#trend' ? 'trend' : 'log'));
+  const [tab, setTab] = useState<Tab>(() => (location.hash === '#trend' ? 'trend' : location.hash === '#care' ? 'care' : 'log'));
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    history.replaceState(null, '', tab === 'trend' ? '#trend' : location.pathname + location.search);
+    history.replaceState(null, '', location.pathname + location.search + HASH[tab]);
   }, [tab]);
 
   const cat = data.cats.find((c) => c.id === id);
@@ -41,6 +43,7 @@ export default function CatPage() {
   const existing = recs.find((r) => r.date === date);
   const alerts = alertsFor(cat, recs, date, BASE);
   const t = today();
+  const due = careDue(careOf(data, cat.id), t);
 
   const saveCat = (c: Cat) => {
     update({ ...data, cats: data.cats.map((x) => (x.id === c.id ? c : x)) });
@@ -48,8 +51,13 @@ export default function CatPage() {
   };
 
   const removeCat = () => {
-    if (!confirm(`删除${cat.name}和它的全部 ${recs.length} 条记录？删除后找不回来，除非你导出过备份。`)) return;
-    update({ cats: data.cats.filter((c) => c.id !== cat.id), records: data.records.filter((r) => r.catId !== cat.id), version: data.version });
+    if (!confirm(`删除${cat.name}和它的全部 ${recs.length} 天记录、疫苗驱虫记录？删除后找不回来，除非你导出过备份。`)) return;
+    update({
+      version: data.version,
+      cats: data.cats.filter((c) => c.id !== cat.id),
+      records: data.records.filter((r) => r.catId !== cat.id),
+      care: data.care.filter((e) => e.catId !== cat.id),
+    });
     location.href = `${BASE}cats/`;
   };
 
@@ -81,7 +89,18 @@ export default function CatPage() {
       <div class="tabs" role="tablist">
         <button role="tab" aria-selected={tab === 'log'} onClick={() => setTab('log')}>记一笔</button>
         <button role="tab" aria-selected={tab === 'trend'} onClick={() => setTab('trend')}>看趋势</button>
+        <button role="tab" aria-selected={tab === 'care'} onClick={() => setTab('care')}>
+          疫苗驱虫{due.length > 0 && <span class="tab-dot" aria-label="有到期的项目" />}
+        </button>
       </div>
+
+      {tab !== 'care' && due.length > 0 && (
+        <button class="banner care-due" onClick={() => setTab('care')}>
+          {due.map((s) => `${s.label}${s.daysLeft! < 0 ? '已经过期' : s.daysLeft === 0 ? '今天到期' : ` ${s.daysLeft} 天后到期`}`).join('，')}。去看看
+        </button>
+      )}
+
+      {tab === 'care' && <CareLog catId={cat.id} data={data} update={update} />}
 
       {tab === 'log' && (
         <>

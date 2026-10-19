@@ -2,7 +2,7 @@
 // 结构改动时提高 VERSION，并在 migrate() 里把旧数据转过来。
 
 export const STORAGE_KEY = 'catcare:data';
-const VERSION = 1;
+const VERSION = 2; // 2：加了疫苗和驱虫记录 care
 
 export type Sex = '公' | '母';
 export type Level = 'less' | 'normal' | 'more';
@@ -43,13 +43,30 @@ export interface DayRecord {
   note?: string;
 }
 
+/** 打疫苗、驱虫，一次一条。不是每天都有，所以和 DayRecord 分开存。 */
+export type CareKind = 'vaccine' | 'deworm';
+export type DewormScope = 'internal' | 'external' | 'both';
+
+export interface CareEvent {
+  id: string;
+  catId: string;
+  kind: CareKind;
+  date: string; // YYYY-MM-DD
+  scope?: DewormScope; // 只有驱虫有：体内、体外还是体内外一起
+  product: string; // 疫苗或药的名字，可以为空
+  place: string; // 在哪里打的、做的，可以为空
+  next?: string; // 兽医或说明书说的下次日期，填了才会提醒
+  note?: string;
+}
+
 export interface Data {
   version: number;
   cats: Cat[];
   records: DayRecord[];
+  care: CareEvent[];
 }
 
-const empty = (): Data => ({ version: VERSION, cats: [], records: [] });
+const empty = (): Data => ({ version: VERSION, cats: [], records: [], care: [] });
 
 function migrate(raw: unknown): Data {
   if (!raw || typeof raw !== 'object') return empty();
@@ -58,6 +75,7 @@ function migrate(raw: unknown): Data {
     version: VERSION,
     cats: Array.isArray(d.cats) ? d.cats : [],
     records: Array.isArray(d.records) ? d.records : [],
+    care: Array.isArray(d.care) ? d.care : [], // 版本 1 没有这一项
   };
 }
 
@@ -111,6 +129,53 @@ export function recordsOf(d: Data, catId: string) {
 export function upsertRecord(d: Data, rec: DayRecord): Data {
   const others = d.records.filter((r) => !(r.catId === rec.catId && r.date === rec.date));
   return { ...d, records: [...others, rec] };
+}
+
+/** 这只猫的疫苗和驱虫记录，新的在前 */
+export function careOf(d: Data, catId: string) {
+  return d.care.filter((e) => e.catId === catId).sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export function upsertCare(d: Data, ev: CareEvent): Data {
+  return { ...d, care: [...d.care.filter((e) => e.id !== ev.id), ev] };
+}
+
+export function removeCare(d: Data, id: string): Data {
+  return { ...d, care: d.care.filter((e) => e.id !== id) };
+}
+
+/** 三条线分开提醒：疫苗、体内驱虫、体外驱虫。「体内外」两条线都算。 */
+export const CARE_TRACKS = [
+  { id: 'vaccine', label: '疫苗', covers: (e: CareEvent) => e.kind === 'vaccine' },
+  { id: 'internal', label: '体内驱虫', covers: (e: CareEvent) => e.kind === 'deworm' && e.scope !== 'external' },
+  { id: 'external', label: '体外驱虫', covers: (e: CareEvent) => e.kind === 'deworm' && e.scope !== 'internal' },
+] as const;
+
+export interface CareStatus {
+  id: (typeof CARE_TRACKS)[number]['id'];
+  label: string;
+  last?: CareEvent; // 最近一次
+  next?: string; // 最近一次写的下次日期
+  daysLeft?: number; // 离下次还有几天，过了是负数
+}
+
+export function daysBetween(from: string, to: string) {
+  const [y1, m1, d1] = from.split('-').map(Number);
+  const [y2, m2, d2] = to.split('-').map(Number);
+  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000);
+}
+
+export function careStatus(events: CareEvent[], on = today()): CareStatus[] {
+  return CARE_TRACKS.map((t) => {
+    const last = events.filter(t.covers).sort((a, b) => b.date.localeCompare(a.date))[0];
+    const next = last?.next;
+    return { id: t.id, label: t.label, last, next, daysLeft: next ? daysBetween(on, next) : undefined };
+  });
+}
+
+/** 7 天内到期或已经过期的 */
+export function careDue(events: CareEvent[], on = today()) {
+  return careStatus(events, on).filter((s) => s.daysLeft !== undefined && s.daysLeft <= 7);
 }
 
 export function ageText(birth: string, on = today()) {
