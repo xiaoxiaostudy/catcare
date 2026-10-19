@@ -573,3 +573,163 @@ p.save-to-cat {
     animation: none;
   }
 }
+
+/* 找不同 */
+.spot-change {
+  display: grid;
+  gap: 12px;
+}
+
+.sc-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sc-pair figure {
+  margin: 0;
+}
+
+.sc-pair figcaption {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.sc-svg {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.sc-wall {
+  fill: var(--surface);
+}
+
+.sc-floor {
+  fill: var(--surface-2);
+}
+
+.sc-wood {
+  fill: color-mix(in srgb, var(--ginger) 35%, var(--muted));
+}
+
+.sc-plank {
+  fill: color-mix(in srgb, var(--ginger) 20%, var(--line));
+}
+
+.sc-bed {
+  fill: var(--calm-soft);
+  stroke: var(--line);
+}
+
+.sc-pillow {
+  fill: var(--surface);
+  stroke: var(--line);
+}
+
+.sc-under {
+  fill: color-mix(in srgb, var(--ink) 18%, var(--surface-2));
+}
+
+.sc-bowl,
+.sc-box {
+  fill: var(--surface);
+  stroke: var(--ink-2);
+  stroke-width: 1.2;
+}
+
+.sc-water {
+  fill: var(--calm);
+  opacity: 0.5;
+}
+
+.sc-kibble {
+  fill: color-mix(in srgb, var(--ginger) 55%, var(--ink-2));
+}
+
+.sc-litter {
+  fill: color-mix(in srgb, var(--ginger) 10%, var(--surface-2));
+}
+
+.sc-clump {
+  fill: color-mix(in srgb, var(--ginger) 45%, var(--ink-2));
+}
+
+.sc-cat {
+  fill: var(--surface);
+  stroke: var(--tortie);
+  stroke-width: 1.4;
+}
+
+.sc-cat .sc-patch {
+  fill: var(--ginger);
+  stroke: none;
+}
+
+.sc-cat .sc-tail,
+.sc-cat .sc-shut {
+  fill: none;
+}
+
+.sc-cat .sc-eye {
+  fill: var(--eye);
+  stroke: none;
+}
+
+.sc-ring {
+  fill: none;
+  stroke: var(--pad);
+  stroke-width: 3;
+}
+
+.sc-miss {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  animation: sc-fade 0.6s ease-out forwards;
+}
+
+@keyframes sc-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+.sc-count b {
+  font-size: 18px;
+}
+
+.sc-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.sc-list p {
+  margin: 2px 0 0;
+  color: var(--ink-2);
+}
+
+.sc-end {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.sc-end p {
+  margin: 0;
+}
+
+@media (max-width: 520px) {
+  .sc-pair {
+    grid-template-columns: 1fr;
+  }
+}
