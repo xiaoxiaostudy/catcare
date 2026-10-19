@@ -8,6 +8,7 @@ import LitterWatch from '../../components/tools/LitterWatch';
 import SpotChange from '../../components/tools/SpotChange';
 import BodyLanguage from '../../components/tools/BodyLanguage';
 import ToxinRoom from '../../components/tools/ToxinRoom';
+import FoodCalc from '../../components/tools/FoodCalc';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -87,6 +88,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：这个客厅里有什么危险？</h2>
         <ToxinRoom client:only="preact" emergencyHref={`${base}emergency/#poison`} />
+      </section>
+    )}
+
+    {note.data.widget === 'food-calc' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：它一天该吃多少？</h2>
+        <FoodCalc client:only="preact" />
       </section>
     )}
 
