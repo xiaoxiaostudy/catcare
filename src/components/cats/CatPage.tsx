@@ -123,6 +123,7 @@ export default function CatPage() {
               <TrendChart metric={METRICS[1]} records={recs} end={t} />
               <TrendChart metric={METRICS[2]} records={recs} end={t} />
               <TrendChart metric={METRICS[3]} records={recs} end={t} days={365} />
+              {recs.some((r) => r.heart) && <TrendChart metric={METRICS[4]} records={recs} end={t} />}
               <p class="fine">
                 正常范围用最近 30 天的记录算（去掉最高和最低的各一成），所以每只猫都不一样，也会随着记录慢慢变准。还在长身体的小猫，体重本来就会一直涨。
               </p>
@@ -135,13 +136,14 @@ export default function CatPage() {
               <div class="table-scroll">
                 <table class="history">
                   <thead>
-                    <tr><th>日期</th><th>呼吸</th><th>食量</th><th>饮水</th><th>尿</th><th>便</th><th>精神</th><th>体重</th><th>备注</th></tr>
+                    <tr><th>日期</th><th>呼吸</th><th>心跳</th><th>食量</th><th>饮水</th><th>尿</th><th>便</th><th>精神</th><th>体重</th><th>备注</th></tr>
                   </thead>
                   <tbody>
                     {[...recs].reverse().map((r) => (
                       <tr onClick={() => { setDate(r.date); setTab('log'); scrollTo(0, 0); }}>
                         <td>{md(r.date)}</td>
                         <td>{r.breathing ? breathsPerMinute(r.breathing) : ''}</td>
+                        <td>{r.heart ? breathsPerMinute(r.heart) : ''}</td>
                         <td>{r.appetite ? LABEL[r.appetite] : ''}</td>
                         <td>{r.water ? LABEL[r.water] : ''}</td>
                         <td>{[r.urineCount, r.urineSize && LABEL[r.urineSize]].filter((v) => v !== undefined).join(' ')}</td>

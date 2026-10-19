@@ -46,6 +46,11 @@
   margin-top: 16px;
 }
 
+/* 还没添加猫时只是一句话，别让链接被 grid 拆成单独一行 */
+p.save-to-cat {
+  display: block;
+}
+
 /* 呼吸计时器 */
 .breath-timer {
   display: grid;

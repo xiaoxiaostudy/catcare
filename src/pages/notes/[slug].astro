@@ -59,6 +59,13 @@ const reviewed = note.data.status === '已审核';
       </section>
     )}
 
+    {note.data.widget === 'heart-timer' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：数一次心跳</h2>
+        <BreathTimer client:only="preact" kind="heart" />
+      </section>
+    )}
+
     {note.data.widget === 'body-condition' && (
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：它现在是几分？</h2>
