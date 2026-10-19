@@ -11,7 +11,7 @@
 - `src/lib/sources.ts`：笔记依据的五家主要机构（iCatCare、Cornell、Merck、AAFP、WSAVA），按正文里的网址认出每篇用了哪几家。笔记页标题下的「依据」和「内容从哪来」页（`src/pages/about.astro`，讲来源、核对流程、分级、还没兽医审核）都用它。加了新的主要机构要改这里。
 - `src/data/map.ts`：首页学习地图的七大块和全部主题。写好的主题用 `note` 指向笔记文件名。
 - `src/data/emergency.ts`：急症清单页的数据。只收录笔记里「就医红线」明确写到的情况，措辞和来源跟笔记保持一致；笔记 `emergency-checklist.md` 是它的打印版，两边要同步改。
-- `src/content/pages/`：工具箱（来源清单、待问兽医清单、档案）和基线记录表。
+- `作者工作区/`：作者自己用的，不上网站：笔记模板和来源清单（`toolbox.md`，含待问兽医清单、国内核对清单、绵绵和妙妙的档案）、绵绵和妙妙的基线记录表（`baseline.md`）。网站是给读者学的，作者的工作内容不要再放回 `src/`。
 - 「我的猫」（`src/pages/cats/`、`src/components/cats/`）是 Preact 组件，只在浏览器里运行（`client:only`）。每个用户添加自己的猫、每天记录，数据都在浏览器 localStorage 里，不上传：
   - `src/lib/store.ts`：数据结构、读写、备份导入导出。键名 `catcare:data`；改结构要提高 `VERSION` 并在 `migrate()` 里转换旧数据。
   - `src/lib/baseline.ts`：每只猫自己的正常范围（最近 30 天去掉两头各 10%，满 5 天才算）和当天提醒。提醒只说「和它平时不一样」，并链接到急症清单和笔记里对应的条目，措辞要和笔记一致。

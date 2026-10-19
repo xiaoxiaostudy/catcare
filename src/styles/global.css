@@ -186,6 +186,16 @@ a {
   }
 }
 
+@media (max-width: 340px) {
+  .site-nav {
+    gap: 0;
+  }
+
+  .site-nav a {
+    padding: 6px 6px;
+  }
+}
+
 .site-footer {
   margin-top: 64px;
   padding: 24px 0 40px;

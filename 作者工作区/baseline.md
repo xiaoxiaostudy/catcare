@@ -63,7 +63,7 @@ title: 绵绵和妙妙的基线记录表
 
 ## 五、紧急提醒
 
-原来这里的暂定提醒已经由《急症清单》取代：在线版见[急症清单页](/catcare/emergency/)，打印版见[《急症清单（一页成稿）》](/catcare/notes/emergency-checklist/)。
+原来这里的暂定提醒已经由《急症清单》取代：在线版见[急症清单页](https://xiaoxiaostudy.github.io/catcare/emergency/)，打印版见[《急症清单（一页成稿）》](../src/content/notes/emergency-checklist.md)。
 
 ## 六、带去问兽医的问题清单（汇总）
 

@@ -4,7 +4,7 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  current?: 'map' | 'cats' | 'emergency' | 'toolbox';
+  current?: 'map' | 'cats' | 'emergency' | 'about';
 }
 
 const { title, description = '一边学、一边记录自家猫的养猫知识笔记库', current } = Astro.props;
@@ -34,7 +34,7 @@ const fullTitle = title ? `${title}｜猫咪知识笔记库` : '猫咪知识笔�
         <nav class="site-nav" aria-label="主导航">
           <a href={base} aria-current={current === 'map' ? 'page' : undefined}>地图</a>
           <a href={`${base}cats/`} aria-current={current === 'cats' ? 'page' : undefined}>我的猫</a>
-          <a href={`${base}toolbox/`} aria-current={current === 'toolbox' ? 'page' : undefined}>工具箱</a>
+          <a href={`${base}about/`} aria-current={current === 'about' ? 'page' : undefined}>内容从哪来</a>
           <a class="nav-sos" href={`${base}emergency/`} aria-current={current === 'emergency' ? 'page' : undefined}>
             急症清单
           </a>
