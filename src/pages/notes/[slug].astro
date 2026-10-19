@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import { MODULES } from '../../data/map';
 import BreathTimer from '../../components/tools/BreathTimer';
 import BodyCondition from '../../components/tools/BodyCondition';
+import LitterWatch from '../../components/tools/LitterWatch';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -62,6 +63,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：它现在是几分？</h2>
         <BodyCondition client:only="preact" />
+      </section>
+    )}
+
+    {note.data.widget === 'litter-watch' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：哪只要马上去医院？</h2>
+        <LitterWatch client:only="preact" emergencyHref={`${base}emergency/#blocked`} />
       </section>
     )}
 
