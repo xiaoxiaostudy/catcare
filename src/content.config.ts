@@ -12,7 +12,7 @@ const notes = defineCollection({
     date: z.coerce.date(),
     author: z.string(),
     summary: z.string(),
-    widget: z.enum(['breath-timer', 'body-condition', 'litter-watch', 'heart-timer', 'spot-change', 'body-language', 'toxin-room', 'food-calc']).optional(),
+    widget: z.enum(['breath-timer', 'body-condition', 'litter-watch', 'heart-timer', 'spot-change', 'body-language', 'toxin-room', 'food-calc', 'life-stage']).optional(),
   }),
 });
 

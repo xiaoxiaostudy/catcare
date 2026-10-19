@@ -1126,3 +1126,145 @@ p.save-to-cat {
 .food-calc .banner {
   margin: 0;
 }
+
+/* 年龄滑块 */
+.life-stage {
+  display: grid;
+  gap: 14px;
+}
+
+.ls-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+}
+
+.ls-head p {
+  margin: 0;
+}
+
+.ls-age b {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+.ls-age span {
+  color: var(--ink-2);
+}
+
+.ls-stage {
+  display: flex;
+  gap: 6px;
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+
+.ls-stage b {
+  color: var(--ink);
+}
+
+.ls-track {
+  display: grid;
+  gap: 6px;
+}
+
+.ls-row {
+  display: grid;
+  grid-template-columns: 4.6em minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.ls-src {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.ls-bars {
+  position: relative;
+  height: 26px;
+}
+
+.ls-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--surface);
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.ls-bar.on {
+  background: color-mix(in srgb, var(--pad) 45%, var(--surface));
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.ls-pin {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.ls-track input[type='range'] {
+  width: calc(100% - 4.6em - 8px);
+  margin: 4px 0 0 calc(4.6em + 8px);
+  accent-color: var(--accent);
+}
+
+.ls-ticks {
+  position: relative;
+  height: 18px;
+  margin-left: calc(4.6em + 8px);
+}
+
+.ls-ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.ls-ticks span:first-child {
+  transform: none;
+}
+
+.ls-ticks span:last-child {
+  transform: translateX(-100%);
+}
+
+.ls-tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.ls-tip {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.ls-tip h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.ls-tip ul {
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--ink-2);
+  font-size: 14.5px;
+}

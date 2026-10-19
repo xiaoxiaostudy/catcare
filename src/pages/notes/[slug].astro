@@ -9,6 +9,7 @@ import SpotChange from '../../components/tools/SpotChange';
 import BodyLanguage from '../../components/tools/BodyLanguage';
 import ToxinRoom from '../../components/tools/ToxinRoom';
 import FoodCalc from '../../components/tools/FoodCalc';
+import LifeStage from '../../components/tools/LifeStage';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -35,6 +36,8 @@ const next = siblings[pos + 1];
 const toc = headings.filter((h) => h.depth === 2 && !/存疑点|我家猫/.test(h.text)).map((h) => ({ ...h, text: h.text.replace(/^\d+\.\s*/, '') }));
 const date = note.data.date.toISOString().slice(0, 10);
 const reviewed = note.data.status === '已审核';
+// 年龄滑块在三篇生命阶段笔记里，各自从这个阶段的典型年龄开始（单位：月）
+const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<string, number>)[note.id];
 ---
 
 <Base title={note.data.title} description={note.data.summary}>
@@ -95,6 +98,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：它一天该吃多少？</h2>
         <FoodCalc client:only="preact" />
+      </section>
+    )}
+
+    {note.data.widget === 'life-stage' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：拖到它的年龄</h2>
+        <LifeStage client:only="preact" start={startAge} />
       </section>
     )}
 
