@@ -8,6 +8,7 @@
 - `src/content/notes/`：知识笔记，一篇一个 Markdown。开头的 frontmatter 写标题、所属区域（`module`）、状态（未开始 / 写作中 / 已完成 / 已审核）、日期、作者和一句话结论（`summary`）。正文按十栏模板写，用 `## 标题` 分节。
 - `src/lib/rehype-note-sections.mjs`：按 h2 标题里的关键词给每节套样式（就医红线 → 红框，来源 → 折叠）。「存疑点」「我家猫」两节是作者自己的工作区，留在 Markdown 里，网站上不显示。改了模板里的栏目名，要同步改这里。
 - `src/lib/learned.ts`：读者学会了哪些笔记（键名 `catcare:learned`），首页三花猫的花色和爪印按它填色，笔记页底部的「我学会了这一篇」按钮写入。
+- `src/lib/sources.ts`：笔记依据的五家主要机构（iCatCare、Cornell、Merck、AAFP、WSAVA），按正文里的网址认出每篇用了哪几家。笔记页标题下的「依据」和「内容从哪来」页（`src/pages/about.astro`，讲来源、核对流程、分级、还没兽医审核）都用它。加了新的主要机构要改这里。
 - `src/data/map.ts`：首页学习地图的七大块和全部主题。写好的主题用 `note` 指向笔记文件名。
 - `src/data/emergency.ts`：急症清单页的数据。只收录笔记里「就医红线」明确写到的情况，措辞和来源跟笔记保持一致；笔记 `emergency-checklist.md` 是它的打印版，两边要同步改。
 - `src/content/pages/`：工具箱（来源清单、待问兽医清单、档案）和基线记录表。

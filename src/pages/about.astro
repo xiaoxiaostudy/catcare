@@ -1,0 +1,207 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SOURCES, sourcesOf } from '../lib/sources';
+
+const base = import.meta.env.BASE_URL;
+const notes = await getCollection('notes');
+const reviewed = notes.filter((n) => n.data.status === '已审核').length;
+const used = SOURCES.map((s) => ({ ...s, count: notes.filter((n) => sourcesOf(n.body).includes(s)).length }));
+const issues = 'https://github.com/xiaoxiaostudy/catcare/issues';
+---
+
+<Base title="内容从哪来" description="这里的养猫知识依据哪些兽医机构、怎么核对、还缺什么。">
+  <article class="about wrap narrow">
+    <h1 class="hand">内容从哪来</h1>
+    <p class="lead">
+      这里的 {notes.length} 篇笔记，都整理自国际兽医机构公开给养猫人的资料，每条事实标了出处，并回到原网页核对过。作者是养猫人，不是兽医；目前{reviewed > 0 ? `有 ${reviewed} 篇` : '还没有一篇'}经过兽医审核。它能帮你看懂猫、知道什么时候该去医院，但不能代替兽医的诊断。
+    </p>
+
+    <h2>依据的机构</h2>
+    <p>主要用这五家。每篇笔记标题下写着这篇依据了哪几家，篇末「来源」里有原网页的链接和更新日期。</p>
+    <ul class="sources">
+      {used.map((s) => (
+        <li>
+          <div class="src-head">
+            <a href={s.url} rel="noopener">{s.name}</a>
+            <span class="src-count">{s.count} 篇用到</span>
+          </div>
+          <p>{s.about}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="aside">
+      少数地方用到了大学兽医院、兽医专科医院、兽医个人的科普文章，这类来源会在「来源」里标为 B 级，只用来补充，不单独作为依据。
+    </p>
+
+    <h2>怎么写、怎么核对</h2>
+    <ol class="steps">
+      <li><b>每条事实都有出处。</b>数字、时间、剂量这类具体的东西，写明是哪家机构说的。</li>
+      <li><b>回原网页核对。</b>部分素材先用 AI 整理成卡片，但卡片只当线索；每条都回到机构的原网页逐条对过，「来源」里写了核对日期。对不上的，在「来源」里说明删了什么、改了什么。</li>
+      <li><b>说法不一样就并列。</b>不同机构给的数字或建议不同时，两种都写出来、各自标出处，不替你选。</li>
+      <li><b>就医红线照原文写。</b>「什么时候必须去医院」只写机构明确说过的情况，急症清单的措辞和笔记保持一致。</li>
+    </ol>
+
+    <h2>来源怎么分级</h2>
+    <dl class="grades">
+      <dt>A</dt><dd>权威机构和指南，比如上面五家。正文的依据只用 A 级。</dd>
+      <dt>B</dt><dd>兽医个人或兽医院的科普。只作补充，会注明。</dd>
+      <dt>C</dt><dd>一般科普、营销号。只当线索，不作依据。</dd>
+    </dl>
+
+    <h2>笔记上的标记</h2>
+    <dl class="marks">
+      <dt><span class="trust">整理自公开的兽医资料，还没经兽医审核</span></dt>
+      <dd>按上面的流程写好、核对过原文，但还没请兽医看过。{reviewed === 0 && '现在所有笔记都是这个状态。'}</dd>
+      <dt><span class="trust reviewed">兽医审核过</span></dt>
+      <dd>请执业兽医读过全文、确认过的笔记。</dd>
+    </dl>
+
+    <h2>还做不到的</h2>
+    <ul>
+      <li><b>不能诊断。</b>每只猫的情况不同，拿不准的时候直接联系兽医；紧急情况先看<a href={`${base}emergency/`}>急症清单</a>。</li>
+      <li><b>国内的做法还在核对。</b>依据的机构大多在英国和美国，国内的疫苗、药品、猫粮标准、医院流程可能不一样，每篇的「国内差异」写着还没核对的地方。</li>
+      <li><b>资料会更新。</b>笔记写的是核对那天原网页的内容，机构以后改了，这里不一定马上跟上。</li>
+    </ul>
+
+    <h2>发现错了？</h2>
+    <p>
+      如果你发现哪里和原文不一致、过时了，或者你是兽医、愿意帮忙审核，欢迎在 <a href={issues} rel="noopener">GitHub</a> 上留言，写上是哪一篇、哪一句。
+    </p>
+  </article>
+</Base>
+
+<style>
+  .about {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(38px, 7vw, 56px);
+  }
+
+  .lead {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  h2 {
+    margin: 40px 0 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 22px;
+  }
+
+  p,
+  li,
+  dd {
+    color: var(--ink-2);
+    line-height: 1.8;
+  }
+
+  .sources {
+    display: grid;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sources li {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .src-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 12px;
+  }
+
+  .src-head a {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .src-count {
+    color: var(--muted);
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .sources p {
+    margin: 6px 0 0;
+    font-size: 15px;
+  }
+
+  .aside {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .steps {
+    padding-left: 1.4em;
+  }
+
+  .steps li + li {
+    margin-top: 8px;
+  }
+
+  b {
+    color: var(--ink);
+  }
+
+  .grades,
+  .marks {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 10px 14px;
+    margin: 0;
+  }
+
+  .marks {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .marks dd + dt {
+    margin-top: 12px;
+  }
+
+  dt {
+    font-weight: 600;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .trust {
+    display: inline-block;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+  }
+
+  .trust.reviewed {
+    background: color-mix(in srgb, var(--s-done) 18%, transparent);
+    color: var(--ink);
+  }
+
+  .trust.reviewed::before {
+    content: '✓ ';
+    color: var(--s-done);
+  }
+</style>
