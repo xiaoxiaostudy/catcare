@@ -1063,3 +1063,66 @@ p.save-to-cat {
 .tr-sos b {
   color: var(--danger);
 }
+
+/* 喂多少 */
+.food-calc {
+  display: grid;
+  gap: 14px;
+}
+
+.fc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.fc-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.fc-input input {
+  width: 7em;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+}
+
+.fc-kcal {
+  margin: 0;
+}
+
+.fc-kcal b,
+.fc-out b {
+  color: var(--accent);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-out {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+
+.fc-out p {
+  margin: 0;
+}
+
+.fc-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.food-calc .banner {
+  margin: 0;
+}
