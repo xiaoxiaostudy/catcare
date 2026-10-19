@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { ageText, recordsOf, today, type Cat } from '../../lib/store';
+import { ageText, careDue, careOf, recordsOf, today, type Cat } from '../../lib/store';
 import { alertsFor } from '../../lib/baseline';
 import { CatForm } from './CatForm';
 import { Backup } from './Backup';
@@ -37,6 +37,9 @@ export default function CatList() {
             const t = today();
             const doneToday = recs.some((r) => r.date === t);
             const alerts = alertsFor(cat, recs, t, BASE).filter((a) => a.level !== 'info');
+            const due = careDue(careOf(data, cat.id), t);
+            const over = due.filter((s) => s.daysLeft! < 0);
+            const soon = due.filter((s) => s.daysLeft! >= 0);
             return (
               <li>
                 <a class="cat-card card" href={catUrl(cat.id)}>
@@ -56,6 +59,8 @@ export default function CatList() {
                       ) : (
                         <span class="pill todo">今天还没记</span>
                       )}
+                      {over.length > 0 && <span class="pill alert">{over.map((s) => s.label).join('、')}过期了</span>}
+                      {soon.length > 0 && <span class="pill alert">{soon.map((s) => s.label).join('、')}快到了</span>}
                       <span class="count">共记录 {recs.length} 天</span>
                     </span>
                   </span>
