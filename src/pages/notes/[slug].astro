@@ -7,6 +7,7 @@ import BodyCondition from '../../components/tools/BodyCondition';
 import LitterWatch from '../../components/tools/LitterWatch';
 import SpotChange from '../../components/tools/SpotChange';
 import BodyLanguage from '../../components/tools/BodyLanguage';
+import ToxinRoom from '../../components/tools/ToxinRoom';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -79,6 +80,13 @@ const reviewed = note.data.status === '已审核';
       <section class="try-it" aria-labelledby="try-it">
         <h2 id="try-it" class="try-title">动手试试：它在说什么？</h2>
         <BodyLanguage client:only="preact" />
+      </section>
+    )}
+
+    {note.data.widget === 'toxin-room' && (
+      <section class="try-it" aria-labelledby="try-it">
+        <h2 id="try-it" class="try-title">动手试试：这个客厅里有什么危险？</h2>
+        <ToxinRoom client:only="preact" emergencyHref={`${base}emergency/#poison`} />
       </section>
     )}
 
