@@ -324,6 +324,7 @@ const calico = regions.map((r) => {
   .words {
     grid-area: words;
     align-self: end;
+    container-type: inline-size;
   }
 
   .next-box {
@@ -336,7 +337,8 @@ const calico = regions.map((r) => {
 
   h1 {
     margin: 0;
-    font-size: clamp(36px, 5.4vw, 66px);
+    /* 按左栏宽度定字号，第二行「也给自家猫记一笔」要整行放进左栏，不能伸到猫的标注上 */
+    font-size: clamp(30px, 12cqi, 64px);
     line-height: 1.02;
   }
 
