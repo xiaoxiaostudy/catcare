@@ -733,3 +733,145 @@ p.save-to-cat {
     grid-template-columns: 1fr;
   }
 }
+
+/* 肢体语言 */
+.body-language {
+  display: grid;
+  gap: 14px;
+}
+
+.bl-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.bl-svg {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+}
+
+.bl-ground {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.bl-cat > *,
+.bl-cat g > * {
+  fill: var(--surface);
+  stroke: var(--tortie);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  transition: d 0.25s ease, transform 0.25s ease;
+}
+
+.bl-cat .bl-patch {
+  fill: var(--ginger);
+  stroke: none;
+}
+
+.bl-cat .bl-tail-edge {
+  fill: none;
+  stroke: var(--tortie);
+  stroke-linecap: round;
+}
+
+.bl-cat .bl-tail {
+  fill: none;
+  stroke: var(--surface);
+  stroke-linecap: round;
+}
+
+.bl-cat .bl-line,
+.bl-cat .bl-whisker {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.bl-cat .bl-whisker {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.bl-cat .bl-eye {
+  fill: color-mix(in srgb, var(--eye) 70%, var(--surface));
+  stroke-width: 1.2;
+}
+
+.bl-cat .bl-pupil {
+  fill: var(--tortie);
+  stroke: none;
+}
+
+.bl-cat .bl-nose {
+  fill: var(--pad);
+  stroke: none;
+}
+
+.bl-read p {
+  margin: 0 0 8px;
+}
+
+.bl-sum b {
+  font-size: 17px;
+}
+
+.bl-read ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14.5px;
+}
+
+.bl-read li {
+  padding-left: 10px;
+  border-left: 3px solid var(--line);
+  color: var(--ink-2);
+}
+
+.bl-read li b {
+  margin-right: 6px;
+  color: var(--ink);
+}
+
+.bl-read li.mood-calm {
+  border-color: var(--s-done);
+}
+
+.bl-read li.mood-fear {
+  border-color: var(--calm);
+}
+
+.bl-read li.mood-tense {
+  border-color: var(--warn);
+}
+
+.bl-controls {
+  display: grid;
+  gap: 8px;
+}
+
+.bl-row {
+  display: grid;
+  grid-template-columns: 3em minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 560px) {
+  .bl-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bl-cat > *,
+  .bl-cat g > * {
+    transition: none;
+  }
+}
