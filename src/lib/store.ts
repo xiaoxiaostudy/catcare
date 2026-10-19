@@ -20,6 +20,7 @@ export interface Cat {
   createdAt: string;
 }
 
+/** 数了几次、数了多久。呼吸和心跳都用这个结构。 */
 export interface Breathing {
   count: number; // 实际数到的次数
   seconds: 15 | 30 | 60; // 数了多久
@@ -29,6 +30,7 @@ export interface DayRecord {
   catId: string;
   date: string; // YYYY-MM-DD，每只猫每天一条
   breathing?: Breathing;
+  heart?: Breathing; // 安静时心跳
   appetite?: Appetite;
   water?: Level;
   urineCount?: number;

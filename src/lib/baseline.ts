@@ -6,7 +6,7 @@ import { addDays, breathsPerMinute, type Cat, type DayRecord } from './store';
 export const MIN_DAYS = 5;
 const WINDOW = 30;
 
-export type MetricId = 'breathing' | 'urineCount' | 'stoolCount' | 'weight';
+export type MetricId = 'breathing' | 'urineCount' | 'stoolCount' | 'weight' | 'heart';
 
 export interface Metric {
   id: MetricId;
@@ -23,6 +23,8 @@ export const METRICS: Metric[] = [
   { id: 'urineCount', label: '排尿次数', unit: '次/天', get: (r) => r.urineCount, band: true },
   { id: 'stoolCount', label: '排便次数', unit: '次/天', get: (r) => r.stoolCount, band: true },
   { id: 'weight', label: '体重', unit: '公斤', get: (r) => r.weight, band: false, digits: 2 },
+  // 心跳只画趋势和范围，不做提醒：笔记里还没有心跳的就医红线
+  { id: 'heart', label: '安静时心跳', unit: '次/分', get: (r) => (r.heart ? breathsPerMinute(r.heart) : undefined), band: true },
 ];
 
 export interface Range {

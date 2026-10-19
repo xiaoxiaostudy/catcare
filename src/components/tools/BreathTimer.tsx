@@ -9,13 +9,16 @@ type Seconds = Breathing['seconds'];
 interface Props {
   /** 嵌在记录表单里时，数完直接把结果交回表单，不显示「存进记录」 */
   onDone?: (b: Breathing) => void;
+  /** heart：数心跳。心跳太快点不过来，计时时心里默数，时间到再填数字 */
+  kind?: 'breath' | 'heart';
 }
 
 const R = 88;
 const C = 2 * Math.PI * R;
 
-export default function BreathTimer({ onDone }: Props) {
-  const [seconds, setSeconds] = useState<Seconds>(30);
+export default function BreathTimer({ onDone, kind = 'breath' }: Props) {
+  const heart = kind === 'heart';
+  const [seconds, setSeconds] = useState<Seconds>(heart ? 15 : 30);
   const [phase, setPhase] = useState<Phase>('ready');
   const [count, setCount] = useState(0);
   const [left, setLeft] = useState(30);
@@ -61,14 +64,14 @@ export default function BreathTimer({ onDone }: Props) {
   };
 
   const tap = () => {
-    if (phase !== 'counting') return;
+    if (phase !== 'counting' || heart) return;
     setCount((c) => c + 1);
     setBump((b) => b + 1);
     navigator.vibrate?.(8);
   };
 
   useEffect(() => {
-    if (phase !== 'counting') return;
+    if (phase !== 'counting' || heart) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.code === 'Space' || e.code === 'Enter') {
         e.preventDefault();
@@ -86,19 +89,31 @@ export default function BreathTimer({ onDone }: Props) {
     <div class="breath-timer">
       {phase === 'ready' && (
         <div class="bt-ready">
-          <ul class="bt-check">
-            <li>猫已经睡熟，或者安静地躺着休息</li>
-            <li>没有在呼噜（呼噜时不能数）</li>
-            <li>看胸口：一起一伏算一次</li>
-          </ul>
+          {heart ? (
+            <ul class="bt-check">
+              <li>猫放松、安静，不是刚玩完或正紧张</li>
+              <li>手放在左前腿肘部贴着胸壁的地方，也可以摸大腿内侧</li>
+              <li>先摸到跳动，再开始计时</li>
+            </ul>
+          ) : (
+            <ul class="bt-check">
+              <li>猫已经睡熟，或者安静地躺着休息</li>
+              <li>没有在呼噜（呼噜时不能数）</li>
+              <li>看胸口：一起一伏算一次</li>
+            </ul>
+          )}
           <div class="bt-setup">
             <span class="field-label">数多久</span>
-            <Segmented value={String(seconds)} onChange={(v) => v && setSeconds(Number(v) as Seconds)} options={[['15', '15 秒'], ['30', '30 秒'], ['60', '60 秒']]} label="数多久" />
+            <Segmented value={String(seconds)} onChange={(v) => v && setSeconds(Number(v) as Seconds)} options={heart ? [['15', '15 秒'], ['30', '30 秒']] : [['15', '15 秒'], ['30', '30 秒'], ['60', '60 秒']]} label="数多久" />
           </div>
           <button class="btn primary bt-start" type="button" onClick={start}>
             开始计时
           </button>
-          <p class="fine">开始后，猫的胸口每起伏一次，就点一下大圆圈（电脑上也可以按空格键）。</p>
+          <p class="fine">
+            {heart
+              ? '心跳很快，点不过来。开始后心里默数，时间到会震动提示，再把数到的次数填进去。'
+              : '开始后，猫的胸口每起伏一次，就点一下大圆圈（电脑上也可以按空格键）。'}
+          </p>
         </div>
       )}
 
@@ -106,26 +121,28 @@ export default function BreathTimer({ onDone }: Props) {
         <div class="bt-stage">
           <button
             type="button"
-            class={phase === 'counting' ? 'bt-dial live' : 'bt-dial'}
+            class={phase === 'counting' && !heart ? 'bt-dial live' : 'bt-dial'}
             onClick={tap}
-            disabled={phase !== 'counting'}
-            aria-label={phase === 'counting' ? `已数 ${count} 次，点一下加一` : `一共数了 ${count} 次`}
+            disabled={phase !== 'counting' || heart}
+            aria-label={heart ? `还剩 ${Math.ceil(left)} 秒` : phase === 'counting' ? `已数 ${count} 次，点一下加一` : `一共数了 ${count} 次`}
           >
             <svg viewBox="0 0 200 200" aria-hidden="true">
               <circle class="bt-track" cx="100" cy="100" r={R} />
               <circle class="bt-ring" cx="100" cy="100" r={R} stroke-dasharray={C} stroke-dashoffset={C * (1 - progress)} transform="rotate(-90 100 100)" />
             </svg>
             <span class="bt-count" key={bump}>
-              {count}
+              {heart ? (phase === 'counting' ? Math.ceil(left) : count || '?') : count}
             </span>
-            <span class="bt-sub">{phase === 'counting' ? `还剩 ${Math.ceil(left)} 秒` : '时间到'}</span>
+            <span class="bt-sub">{heart ? (phase === 'counting' ? '秒，心里默数' : '时间到') : phase === 'counting' ? `还剩 ${Math.ceil(left)} 秒` : '时间到'}</span>
           </button>
 
           {phase === 'counting' && (
             <div class="actions bt-actions">
-              <button class="btn small" type="button" onClick={() => setCount((c) => Math.max(0, c - 1))} disabled={count === 0}>
-                点多了，减一
-              </button>
+              {!heart && (
+                <button class="btn small" type="button" onClick={() => setCount((c) => Math.max(0, c - 1))} disabled={count === 0}>
+                  点多了，减一
+                </button>
+              )}
               <button class="btn small" type="button" onClick={() => setPhase('ready')}>
                 停下，重来
               </button>
@@ -136,7 +153,7 @@ export default function BreathTimer({ onDone }: Props) {
             <div class="bt-result">
               <label class="field inline">
                 <span>一共数到</span>
-                <input type="number" inputMode="numeric" min="0" max="200" value={count} onInput={(e) => setCount(Math.max(0, Number(e.currentTarget.value) || 0))} />
+                <input type="number" inputMode="numeric" min="0" max={heart ? 150 : 200} value={heart && count === 0 ? '' : count} autoFocus={heart} onInput={(e) => setCount(Math.max(0, Number(e.currentTarget.value) || 0))} />
                 <span>次（{seconds} 秒）</span>
               </label>
               {result && (
@@ -145,7 +162,9 @@ export default function BreathTimer({ onDone }: Props) {
                 </p>
               )}
               <p class="fine">
-                单独一次的结果说明不了什么，连续多天记下来，和它自己平时的数比才有意义。多少算偏高，以你的兽医给的标准为准。
+                {heart
+                  ? '紧张时心跳会明显变快，单独一次说明不了什么。多在它放松的时候数几次，和它自己平时的数比；多少算正常，以你的兽医给的标准为准。'
+                  : '单独一次的结果说明不了什么，连续多天记下来，和它自己平时的数比才有意义。多少算偏高，以你的兽医给的标准为准。'}
               </p>
               {result && onDone ? (
                 <div class="actions">
@@ -158,7 +177,12 @@ export default function BreathTimer({ onDone }: Props) {
                 </div>
               ) : (
                 <>
-                  {result && <SaveToCat patch={{ breathing: result }} what="多存几天，就能在趋势图里看到它睡着时呼吸的正常范围。" />}
+                  {result && (
+                    <SaveToCat
+                      patch={heart ? { heart: result } : { breathing: result }}
+                      what={heart ? '多存几天，就能在趋势图里看到它安静时心跳的正常范围。' : '多存几天，就能在趋势图里看到它睡着时呼吸的正常范围。'}
+                    />
+                  )}
                   <button class="btn" type="button" onClick={() => setPhase('ready')}>
                     重新数
                   </button>
