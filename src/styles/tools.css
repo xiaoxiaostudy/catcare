@@ -1268,3 +1268,13 @@ p.save-to-cat {
   color: var(--ink-2);
   font-size: 14.5px;
 }
+
+@media (max-width: 520px) {
+  .ls-bar {
+    font-size: 11px;
+  }
+
+  .ls-ticks .wide {
+    display: none;
+  }
+}
