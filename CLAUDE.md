@@ -18,7 +18,8 @@
 - 互动工具（`src/components/tools/`）：
   - `BreathTimer`：呼吸计时器。笔记 frontmatter 写 `widget: breath-timer` 就会出现在笔记页「动手试试」里；记录表单里也能打开，数完直接填进表单。
   - `BodyCondition`：体型评分滑块，页面在 `/tools/body-condition/`。每一分的文字逐条译自 WSAVA 对照表，不要自己改写。地图上的主题可以用 `tool` 字段指向工具页。
-  - 两个工具都用 `SaveToCat` 把结果存进某只猫今天的记录；链接带 `?cat=<id>` 会预先选好那只猫。
+  - `LitterWatch`：砂盆观察，笔记 `urinary-blockage` 里用 `widget: litter-watch`。拖动一天的时间，对比两只虚构公猫的砂盆，再判断哪只要马上去医院。次数和尿团大小只是示意；猫的表现和揭晓里的措辞只用笔记「就医红线」里写到的。
+  - 呼吸计时器和体型评分都用 `SaveToCat` 把结果存进某只猫今天的记录；链接带 `?cat=<id>` 会预先选好那只猫。
 - 已知坑：`.astro` 文件里，条件表达式 `{x && (...)}` 中的 `client:only` 组件不要带 `slot="fallback"` 子元素，会让 Astro 编译器崩溃。
 
 ## 本地预览
