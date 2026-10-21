@@ -434,8 +434,18 @@ const slotted = remember && after !== undefined;
     font-weight: 700;
   }
 
-  .prose :global(.kind-questions) {
+  .prose :global(.kind-questions),
+  .prose :global(.kind-askvet) {
     background: var(--calm-soft);
+  }
+
+  .prose :global(.kind-askvet) {
+    padding: 18px 20px;
+    border-radius: var(--radius);
+  }
+
+  .prose :global(.kind-askvet h2) {
+    color: var(--calm);
   }
 
   .prose :global(.kind-questions h2) {

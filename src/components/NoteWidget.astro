@@ -7,6 +7,7 @@ import SpotChange from './tools/SpotChange';
 import BodyLanguage from './tools/BodyLanguage';
 import ToxinRoom from './tools/ToxinRoom';
 import FoodCalc from './tools/FoodCalc';
+import WaterCalc from './tools/WaterCalc';
 import LifeStage from './tools/LifeStage';
 
 interface Props {
@@ -50,6 +51,13 @@ const { widget, base, startAge } = Astro.props;
   <section class="try-it" aria-labelledby="try-it">
     <h2 id="try-it" class="try-title">动手试试：这个客厅里有什么危险？</h2>
     <ToxinRoom client:only="preact" emergencyHref={`${base}emergency/#poison`} />
+  </section>
+)}
+
+{widget === 'water-calc' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：它一天要多少水？</h2>
+    <WaterCalc client:only="preact" />
   </section>
 )}
 
