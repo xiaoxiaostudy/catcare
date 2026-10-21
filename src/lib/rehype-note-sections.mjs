@@ -6,6 +6,8 @@ import { join } from 'node:path';
 const KINDS = [
   [/^记住/, 'remember'],
   [/就医红线|什么时候找兽医/, 'danger'],
+  // 不急的情况（比如处方粮要听兽医的）不用急症红，用平静的蓝
+  [/问问兽医/, 'askvet'],
   [/家里能做什么/, 'todo'],
   [/常见误区|别这样做/, 'myths'],
   [/^怎么/, 'howto'],
@@ -78,9 +80,20 @@ export default function rehypeNoteSections() {
     const path = file.path || file.history?.[0] || '';
     if (!path.includes('/content/notes/')) return;
 
+    // 正文里单独一行 <!-- 工具 -->，就把「动手试试」放在那里；没写的话，放在第一个「怎么……」小节后面
+    const isMarker = (n) => n.type === 'raw' && /^<!--\s*工具\s*-->$/.test(n.value.trim());
+    const marked = tree.children.some(isMarker);
+    const slot = () => ({ type: 'element', tagName: 'div', properties: { className: ['try-slot'] }, children: [] });
+
     const out = [];
     let current = null;
     for (const node of tree.children) {
+      if (isMarker(node)) {
+        // 插槽要在小节外面，笔记页才能从这里切开；标记后面到下一个 h2 之间的内容也留在外面
+        out.push(slot());
+        current = null;
+        continue;
+      }
       if (node.type === 'element' && node.tagName === 'h2') {
         // 去掉标题前的序号，比如「4. 」，再按标题判断这一节是什么
         const title = text(node).replace(/^\d+\.\s*/, '');
@@ -105,8 +118,8 @@ export default function rehypeNoteSections() {
         }
         out.push(current);
         // 第一个「怎么……」小节后面留个插槽，笔记页把「动手试试」放进去：先讲怎么做，再动手
-        if (kind === 'howto' && !out.some((n) => n.properties?.className?.includes('try-slot'))) {
-          out.push({ type: 'element', tagName: 'div', properties: { className: ['try-slot'] }, children: [] });
+        if (!marked && kind === 'howto' && !out.some((n) => n.properties?.className?.includes('try-slot'))) {
+          out.push(slot());
         }
       } else if (current) {
         if (current.properties.className?.includes('kind-quiz') && node.tagName === 'ol') {

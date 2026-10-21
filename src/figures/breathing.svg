@@ -1,0 +1,29 @@
+<svg viewBox="0 0 320 180" role="img" aria-label="一只蜷着睡觉的猫，肚子慢慢鼓起又落下，表示一次呼吸" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .fig-breath {
+      transform-origin: 160px 156px;
+      animation: fig-breath 3s ease-in-out infinite;
+    }
+    @keyframes fig-breath {
+      0%, 100% { transform: scaleY(1); }
+      40% { transform: scaleY(1.08); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fig-breath { animation: none; }
+    }
+  </style>
+  <!-- 身体：每 3 秒鼓起再落下一次，也就是每分钟 20 次 -->
+  <ellipse class="fig-breath" cx="166" cy="116" rx="92" ry="40" style="fill: var(--s-todo)" />
+  <!-- 尾巴绕在身前 -->
+  <path d="M252 124 C258 152 214 162 160 160 C130 159 112 156 100 150" style="fill: none; stroke: var(--s-todo); stroke-width: 13; stroke-linecap: round" />
+  <!-- 头枕在前面，眼睛闭着 -->
+  <g style="fill: var(--s-todo)">
+    <ellipse cx="88" cy="124" rx="32" ry="27" />
+    <path d="M64 108 L66 78 L84 100 Z" />
+    <path d="M94 98 L110 76 L114 106 Z" />
+  </g>
+  <path d="M70 124 Q76 129 82 124" style="fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round" />
+  <!-- 标注 -->
+  <path d="M276 52 L276 92 M270 60 L276 52 L282 60 M270 84 L276 92 L282 84" style="fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round" />
+  <text x="264" y="40" text-anchor="end" style="fill: var(--ink); font-family: var(--hand); font-size: 22px">一起一伏 = 1 次</text>
+</svg>

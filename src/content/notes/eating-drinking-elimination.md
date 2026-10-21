@@ -3,82 +3,132 @@ title: 吃喝拉撒的正常范围与异常信号
 module: recognize
 order: 3
 status: 写作中
-date: 2026-10-14
+date: 2026-10-21
 author: Vera
+widget: water-calc
+scene: >-
+  它昨天喝了多少水、尿了几团、拉了几次？大多数人答不上来。可猫不舒服时，最先变的往往就是这几样。
 summary: >-
   食欲、饮水、排尿、排便这四项，能给出明确数值基线的只有饮水量和排便频率；排尿次数和食量更要靠你给自家猫建立基线。真正要记住的是几条红线：公猫反复去砂盆却尿不出、成年猫停食约 24 小时以上、48 小时没排便或用力排便。
 ---
 
-## 1. 范围与基线（带出处）
+## 记住这三件事
+
+1. **公猫反复蹲砂盆却几乎没尿：立刻去医院。** 完全堵住后，最快一两天就可能没命（Cornell）。见[公猫尿不出](/catcare/notes/urinary-blockage/)。
+2. **成年猫一天不吃，就打电话给兽医。** 别等几天看看。持续不吃，短到 24 小时就可能伤身体（Cornell）。
+3. **只有两个数可以背，其他看它自己的平时。** 喝水和排便有参考数字；吃多少、尿几次，要靠你每天记。
+
+## 正常是多少
+
+| | 参考 | 好记的说法 |
+| --- | --- | --- |
+| 喝水（连食物里的水一起算） | **每公斤体重每天约 52 毫升**（Cornell，按瘦体重换算） | 4 公斤的猫，一天大约 200 毫升 |
+| 排便 | **每天 1 到 2 次**（OVC） | 两天没拉，就要问兽医 |
+| 吃 | 没有统一的数 | 看它自己的平时 |
+| 排尿 | 没找到可靠的次数标准 | 记尿团的个数和大小 |
+
+吃湿粮的猫喝得少，是正常的：湿粮里的水最多能占八成左右（Cornell）。偏胖的猫，按兽医说的理想体重算。
+
+<!-- 工具 -->
+
+## 怎么记它的平时
+
+每天花一分钟，在「[我的猫](/catcare/cats/)」里记：
+
+- **吃**：吃了多少，有没有剩。
+- **喝**：大概喝了多少。家里有几处水盆，要分开估。
+- **尿**：砂盆里几个尿团，大还是小。
+- **便**：几次，硬不硬。OVC 用的粪便评分里，2 分最理想，1 分可能是便秘（评分表的图在原文里）。
+
+攒满 5 天，就能看出它自己的正常范围。
+
+## 哪些变化要留意
+
+- **喝得多、尿得多，突然明显增多**：可能是糖尿病等问题（Cornell）。
+- **像是缺水**：没精神、虚弱、不爱吃、牙龈发干，严重时眼睛凹进去。也可以轻轻提起它肩上的皮，看回弹快不快；但老年猫就算不缺水，皮肤弹性也可能变差（Cornell）。
+- **尿的问题**：尿得费劲或疼、次数变多、尿时叫、尿里带血、在砂盆外面尿、老舔生殖器附近（Cornell）。
+- **便的问题**：又干又硬、很用力、在砂盆里待很久、老去却拉不出来、硬便旁边漏出软便（OVC）。
+
+## 什么时候找兽医
+
+**立刻去**：
+
+- 公猫反复去砂盆，几乎没有尿，越来越不安、疼得叫（Cornell）。
+
+**今天就打电话**：
+
+- 成年猫持续不吃，约 24 小时（Cornell）。猫连着几天不吃，可能得脂肪肝，胖猫风险更高（伊利诺伊大学）。
+- 像是缺水，同时不吃、没力气（Cornell）。
+
+**联系兽医，约时间去看**：
+
+- 超过 48 小时没拉，或者便又干又硬、拉得很用力（OVC）。
+- 喝水或尿量突然明显增多。别自己限制它喝水（Cornell）。
+
+## 怎么让它多喝点
+
+- 随时有干净的水，水盆放在容易够到的地方。多猫家庭，留意有没有猫被别的猫挡着喝不到（Cornell）。
+- 多放几处水盆，试试流动的水；吃湿粮或在粮里加水也有帮助（Cornell、OVC）。
+- 水盆别紧挨着砂盆或食盆（OVC）。
+
+砂盆也顺便照顾好：数量 = 猫的数量 + 1，放在安静的地方，每天至少铲一次（Cornell、OVC）。日常安排，包括吃什么、几点喂，尽量别常变（Cornell）。
+
+## 别这样做
+
+- **看它喝水少，就认定缺水**：吃湿粮的猫本来就喝得少，要看总量和别的信号。
+- **把公猫在砂盆里蹲很久当成便秘**：尿道堵住时也会老去砂盆（Cornell）。别自己判断，尽快看兽医。
+- **猫不吃，先等几天看看**：Cornell 和伊利诺伊大学都提醒，不要久等。
+- **看它喝得多、尿得多，就少给水**：先找兽医查原因。
+
+## 考考自己
+
+1. 它是 4 公斤的成年猫，只吃干粮。一天大约要多少水？
+   - 大约 200 毫升（每公斤约 52 毫升，连食物里的水一起算）。吃干粮的猫，大部分要靠喝（Cornell）。
+2. 成年猫从昨晚到今晚一口没吃，精神看着还行。再等等？
+   - 别等，今天就打电话给兽医。持续不吃，短到 24 小时就可能伤身体（Cornell）。
+3. 两天没在砂盆里看到便便了。怎么办？
+   - 超过 48 小时没拉，联系兽医（OVC）。
+4. 最近它喝水明显比以前多，尿团也变大了。先少给点水？
+   - 不要。联系兽医查原因，可能是糖尿病等问题（Cornell）。
+
+## 细节：来源怎么说
 
 | 项目 | 来源给出的范围或标准 | 出处 |
 | --- | --- | --- |
-| 饮水（总量，含食物里的水分） | 每 5 磅瘦体重每天约 4 盎司，10 磅的猫约 1 杯（约 237 毫升）。换算成每公斤约 52 毫升（换算为我计算） | Cornell Hydration |
+| 饮水（总量，含食物里的水分） | 每 5 磅瘦体重每天约 4 盎司，10 磅的猫约 1 杯（约 237 毫升）。换算成每公斤约 52 毫升 | Cornell Hydration |
 | 湿粮与干粮的差别 | 湿粮含水量最高约 80%，吃湿粮的猫可能喝得少；吃干粮的猫通常通过喝水摄入更多水分 | Cornell Hydration |
-| 食欲 | 没有给出"正常食量"，只说持续食欲丧失对成年猫来说，短到 24 小时就可能影响健康 | Cornell Anorexia |
-| 排尿次数 | 我没找到权威来源给出具体的每日次数，所以这一项不写数字，只记自家猫的基线 | — |
+| 食欲 | 没有给出「正常食量」，只说持续食欲丧失对成年猫来说，短到 24 小时就可能影响健康 | Cornell Anorexia |
+| 排尿次数 | 没找到权威来源给出具体的每日次数 | — |
 | 排便次数 | 健康成年猫通常每天 1 到 2 次 | OVC 便秘文章 |
-| 粪便形态 | 理想的粪便评分是 2 分（评分表见原文图），1 分可能提示便秘 | OVC 便秘文章 |
+| 粪便形态 | 理想的粪便评分是 2 分，1 分可能提示便秘 | OVC 便秘文章 |
 
-## 2. 为什么要关注
+每公斤 52 毫升是按 Cornell 给的磅和盎司换算的，不是来源原文。
 
-猫很会隐藏不适，食欲、饮水、尿和便的变化往往是最早能观察到的信号。Cornell 的资料也提到，脱水、肾病、糖尿病、甲亢、呕吐、腹泻都会让饮水和排泄发生变化。
+慢性肾病、糖尿病、呕吐、腹泻、甲亢，都是猫脱水的常见原因（Cornell Hydration）。
 
-## 3. 早期信号
+## 来源
 
-- 饮水和排尿：突然明显增多可能提示糖尿病等问题（Cornell 糖尿病页面）。慢性肾病、糖尿病、呕吐、腹泻、甲亢都是猫脱水的常见原因（Cornell Hydration）。
-- 脱水的表现：精神差、虚弱、食欲不好、牙龈干燥，严重时眼睛凹陷。还可以轻提肩部的皮肤，看回弹快不快；但老年猫即使不缺水，皮肤弹性也可能变差（Cornell Hydration）。
-- 排尿问题：排尿困难或疼痛、次数变多、排尿时叫、尿里带血、在砂盆以外的地方排尿、频繁舔生殖器区域（Cornell 下泌尿道疾病页面）。
-- 排便问题：粪便又干又硬、用力、在砂盆里待很久、频繁去却排不出、软便漏在硬便周围（OVC）。
+- [Cornell Feline Health Center：Hydration](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hydration)，2021 年更新。
+- [Cornell Feline Health Center：Feline Lower Urinary Tract Disease](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease)，2016 年 10 月更新，较旧。
+- [Cornell Feline Health Center：Anorexia](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia)。
+- [伊利诺伊大学兽医学院：Hepatic Lipidosis — When Cats Don't Eat](https://vetmed.illinois.edu/pet-health-columns/hepatic-lipidosis-when-cats-dont-eat/)。
+- [圭尔夫大学 OVC：Is Your Cat Having Trouble Pooping? Let's Talk Constipation](https://ovcpetnutrition.uoguelph.ca/2025/11/20/is-your-cat-having-trouble-pooping-lets-talk-constipation/)，2025-11-20，学生撰写、教授审阅。审阅者任职的教席由 Nestlé Purina 冠名，有企业赞助背景。
+- 未采用：几家宠物用品公司的博客给了「每天排尿 2 到 4 次」这类数字，没有可核实的权威出处，所以没有写进范围里。
 
-## 4. 就医红线（本篇来源明确提到的）
-
-- **公猫反复去砂盆却几乎没有尿，而且越来越不安、疼得叫**：Cornell 说尿道堵塞是绝对的急症，需要立刻就医，从完全堵塞到死亡可能不到 24 到 48 小时。公猫尿道更长更窄，风险比母猫高。
-- **成年猫持续不吃**：Cornell 说持续食欲丧失短到 24 小时就可能严重影响成年猫健康；伊利诺伊大学兽医学院的资料说，猫连续几天不吃有发生脂肪肝的风险，超重的猫风险更高，并建议猫不吃时尽快就医。
-- **超过 48 小时没排便，或粪便又干又硬、用力排便**：OVC 建议联系兽医。
-- **脱水迹象加上不吃、虚弱**：Cornell 建议尽快联系兽医。
-- 饮水或排尿突然明显增多：联系兽医，不要自己限制喝水。
-
-更完整的急症标准，放到第 3 周的《急症清单》再汇总。
-
-## 5. 家里能做什么
-
-- 记录：每天的食量、饮水（多水点要分开估）、尿团大小和次数、粪便评分，攒成基线。
-- 保证随时有新鲜的水，水点要容易够到；多猫家庭要确认没有猫被其他猫挡在水盆外（Cornell Hydration）。
-- 想让猫多喝水：多放几处水盆、试试流动水，湿粮或加水都有帮助（Cornell 和 OVC 都提到）；水盆别紧挨着砂盆或食盆（OVC）。
-- 砂盆：数量通常是猫的数量加一，放在安静安全的地方，每天至少铲一次，保持干净（Cornell 下泌尿道页面、OVC）。
-- 尽量少改变日常安排，包括饮食和喂食时间（Cornell 下泌尿道页面）。
-
-## 6. 常见误区
-
-- 把喝水少一律当作缺水：吃湿粮的猫本来就喝得少，要看总摄入和其他信号。
-- 把公猫在砂盆里蹲很久当作便秘：Cornell 说尿道堵塞时也会频繁去砂盆，而且排不出尿，所以不能自己判断，要尽快就医。
-- 猫不吃东西先等几天看看：猫和其他动物不一样，Cornell 和伊利诺伊的资料都强调不要久等。
-
-## 7. 国内差异
-
-待核对：来源用磅和盎司，需要统一成公斤和毫升；国内常见的湿粮和干粮含水量；国内兽医对"几天不吃就要就医"的说法。
-
-## 8. 来源
-
-- [Cornell Feline Health Center：Hydration](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hydration)，2021 年更新。建议分级：A（待你确认）。
-- [Cornell Feline Health Center：Feline Lower Urinary Tract Disease](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease)，2016 年 10 月更新，较旧。建议分级：A（内容较旧，待核对）。
-- [Cornell Feline Health Center：Anorexia](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia)。建议分级：A。我只读到搜索摘要，请你自己打开核对。
-- [伊利诺伊大学兽医学院：Hepatic Lipidosis — When Cats Don't Eat](https://vetmed.illinois.edu/pet-health-columns/hepatic-lipidosis-when-cats-dont-eat/)。建议分级：A。我只读到搜索摘要，请你自己打开核对。
-- [圭尔夫大学 OVC：Is Your Cat Having Trouble Pooping? Let's Talk Constipation](https://ovcpetnutrition.uoguelph.ca/2025/11/20/is-your-cat-having-trouble-pooping-lets-talk-constipation/)，2025-11-20，学生撰写、教授审阅。审阅者任职的教席由 Nestlé Purina 冠名，有企业赞助背景。建议分级：B+（待你确认）。
-- 未采用：几家宠物用品公司的博客给了"每天排尿 2 到 4 次"这类数字，没有可核实的权威出处，所以没有写进范围里。
-
-## 9. 存疑点（待问兽医）
+## 存疑点（待问兽医）
 
 1. 绵绵和妙妙大概多重？按它们的体重，每天总水量大概多少算够？
 2. 它们的湿粮和干粮比例合适吗？喝水少算不算问题？
 3. 每天排几次尿、排几次便，算是它们各自的正常？
 4. 两只都是没绝育的公猫，尿道堵塞的风险该怎么预防？（可以和后面的绝育专题一起问）
 5. 晚上或周末出现急症，应该去哪家 24 小时医院？
+6. 国内差异，待核对：国内常见的湿粮和干粮含水量；国内兽医对"几天不吃就要就医"的说法。
+7. 来源分级：Cornell 三篇和伊利诺伊建议 A，OVC 建议 B+，待确认。
+8. 核对提醒：Cornell Anorexia 和伊利诺伊那篇，当时只读到搜索摘要，要自己打开核对。
 
-## 10. 我家猫的实际情况
+## 我家猫的实际情况
 
-待回家观察几天，并带着第 9 项的问题请教固定兽医后再填。来源建议砂盆数量为猫的数量加一，也就是说两只猫通常至少需要 3 个。
+待回家观察几天，并带着上面的问题请教固定兽医后再填。来源建议砂盆数量为猫的数量加一，也就是说两只猫通常至少需要 3 个。
 
 | 日期 | 猫 | 食量 | 饮水 | 排尿（次数和尿团大小） | 排便（次数和评分） | 备注 |
 | --- | --- | --- | --- | --- | --- | --- |
