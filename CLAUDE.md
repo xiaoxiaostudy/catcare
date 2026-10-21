@@ -27,7 +27,7 @@
   - `BreathTimer`：呼吸计时器（`breath-timer`）；记录表单里也能打开，数完直接填进表单。`kind="heart"` 是心跳计时器（`heart-timer`，在 `vital-signs`）：心跳太快点不过来，心里默数，时间到再填数字。
   - `BodyCondition`：体型评分滑块，页面在 `/tools/body-condition/`。每一分的文字逐条译自 WSAVA 对照表，不要自己改写。地图上的主题可以用 `tool` 字段指向工具页。
   - `LitterWatch`：砂盆观察（`litter-watch`，在 `urinary-blockage`）。拖动一天的时间，对比两只虚构公猫的砂盆，再判断哪只要马上去医院。次数和尿团大小只是示意。
-  - `SpotChange`：找不同（`spot-change`，在 `subtle-changes`）。上个月和这个月的同一个房间，每处不同对应笔记第 1 节表里的一行。
+  - `SpotChange`：找不同（`spot-change`，在 `subtle-changes`）。上个月和这个月的同一个房间，每处不同对应笔记「细节」里那张表的一行。
   - `BodyLanguage`：肢体语言（`body-language`，在 `communication-stress`）。尾巴、耳朵、眼睛、胡须、身体各自切换，文字取自笔记里 iCatCare 的表。
   - `ToxinRoom`：找危险物（`toxin-room`，在 `household-toxins`）。客厅里每一样都在笔记的清单里。
   - `FoodCalc`：喂多少（`food-calc`，在 `feeding-water`）。按笔记里 WSAVA 的热量表（2 到 6 公斤、体型理想的成年猫）换算成克数和罐数；体型不是 5 分就不算，改成提醒找兽医。

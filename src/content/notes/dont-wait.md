@@ -3,104 +3,116 @@ title: 这些情况别等，立刻就医
 module: recognize
 order: 6
 status: 写作中
-date: 2026-10-16
+date: 2026-10-21
 author: Vera
+scene: >-
+  它从昨天晚上到现在一口没吃。你想，再等一天看看吧。这篇讲的就是：哪些事不能等。
 summary: >-
   猫很会忍，等它明显难受时往往已经拖了一段时间。呼吸费力、后腿突然瘫痪、超过一天不吃、频繁呕吐或吐血、黑色柏油样的便、突然看不见，这些都不该在家观察。Merck 的原则很简单：猫看起来不舒服，就马上带去看兽医。
 ---
 
-## 1. 别等的情况（带出处）
+## 记住这三件事
 
-前面几篇已经写过的急症（尿不出、中毒、坠落、吞异物、抽搐）这里不重复，直接看对应的笔记或急症清单。下面是另外几类常见、又容易被拖的情况：
+1. **猫看起来不舒服，就带去看兽医。** 这是 Merck 的原则。猫很会忍，等它明显难受，往往已经拖了一段时间。
+2. **喘得费劲、后腿突然瘫了：立刻去医院。** 可能是心脏出了问题（Cornell、VCA）。
+3. **一天不吃、老吐、便黑得像柏油、突然撞东西：今天就联系兽医。** 别在家观察（Merck、iCatCare）。
+
+## 什么时候找兽医
+
+**立刻去医院**：
+
+- **喘得费劲**，呼吸偏快，同时坐立不安或没精神（VCA）。Cornell 说心衰的猫，安静时常常每分钟超过 35 次。
+- **后腿突然跛了或瘫了**，同时很疼（Cornell）。
+- 尿不出、怀疑中毒、从高处掉下来、抽搐：见各自的笔记和[急症清单](/catcare/emergency/)。
+
+**今天就联系兽医，带去检查**：
+
+- **超过一天不吃**（Merck）。
+- **一天吐了不止一两次**，吐出来带血，或者吐的同时肚子疼、没精神、虚弱、发烧（Merck）。老是吐毛球也算。
+- **便又黑又黏，像柏油**：可能是肠子靠上的地方在出血（iCatCare）。
+- **拉肚子很厉害**，或者同时不好好吃饭，或者拉了好几天（iCatCare）。
+- **突然撞家具，像是看不见了**（iCatCare）。
+
+好记的说法：**喘、瘫，马上走；不吃、老吐、黑便、撞墙，今天打电话。**
+
+## 为什么不能等
+
+- **喘得快，可能是心衰**：心肌病让心脏泵血变差，液体漏进肺里（Cornell）。
+- **后腿突然瘫，可能是血栓**：心肌病的猫心脏里可能长血块，碎块卡在通往后腿的血管里，叫「鞍状血栓」，猫会非常疼（Cornell）。
+- **不吃，伤身体很快**：成年猫持续不吃，短到 24 小时就可能伤身体；6 周以下的小奶猫，12 小时不吃就可能没命（Cornell）。
+- **老吐，会脱水**：还可能虚弱、没精神、变瘦（Merck）。
+- **突然看不见，可能是高血压**：高血压早期没症状，大部分猫要到眼睛出问题、突然失明，才被发现（iCatCare）。
+
+## 怎么帮兽医更快找到原因
+
+- **记下来**：吐的、拉的是什么样子，几次，有没有使劲，有没有血或黏液。可以拍照（iCatCare），也可以记在「[我的猫](/catcare/cats/)」当天的备注里。
+- **别给它断水**：呕吐本来就会脱水，不让喝会更糟。要不要暂时停食，听兽医的（Merck）。
+- **偶尔吐一两次、别的都正常**：Merck 说，吐了不到一两天、没有别的毛病，兽医可能只做简单的支持治疗。但也先打电话问，别自己认定「没事」。
+
+平时能做的：
+
+- **7 岁以后定期量血压**，有慢性肾病、甲亢、心脏病的猫也要量。在腿上或尾巴上绑个袖带，几分钟，不疼（iCatCare）。
+- **勤梳毛**，少吞毛，少吐毛球（Merck）。
+
+## 别这样做
+
+- **觉得猫吐毛球很正常**：偶尔可以，老是吐要看兽医，可能有比毛球更严重的问题（Merck）。
+- **便里有一点血就挂急诊**：iCatCare 说除非血很多，不用急诊，但要带去检查。黑色柏油样的便反而更要当心。
+- **猫不吃，饿两天自己就吃了**：Merck 说超过一天不吃就要带去看。
+- **猫撞东西，当成老了**：可能是高血压导致失明（iCatCare）。
+- **拉肚子、呕吐，就少给水**：会更脱水（Merck）。
+
+## 考考自己
+
+1. 半夜它喘得很费劲，趴着不动。等天亮再说？
+   - 不能等，立刻去急诊。喘得费劲可能是心衰（Cornell、VCA）。
+2. 它便便的颜色很黑，黏黏的，像柏油。要紧吗？
+   - 要联系兽医，可能是肠子靠上的地方在出血（iCatCare）。
+3. 它今天吐了三次，精神也不太好。先不给水，让肠胃歇歇？
+   - 不要断水，呕吐本来就会脱水（Merck）。一天吐了不止一两次，还没精神，联系兽医。
+4. 那句好记的话是什么？
+   - 喘、瘫，马上走；不吃、老吐、黑便、撞墙，今天打电话。
+
+## 细节：来源怎么说
+
+前面几篇写过的急症（尿不出、中毒、坠落、吞异物、抽搐）这里不重复。下面是另外几类常见、又容易被拖的情况：
 
 | 情况 | 怎么认 | 多急 | 出处 |
 | --- | --- | --- | --- |
 | 呼吸费力、安静时呼吸很快 | 呼吸明显用力；安静休息时每分钟超过 35 次 | 立刻（呼吸快同时费力，VCA 说可能是急症） | Cornell（心肌病）、VCA |
-| 后腿突然跛或瘫痪 | 突然发生，通常伴随剧痛 | 立刻（我的判断，见第 2 节） | Cornell（心肌病） |
+| 后腿突然跛或瘫痪 | 突然发生，通常伴随剧痛 | 立刻（Cornell 原文没写要多快去，突然瘫痪加剧痛按急症处理） | Cornell（心肌病） |
 | 不吃东西 | 拒绝吃东西超过一天 | 马上带去看兽医 | Merck |
 | 频繁呕吐，或吐的同时有别的问题 | 一天吐超过一两次；吐出来带血；同时肚子疼、没精神、脱水、虚弱、发烧、变瘦 | 需要兽医详细检查，有的原因会危及生命 | Merck |
 | 黑色柏油样的便 | 便又黑又黏，像柏油 | 联系兽医，可能是肠道上段出血 | iCatCare |
 | 腹泻严重或拖了好几天 | 腹泻严重；同时不好好吃饭等其他不舒服；持续超过几天 | 带去检查 | iCatCare |
 | 突然看不见、撞东西 | 撞到家具、眼睛里出血、看起来失明；常伴随没精神、孤僻 | 联系兽医 | iCatCare（高血压） |
 
-Merck 的总原则：**猫看起来不舒服，就马上带去看兽医。**
+呼吸「偏快」的线，不同来源不一样：Cornell 是 35，VCA 是 30，AAFP 给心脏病猫的表是 40 和 50。详见[怎么数静息呼吸](/catcare/notes/resting-breathing/)。
 
-## 2. 为什么不能等
+Merck 列的常见生病信号：不吃东西；呕吐（包括频繁吐毛球）；腹泻，或便又干又硬；喝水多、尿多；咳嗽或喘鸣。还要留意行为变化，比如比平时更不爱动，或者更躁动。
 
-- **呼吸快可能是心衰**：猫的心肌病会让心脏泵血变差，液体漏进肺里，这叫充血性心力衰竭。这时猫通常呼吸费力，安静时呼吸超过每分钟 35 次（Cornell）。不同来源给的"偏快"标准不一样（VCA 是 30，AAFP 给心脏病猫的表是 40 和 50），详见《怎么数静息呼吸》。
-- **后腿瘫痪可能是血栓**：心肌病的猫，心脏里可能形成血块，碎块随血流卡在供应后腿的动脉里，叫"鞍状血栓"，猫通常会突然后腿跛或瘫痪，并且非常疼（Cornell）。Cornell 原文没有写要多快去医院；突然瘫痪加剧痛，我按"立刻"处理。
-- **不吃会很快伤身体**：持续不吃，对成年猫来说短到 24 小时就可能严重影响健康；6 周以下的小奶猫不吃 12 小时就可能致命（Cornell）。
-- **呕吐会让猫脱水**：长期呕吐可能带来虚弱、没精神、变瘦、脱水和电解质紊乱（Merck）。
-- **高血压在早期没有症状**：大部分猫要到病得比较重、眼睛出了问题突然失明时，才被发现高血压（iCatCare）。
-- **猫本来就会忍**：见《猫很会忍，哪些细微变化要警惕》。
+呕吐时间长了，还可能带来电解质紊乱（Merck）。百合中毒、心肌病易发品种等，见对应的笔记。
 
-## 3. 早期信号
+## 来源
 
-Merck 列的常见生病信号：
+- [Cornell Feline Health Center：Feline Cardiomyopathy](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/cardiomyopathy)，2024 年 3 月更新。
+- [Cornell Feline Health Center：Anorexia](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia)。
+- [Merck 兽医手册（宠物主人版）：Vomiting in Cats](https://www.merckvetmanual.com/cat-owners/digestive-disorders-of-cats/vomiting-in-cats)，2024 年 9 月更新。
+- [Merck 兽医手册（宠物主人版）：Proper Nutrition for Cats](https://www.merckvetmanual.com/cat-owners/selecting-and-providing-a-home-for-a-cat/proper-nutrition-for-cats)。
+- [Merck 兽医手册（宠物主人版）：Routine Health Care of Cats](https://www.merckvetmanual.com/cat-owners/caring-for-cats/routine-health-care-of-cats)，2025 年 8 月更新。
+- [International Cat Care：Diarrhoea in cats](https://icatcare.org/articles/diarrhoea-in-cats)，2025 年 9 月 26 日更新。
+- [International Cat Care：Hypertension in cats](https://icatcare.org/articles/hypertension-in-cats)，2025 年 9 月 26 日更新。
 
-- 不吃东西
-- 呕吐（包括频繁吐毛球）
-- 腹泻，或者便又干又硬
-- 喝水变多、尿变多
-- 咳嗽或喘鸣
-
-还要留意行为变化，比如比平时更不爱动，或者更躁动（Merck）。你最了解自家的猫，和它平时比才最准。
-
-## 4. 就医红线
-
-**立刻去医院：**
-
-- 呼吸偏快，同时费力、坐立不安或没精神（VCA，见《怎么数静息呼吸》）；Cornell 说心衰的猫通常呼吸费力、安静时每分钟超过 35 次
-- 后腿突然跛或瘫痪，同时很疼（Cornell）
-- 尿不出、怀疑中毒、从高处掉下来、抽搐：见对应笔记和急症清单
-
-**马上联系兽医、带去检查：**
-
-- 超过一天不吃东西（Merck）
-- 一天吐超过一两次、吐出来带血，或者吐的同时肚子疼、没精神、虚弱、发烧（Merck）
-- 黑色柏油样的便（iCatCare）
-- 腹泻严重、伴随不吃东西等不舒服，或者持续好几天（iCatCare）
-- 突然撞东西、看起来看不见了（iCatCare）
-- 频繁吐毛球、反复呕吐（Merck）
-
-## 5. 家里能做什么
-
-- **记下来**：呕吐或腹泻的样子、次数，有没有用力、有没有血或黏液。这些能帮兽医更快缩小原因（iCatCare）。可以拍照，也可以在「我的猫」里记在当天的备注里。
-- **不要自己给猫断水**：Merck 说呕吐本来就会导致脱水，不让喝水会让情况更糟。要不要暂时不喂食，听兽医的。
-- **偶尔吐一两次、没有其他不舒服**：Merck 说吐了不到一两天、没有别的毛病时，兽医可能只做支持治疗。也要先问兽医，不要自己判断"没事"。
-- **定期量血压**：iCatCare 建议 7 岁以上的猫定期量血压；有慢性肾病、甲亢、心脏病的猫也要量。量的时候在腿上或尾巴上绑个袖带，几分钟就好，不疼。
-- **勤梳毛**：可以减少猫吞下去的毛，预防毛球（Merck）。
-
-## 6. 常见误区
-
-- **猫吐毛球很正常**：偶尔吐可以，频繁吐毛球或者反复呕吐要看兽医，可能有比毛球更严重的问题（Merck）。
-- **便里有一点血就要挂急诊**：iCatCare 说除非血很多，否则不需要急诊，但要带去检查。反过来，黑色柏油样的便更要当心。
-- **猫不吃饭，饿两天自己就吃了**：成年猫持续不吃 24 小时就可能伤身体（Cornell），Merck 说超过一天就要马上去看。
-- **猫撞东西是因为老了**：可能是高血压导致的失明（iCatCare）。
-- **拉肚子、呕吐就少给它喝水**：会加重脱水（Merck）。
-
-## 7. 国内差异
-
-待核对：国内宠物医院给猫量血压、做心脏超声是不是常规项目、大概费用；金渐层在国内一般算英国短毛猫的哪一类。
-
-## 8. 来源
-
-- [Cornell Feline Health Center：Feline Cardiomyopathy](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/cardiomyopathy)，2024 年 3 月更新。建议分级：A。
-- [Cornell Feline Health Center：Anorexia](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia)。建议分级：A。
-- [Merck 兽医手册（宠物主人版）：Vomiting in Cats](https://www.merckvetmanual.com/cat-owners/digestive-disorders-of-cats/vomiting-in-cats)，2024 年 9 月更新。建议分级：A。
-- [Merck 兽医手册（宠物主人版）：Proper Nutrition for Cats](https://www.merckvetmanual.com/cat-owners/selecting-and-providing-a-home-for-a-cat/proper-nutrition-for-cats)。建议分级：A。
-- [Merck 兽医手册（宠物主人版）：Routine Health Care of Cats](https://www.merckvetmanual.com/cat-owners/caring-for-cats/routine-health-care-of-cats)，2025 年 8 月更新。建议分级：A。
-- [International Cat Care：Diarrhoea in cats](https://icatcare.org/articles/diarrhoea-in-cats)，2025 年 9 月 26 日更新。建议分级：A。
-- [International Cat Care：Hypertension in cats](https://icatcare.org/articles/hypertension-in-cats)，2025 年 9 月 26 日更新。建议分级：A。
-- 素材来自 Kimi 整理的知识库卡片（07「这些信号出现，别上网查，立刻去医院」、05「呕吐与腹泻的就医红线」「高血压与心肌病」），以上事实已于 2026-10-16 回原网页核对。卡片里"静息呼吸超过 35–40 次"把 Cornell（35）和别的来源混在了一起，这里只写 Cornell 的 35，其他标准放在《怎么数静息呼吸》里对比；卡片说突然失明"必须立刻送医"，iCatCare 原文是"联系兽医"，这里按原文写。
-
-## 9. 存疑点（待问兽医）
+## 存疑点（待问兽医）
 
 1. 绵绵是金渐层，一般算英国短毛猫，而 Cornell 把英短列为肥厚型心肌病的易发品种：要不要给它做心脏超声筛查？什么年龄做？
 2. 两只猫安静时呼吸多少算偏快？（和《怎么数静息呼吸》里的问题一起问）
 3. 偶尔吐一次、精神食欲都正常，要不要打电话问？
 4. 晚上或周末遇到这些情况，去哪家 24 小时医院？
+5. 国内差异，待核对：国内宠物医院给猫量血压、做心脏超声是不是常规项目、大概费用；金渐层在国内一般算英国短毛猫的哪一类。
+6. 来源分级：七份都建议 A。
+7. 核对记录：素材来自 Kimi 整理的知识库卡片（07「这些信号出现，别上网查，立刻去医院」、05「呕吐与腹泻的就医红线」「高血压与心肌病」），事实已于 2026-10-16 回原网页核对。卡片里"静息呼吸超过 35–40 次"把 Cornell（35）和别的来源混在了一起，这里只写 Cornell 的 35；卡片说突然失明"必须立刻送医"，iCatCare 原文是"联系兽医"，这里按原文写。
 
-## 10. 我家猫的实际情况
+## 我家猫的实际情况
 
 绵绵（金渐层）可能属于心肌病易发品种，所以静息呼吸的记录对它特别有用：先在「我的猫」里攒出它自己的正常范围。两只都还年轻，暂时不到 iCatCare 建议定期量血压的 7 岁。

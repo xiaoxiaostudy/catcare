@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 
 /**
  * 找不同：同一只猫、同一个房间，上个月和这个月。
- * 每一处不同都对应笔记 subtle-changes 第 1 节表里的一行，说明里的出处和笔记一致。
+ * 每一处不同都对应笔记 subtle-changes「细节」里那张表的一行，说明里的出处和笔记一致。
  */
 
 interface Diff {
