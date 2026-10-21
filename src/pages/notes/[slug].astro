@@ -3,14 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { MODULES } from '../../data/map';
 import { sourcesOf } from '../../lib/sources';
-import BreathTimer from '../../components/tools/BreathTimer';
-import BodyCondition from '../../components/tools/BodyCondition';
-import LitterWatch from '../../components/tools/LitterWatch';
-import SpotChange from '../../components/tools/SpotChange';
-import BodyLanguage from '../../components/tools/BodyLanguage';
-import ToxinRoom from '../../components/tools/ToxinRoom';
-import FoodCalc from '../../components/tools/FoodCalc';
-import LifeStage from '../../components/tools/LifeStage';
+import NoteWidget from '../../components/NoteWidget.astro';
 import '../../styles/cats.css';
 import '../../styles/tools.css';
 
@@ -40,6 +33,12 @@ const reviewed = note.data.status === '已审核';
 const sources = sourcesOf(note.body);
 // 年龄滑块在三篇生命阶段笔记里，各自从这个阶段的典型年龄开始（单位：月）
 const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<string, number>)[note.id];
+
+// 新格式的笔记开头是「记住这几件事」，已经是结论，就不再放「一句话结论」框
+const remember = headings.some((h) => h.depth === 2 && /^记住/.test(h.text));
+// 新格式的笔记里，「怎么测」那类小节后面有个插槽（见 rehype-note-sections），互动工具放在那里；旧笔记照旧放在正文前面
+const [before, after] = (note.rendered?.html ?? '').split('<div class="try-slot"></div>');
+const slotted = remember && after !== undefined;
 ---
 
 <Base title={note.data.title} description={note.data.summary}>
@@ -59,73 +58,16 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
       <p class="basis">依据：{sources.map((s) => s.short).join('、')}。<a href={`${base}about/`}>内容从哪来</a></p>
     )}
 
-    <aside class="takeaway">
-      <p class="takeaway-label">一句话结论</p>
-      <p class="takeaway-text">{note.data.summary}</p>
-    </aside>
+    {note.data.scene && <p class="scene">{note.data.scene}</p>}
 
-    {note.data.widget === 'breath-timer' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：现在就数一次</h2>
-        <BreathTimer client:only="preact" />
-      </section>
+    {!remember && (
+      <aside class="takeaway">
+        <p class="takeaway-label">一句话结论</p>
+        <p class="takeaway-text">{note.data.summary}</p>
+      </aside>
     )}
 
-    {note.data.widget === 'heart-timer' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：数一次心跳</h2>
-        <BreathTimer client:only="preact" kind="heart" />
-      </section>
-    )}
-
-    {note.data.widget === 'spot-change' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：找出哪里不一样</h2>
-        <SpotChange client:only="preact" base={base} />
-      </section>
-    )}
-
-    {note.data.widget === 'body-language' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：它在说什么？</h2>
-        <BodyLanguage client:only="preact" />
-      </section>
-    )}
-
-    {note.data.widget === 'toxin-room' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：这个客厅里有什么危险？</h2>
-        <ToxinRoom client:only="preact" emergencyHref={`${base}emergency/#poison`} />
-      </section>
-    )}
-
-    {note.data.widget === 'food-calc' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：它一天该吃多少？</h2>
-        <FoodCalc client:only="preact" />
-      </section>
-    )}
-
-    {note.data.widget === 'life-stage' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：拖到它的年龄</h2>
-        <LifeStage client:only="preact" start={startAge} />
-      </section>
-    )}
-
-    {note.data.widget === 'body-condition' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：它现在是几分？</h2>
-        <BodyCondition client:only="preact" />
-      </section>
-    )}
-
-    {note.data.widget === 'litter-watch' && (
-      <section class="try-it" aria-labelledby="try-it">
-        <h2 id="try-it" class="try-title">动手试试：哪只要马上去医院？</h2>
-        <LitterWatch client:only="preact" emergencyHref={`${base}emergency/#blocked`} />
-      </section>
-    )}
+    {!slotted && <NoteWidget widget={note.data.widget} base={base} startAge={startAge} />}
 
     {toc.length > 0 && (
       <nav class="toc" aria-label="本篇目录">
@@ -133,9 +75,15 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
       </nav>
     )}
 
-    <div class="prose">
-      <Content />
-    </div>
+    {slotted ? (
+      <>
+        <div class="prose"><Fragment set:html={before} /></div>
+        <NoteWidget widget={note.data.widget} base={base} startAge={startAge} />
+        <div class="prose"><Fragment set:html={after} /></div>
+      </>
+    ) : (
+      <div class="prose"><Content /></div>
+    )}
 
     <section class="learn" data-note={note.id}>
       <button type="button" class="learn-btn" aria-pressed="false">
@@ -223,6 +171,15 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
     margin: 0;
     color: var(--muted);
     font-size: 14px;
+  }
+
+  .scene {
+    margin: 24px 0 0;
+    padding-left: 16px;
+    border-left: 3px solid var(--pad);
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.8;
   }
 
   .takeaway {
@@ -535,5 +492,136 @@ const startAge = ({ kitten: 3, 'adult-cat': 48, 'senior-cat': 144 } as Record<st
 
   .prose :global(.kind-sources li) {
     font-size: 15px;
+  }
+
+  /* 记住这几件事：整篇最该带走的，编号做成大圆点 */
+  .prose :global(.kind-remember) {
+    padding: 20px 20px 8px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .prose :global(.kind-remember ol) {
+    padding: 0;
+    list-style: none;
+    counter-reset: remember;
+  }
+
+  .prose :global(.kind-remember li) {
+    position: relative;
+    margin: 0 0 16px;
+    padding-left: 44px;
+    counter-increment: remember;
+  }
+
+  .prose :global(.kind-remember li)::before {
+    content: counter(remember);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ginger);
+    color: var(--on-pad);
+    font-weight: 700;
+  }
+
+  .prose :global(.kind-remember strong) {
+    display: block;
+    font-size: 18px;
+  }
+
+  .prose :global(.cards-link) {
+    margin: 0 0 12px;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  .prose :global(.cards-link a) {
+    color: var(--muted);
+  }
+
+  /* 表格里加粗的数字放大，一眼能看到 */
+  .prose :global(td strong) {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+
+  /* 示意图 */
+  .prose :global(.note-figure) {
+    margin: 16px 0 20px;
+  }
+
+  .prose :global(.note-figure svg) {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .prose :global(.note-figure figcaption) {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* 考考自己：点开才看答案 */
+  .prose :global(.kind-quiz ol) {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .prose :global(.quiz-card) {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .prose :global(.quiz-card > summary) {
+    padding: 14px 16px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 600;
+  }
+
+  .prose :global(.quiz-card > summary::-webkit-details-marker) {
+    display: none;
+  }
+
+  .prose :global(.quiz-card > summary)::after {
+    content: '看答案';
+    display: block;
+    margin-top: 6px;
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .prose :global(.quiz-card[open] > summary)::after {
+    content: none;
+  }
+
+  .prose :global(.quiz-card > summary p) {
+    display: inline;
+    margin: 0;
+  }
+
+  .prose :global(.quiz-answer) {
+    margin: 0 16px 14px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+  }
+
+  .prose :global(.quiz-answer p) {
+    margin: 0;
   }
 </style>

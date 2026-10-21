@@ -1,0 +1,82 @@
+---
+// 笔记页的「动手试试」：按 frontmatter 里的 widget 放对应的互动工具
+import BreathTimer from './tools/BreathTimer';
+import BodyCondition from './tools/BodyCondition';
+import LitterWatch from './tools/LitterWatch';
+import SpotChange from './tools/SpotChange';
+import BodyLanguage from './tools/BodyLanguage';
+import ToxinRoom from './tools/ToxinRoom';
+import FoodCalc from './tools/FoodCalc';
+import LifeStage from './tools/LifeStage';
+
+interface Props {
+  widget?: string;
+  base: string;
+  startAge?: number;
+}
+
+const { widget, base, startAge } = Astro.props;
+---
+
+{widget === 'breath-timer' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：现在就数一次</h2>
+    <BreathTimer client:only="preact" />
+  </section>
+)}
+
+{widget === 'heart-timer' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：数一次心跳</h2>
+    <BreathTimer client:only="preact" kind="heart" />
+  </section>
+)}
+
+{widget === 'spot-change' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：找出哪里不一样</h2>
+    <SpotChange client:only="preact" base={base} />
+  </section>
+)}
+
+{widget === 'body-language' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：它在说什么？</h2>
+    <BodyLanguage client:only="preact" />
+  </section>
+)}
+
+{widget === 'toxin-room' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：这个客厅里有什么危险？</h2>
+    <ToxinRoom client:only="preact" emergencyHref={`${base}emergency/#poison`} />
+  </section>
+)}
+
+{widget === 'food-calc' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：它一天该吃多少？</h2>
+    <FoodCalc client:only="preact" />
+  </section>
+)}
+
+{widget === 'life-stage' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：拖到它的年龄</h2>
+    <LifeStage client:only="preact" start={startAge} />
+  </section>
+)}
+
+{widget === 'body-condition' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：它现在是几分？</h2>
+    <BodyCondition client:only="preact" />
+  </section>
+)}
+
+{widget === 'litter-watch' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：哪只要马上去医院？</h2>
+    <LitterWatch client:only="preact" emergencyHref={`${base}emergency/#blocked`} />
+  </section>
+)}
