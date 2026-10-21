@@ -1,0 +1,21 @@
+<svg viewBox="0 0 400 230" role="img" aria-label="示意图：母猫的尿道短而宽；公猫的尿道长而窄，被栓子或结石卡住，膀胱憋满" xmlns="http://www.w3.org/2000/svg">
+  <!-- 母猫：膀胱 + 短而宽的尿道 -->
+  <text x="70" y="26" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 24px">母猫</text>
+  <path d="M70 104 L70 156" style="fill: none; stroke: var(--calm); stroke-width: 20; stroke-linecap: round" />
+  <path d="M70 104 L70 156" style="fill: none; stroke: var(--calm-soft); stroke-width: 15; stroke-linecap: round" />
+  <ellipse cx="70" cy="76" rx="30" ry="28" style="fill: var(--calm-soft); stroke: var(--calm); stroke-width: 2.5" />
+  <text x="70" y="186" text-anchor="middle" style="fill: var(--ink-2); font-size: 14px">尿道短、宽</text>
+
+  <line x1="150" y1="20" x2="150" y2="210" style="stroke: var(--line); stroke-width: 1" />
+
+  <!-- 公猫：憋满的膀胱 + 长而窄的尿道，中间卡住 -->
+  <text x="240" y="26" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 24px">公猫</text>
+  <path d="M210 112 C210 150 232 170 270 172 C312 174 340 162 372 146" style="fill: none; stroke: var(--calm); stroke-width: 8; stroke-linecap: round" />
+  <path d="M210 112 C210 150 232 170 270 172 C312 174 340 162 372 146" style="fill: none; stroke: var(--calm-soft); stroke-width: 4.5; stroke-linecap: round" />
+  <ellipse cx="210" cy="78" rx="38" ry="34" style="fill: var(--calm-soft); stroke: var(--calm); stroke-width: 2.5" />
+  <text x="210" y="83" text-anchor="middle" style="fill: var(--calm); font-size: 14px">憋满</text>
+  <ellipse cx="300" cy="172" rx="9" ry="5.5" style="fill: var(--danger-fill)" />
+  <line x1="300" y1="180" x2="300" y2="196" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="300" y="214" text-anchor="middle" style="fill: var(--danger); font-size: 14px">栓子或结石卡住</text>
+  <text x="330" y="138" text-anchor="middle" style="fill: var(--ink-2); font-size: 14px">尿道长、窄</text>
+</svg>
