@@ -12,6 +12,8 @@ const notes = defineCollection({
     date: z.coerce.date(),
     author: z.string(),
     summary: z.string(),
+    // 开头的小场景，两三句，让读者先觉得「我需要知道这个」
+    scene: z.string().optional(),
     widget: z.enum(['breath-timer', 'body-condition', 'litter-watch', 'heart-timer', 'spot-change', 'body-language', 'toxin-room', 'food-calc', 'life-stage']).optional(),
   }),
 });

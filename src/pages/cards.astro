@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { MODULES } from '../data/map';
+
+// 速记卡：把每篇笔记开头的「记住这几件事」按地图顺序汇总，内容直接取自笔记，不另写
+const base = import.meta.env.BASE_URL;
+const notes = new Map((await getCollection('notes')).map((n) => [n.id, n]));
+
+function rememberOf(html: string) {
+  const section = html.match(/<section class="note-section kind-remember">([\s\S]*?)<\/section>/)?.[1];
+  return section?.match(/<ol>[\s\S]*<\/ol>/)?.[0];
+}
+
+const groups = MODULES.map((m) => ({
+  ...m,
+  cards: m.topics.flatMap((t) => {
+    const note = t.note && notes.get(t.note);
+    const list = note && rememberOf(note.rendered?.html ?? '');
+    return list ? [{ id: note.id, title: note.data.title, list }] : [];
+  }),
+})).filter((m) => m.cards.length > 0);
+const count = groups.reduce((n, m) => n + m.cards.length, 0);
+---
+
+<Base title="速记卡" description="每篇笔记最该记住的几件事，汇总在一页。">
+  <article class="cards wrap narrow">
+    <h1 class="hand">速记卡</h1>
+    <p class="lead">每篇笔记最该记住的几件事，汇总在这一页。想看为什么，点标题进笔记。现在有 {count} 张，其他笔记改版后会陆续加进来。</p>
+
+    {groups.map((m) => (
+      <section class="group">
+        <h2 class="hand">{m.name}</h2>
+        {m.cards.map((c) => (
+          <div class="card">
+            <h3><a href={`${base}notes/${c.id}/`}>{c.title}</a></h3>
+            <Fragment set:html={c.list} />
+          </div>
+        ))}
+      </section>
+    ))}
+  </article>
+</Base>
+
+<style>
+  .cards {
+    padding-top: 28px;
+  }
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: clamp(38px, 7vw, 56px);
+  }
+
+  .lead {
+    color: var(--ink-2);
+  }
+
+  .group h2 {
+    margin: 32px 0 12px;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .card {
+    margin: 0 0 16px;
+    padding: 18px 20px 4px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+    background: var(--surface);
+    break-inside: avoid;
+  }
+
+  .card h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+
+  .card h3 a {
+    color: inherit;
+  }
+
+  .card :global(ol) {
+    padding: 0;
+    list-style: none;
+    counter-reset: remember;
+  }
+
+  .card :global(li) {
+    position: relative;
+    margin: 0 0 14px;
+    padding-left: 40px;
+    counter-increment: remember;
+  }
+
+  .card :global(li)::before {
+    content: counter(remember);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ginger);
+    color: var(--on-pad);
+    font-weight: 700;
+  }
+
+  .card :global(strong) {
+    display: block;
+  }
+
+  @media print {
+    .card {
+      border-width: 1px;
+    }
+
+    .card :global(li)::before {
+      border: 1px solid var(--ink);
+      background: none;
+    }
+  }
+</style>
