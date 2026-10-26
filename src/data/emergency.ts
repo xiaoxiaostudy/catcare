@@ -97,6 +97,18 @@ export const SITUATIONS: Situation[] = [
     note: 'accidents-foreign-bodies',
   },
   {
+    id: 'injury',
+    tier: 'now',
+    title: '大出血、休克、烧伤、眼睛受伤或中暑',
+    signs: '休克：脉搏弱、呼吸浅、眼神发呆。中暑：呼吸很快、流很多口水、虚弱或昏昏欲睡、糊涂、吐或拉、牙龈颜色不对或又干又黏',
+    action: '先做临时处理，马上去最近的兽医院。出血用干净的布直接按住，至少压 3 分钟；中暑挪到阴凉处，用室温水打湿的毛巾敷，别泡冷水。',
+    why: 'AVMA 的宠物急救指南把这些都列为要立刻送医的情况。眼伤会很快变重，可能影响视力。在家做的急救只是临时的。',
+    sources: [
+      { name: 'AVMA：First aid tips for pet owners', url: 'https://www.avma.org/resources-tools/pet-owners/emergencycare/first-aid-tips-pet-owners' },
+    ],
+    note: 'before-the-vet',
+  },
+  {
     id: 'panleukopenia',
     tier: 'now',
     title: '小猫又发烧、又吐、又拉、不吃',
@@ -231,5 +243,18 @@ export const SITUATIONS: Situation[] = [
     why: '猫很会隐藏疼痛，主人能看到的往往只是这些小变化。Texas A&M 建议出现这些迹象就带去看兽医；AMC 说任何偏离自家猫基线、找不到明显原因的变化，都值得联系兽医。',
     sources: [{ name: 'Texas A&M' }, { name: 'AMC' }],
     note: 'subtle-changes',
+  },
+  {
+    id: 'weight',
+    tier: 'call',
+    title: '担心太胖或太瘦',
+    signs: '摸不到肋骨、没有腰身；或者短毛猫一眼就能看到肋骨、腰椎明显（WSAVA 体型评分）',
+    action: '先问兽医。想让它减肥，别自己突然少喂。',
+    why: 'iCatCare 说太胖、太瘦都会缩短寿命，担心猫太胖就联系兽医。突然少喂会让猫生病，减得太快可能得脂肪肝，这病可能致命。Cornell 的兽医建议每周减体重的 1% 到 2%。',
+    sources: [
+      { name: 'iCatCare：Obesity in cats', url: 'https://icatcare.org/articles/obesity-in-cats' },
+      { name: 'Cornell：Obesity', url: `${CORNELL}/obesity` },
+    ],
+    note: 'body-condition',
   },
 ];
