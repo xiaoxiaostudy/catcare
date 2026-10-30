@@ -3,7 +3,7 @@ import { Segmented } from '../cats/Segmented';
 
 /**
  * 肢体语言：尾巴、耳朵、眼睛、胡须、身体各自切换，看这只猫在「说」什么。
- * 每一格的文字取自笔记 communication-stress 第 1 节 iCatCare 的表，不要自己改写。
+ * 每一格的文字取自笔记 communication-stress「怎么看懂它的身体」一节 iCatCare 的表，不要自己改写。
  */
 
 type Mood = 'calm' | 'fear' | 'tense';

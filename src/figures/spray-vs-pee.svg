@@ -1,0 +1,23 @@
+<svg viewBox="0 0 440 250" role="img" aria-label="示意图：左边的猫蹲着，尿在地上；右边的猫站着，尾巴竖起来发抖，往后喷到墙上" xmlns="http://www.w3.org/2000/svg">
+  <!-- 左：蹲着尿在地上 -->
+  <g transform="translate(0 30) scale(0.52)">
+    <g style="fill: var(--line)"><path d="M150 168 L166 168 L162 230 C164 236 156 238 150 236 L140 236 C138 232 146 230 148 226 Z" /></g><g style="fill: var(--s-todo)"><path d="M288 196 C320 206 344 226 372 222" style="fill: none; stroke: var(--s-todo); stroke-width: 12; stroke-linecap: round" /><path d="M118 124 C126 104 168 104 214 112 C258 120 292 150 290 180 C288 206 262 214 240 206 C210 196 184 184 160 178 C130 172 112 156 118 124 Z" /><path d="M84 72 L132 104 L136 150 L106 124 Z" /><ellipse cx="88" cy="80" rx="27" ry="23" /><ellipse cx="66" cy="90" rx="13" ry="10" /><path d="M66 68 L70 38 L88 60 Z" /><path d="M92 58 L106 34 L110 66 Z" /><ellipse cx="262" cy="196" rx="34" ry="30" /><path d="M232 214 L300 222 C306 230 302 238 294 238 L236 238 C228 236 226 222 232 214 Z" /><path d="M122 156 C124 146 146 148 150 162 L142 224 C142 230 146 234 140 236 L122 236 C118 232 124 228 126 224 Z" /></g><path d="M76 76 Q81 72 86 76 Q81 79 76 76 Z" style="fill: var(--ink)" /><circle cx="55" cy="87" r="2.5" style="fill: var(--ink-2)" />
+    <ellipse cx="300" cy="240" rx="40" ry="7" style="fill: #e2bd4f; fill-opacity: 0.75" />
+  </g>
+  <line x1="10" y1="155" x2="210" y2="155" style="stroke: var(--line); stroke-width: 1.5" />
+  <text x="105" y="185" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 600">在砂盆外尿</text>
+  <text x="105" y="205" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">蹲着，尿在平的地方</text>
+  <text x="105" y="223" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">一般是一整泡</text>
+
+  <!-- 右：站着往墙上喷 -->
+  <g transform="translate(222 30) scale(0.52)">
+    <g style="fill: var(--line)"><path d="M150 168 L166 168 L162 230 C164 236 156 238 150 236 L140 236 C138 232 146 230 148 226 Z" /><path d="M238 160 L256 160 L262 228 C264 236 256 238 250 236 L240 236 C238 232 244 230 246 226 Z" /></g><g style="fill: var(--s-todo)"><path d="M300 118 C304 90 300 60 306 34" style="fill: none; stroke: var(--s-todo); stroke-width: 12; stroke-linecap: round" /><path d="M118 124 C126 102 168 98 220 100 C270 100 306 108 306 136 C306 160 286 168 262 166 C230 170 192 174 162 176 C130 178 112 156 118 124 Z" /><path d="M84 72 L132 104 L136 150 L106 124 Z" /><ellipse cx="88" cy="80" rx="27" ry="23" /><ellipse cx="66" cy="90" rx="13" ry="10" /><path d="M66 68 L70 38 L88 60 Z" /><path d="M92 58 L106 34 L110 66 Z" /><ellipse cx="276" cy="140" rx="30" ry="32" /><path d="M256 158 L276 156 L294 204 L290 230 C292 236 284 238 278 236 L266 236 C262 232 270 230 274 226 L276 208 Z" /><path d="M122 156 C124 146 146 148 150 162 L142 224 C142 230 146 234 140 236 L122 236 C118 232 124 228 126 224 Z" /></g><path d="M76 76 Q81 72 86 76 Q81 79 76 76 Z" style="fill: var(--ink)" /><circle cx="55" cy="87" r="2.5" style="fill: var(--ink-2)" /><path d="M318 40 l8 -4 M318 54 l8 2 M290 44 l-8 -4 M290 58 l-8 2" style="fill: none; stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round" />
+    <path d="M318 150 L370 132 M318 156 L372 150 M318 162 L370 168" style="fill: none; stroke: #e2bd4f; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 6 6" />
+    <path d="M378 124 C384 140 378 170 384 196" style="fill: none; stroke: #e2bd4f; stroke-width: 6; stroke-linecap: round; stroke-opacity: 0.8" />
+  </g>
+  <rect x="424" y="20" width="10" height="135" style="fill: var(--surface-2); stroke: var(--line)" />
+  <line x1="230" y1="155" x2="434" y2="155" style="stroke: var(--line); stroke-width: 1.5" />
+  <text x="325" y="185" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 600">喷尿</text>
+  <text x="325" y="205" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">站着，尾巴颤抖</text>
+  <text x="325" y="223" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">往后喷到墙上，量少</text>
+</svg>
