@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 190" role="img" aria-label="示意图：一条横条表示肾功能丢了多少，从 0 到 100%。丢掉约 40% 时验血的 SDMA 升高；丢掉三分之二到四分之三时才出现症状；丢掉将近 75% 时肌酐才升高" xmlns="http://www.w3.org/2000/svg">
+  <text x="20" y="28" style="fill: var(--ink); font-family: var(--hand); font-size: 22px">肾功能丢了多少</text>
+
+  <!-- 底条：0 到 100% -->
+  <rect x="20" y="70" width="360" height="22" rx="11" style="fill: var(--surface-2); stroke: var(--line)" />
+  <!-- 看不出症状的一段：0 到约 67% -->
+  <rect x="20" y="70" width="241" height="22" rx="11" style="fill: var(--calm-soft)" />
+  <!-- 出现症状的一段：约 67% 到 100% -->
+  <path d="M261 70 L369 70 A11 11 0 0 1 369 92 L261 92 Z" style="fill: color-mix(in srgb, var(--pad) 50%, var(--danger))" />
+
+  <text x="20" y="112" style="fill: var(--muted); font-size: 12px">0</text>
+  <text x="380" y="112" text-anchor="end" style="fill: var(--muted); font-size: 12px">100%</text>
+  <text x="90" y="85" text-anchor="middle" style="fill: var(--calm); font-size: 13px">在家看不出来</text>
+  <text x="315" y="86" text-anchor="middle" style="fill: #2c2a2e; font-size: 13px; font-weight: 600">有症状了</text>
+
+  <!-- 40%：SDMA 升高 -->
+  <line x1="164" y1="62" x2="164" y2="100" style="stroke: var(--ink); stroke-width: 1.5" />
+  <circle cx="164" cy="62" r="4" style="fill: var(--ink)" />
+  <text x="164" y="52" text-anchor="middle" style="fill: var(--ink); font-size: 13px">约 40%：SDMA 升高</text>
+
+  <!-- 约 2/3 到 3/4：出现症状 -->
+  <text x="322" y="52" text-anchor="middle" style="fill: var(--ink); font-size: 13px">2/3 到 3/4：才有症状</text>
+
+  <!-- 约 75%：肌酐升高 -->
+  <line x1="290" y1="92" x2="290" y2="132" style="stroke: var(--ink); stroke-width: 1.5" />
+  <circle cx="290" cy="132" r="4" style="fill: var(--ink)" />
+  <text x="290" y="152" text-anchor="middle" style="fill: var(--ink); font-size: 13px">将近 75%：肌酐才升高</text>
+
+  <text x="200" y="182" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">所以没症状也要定期验血验尿，越早查出来越好</text>
+</svg>

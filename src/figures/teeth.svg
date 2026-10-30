@@ -1,0 +1,38 @@
+<svg viewBox="0 0 420 180" role="img" aria-label="示意图：四颗牙并排。健康：白色牙冠，粉色牙龈。牙龈炎：牙龈边缘发红。牙结石：牙龈线附近有褐色硬块。牙吸收：牙龈像长进了牙里" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 一颗牙：牙冠 + 盖住牙根的牙龈，四格共用。牙冠固定用浅色，深色模式下也像牙 -->
+    <path id="fig-tooth-crown" d="M-24 104 L-24 52 Q-24 26 0 24 Q24 26 24 52 L24 104 Z" />
+    <path id="fig-tooth-gum" d="M-46 150 L-46 100 Q0 86 46 100 L46 150 Z" />
+  </defs>
+
+  <!-- 1 健康 -->
+  <g transform="translate(55 0)">
+    <use href="#fig-tooth-crown" style="fill: #fbfaf6; stroke: var(--ink); stroke-width: 2" />
+    <use href="#fig-tooth-gum" style="fill: var(--pad)" />
+    <text x="0" y="172" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 20px">健康</text>
+  </g>
+
+  <!-- 2 牙龈炎：牙龈边缘红肿 -->
+  <g transform="translate(160 0)">
+    <use href="#fig-tooth-crown" style="fill: #fbfaf6; stroke: var(--ink); stroke-width: 2" />
+    <use href="#fig-tooth-gum" style="fill: var(--pad)" />
+    <path d="M-46 100 Q0 86 46 100" style="fill: none; stroke: color-mix(in srgb, var(--pad) 40%, var(--danger)); stroke-width: 7; stroke-linecap: round" />
+    <text x="0" y="172" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 20px">牙龈炎</text>
+  </g>
+
+  <!-- 3 牙结石：牙龈线附近的褐色硬块 -->
+  <g transform="translate(265 0)">
+    <use href="#fig-tooth-crown" style="fill: #fbfaf6; stroke: var(--ink); stroke-width: 2" />
+    <path d="M-23 96 Q-20 76 0 74 Q18 76 23 92 L23 98 Z" style="fill: color-mix(in srgb, var(--accent) 70%, #fbfaf6)" />
+    <use href="#fig-tooth-gum" style="fill: var(--pad)" />
+    <text x="0" y="172" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 20px">牙结石</text>
+  </g>
+
+  <!-- 4 牙吸收：牙龈像长进了牙里 -->
+  <g transform="translate(370 0)">
+    <use href="#fig-tooth-crown" style="fill: #fbfaf6; stroke: var(--ink); stroke-width: 2" />
+    <use href="#fig-tooth-gum" style="fill: var(--pad)" />
+    <path d="M-4 96 Q-4 74 10 72 Q24 74 24 92 L24 98 Z" style="fill: var(--pad); stroke: var(--ink); stroke-width: 1.2" />
+    <text x="0" y="172" text-anchor="middle" style="fill: var(--ink); font-family: var(--hand); font-size: 20px">牙吸收</text>
+  </g>
+</svg>

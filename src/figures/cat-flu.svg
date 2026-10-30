@@ -1,0 +1,44 @@
+<svg viewBox="-50 0 470 250" role="img" aria-label="示意图：一张猫脸正面，标出猫感冒时眼睛、鼻子、舌头和嘴、喉咙会出的问题" xmlns="http://www.w3.org/2000/svg">
+  <!-- 脖子和头 -->
+  <path d="M176 176 L172 236 L248 236 L244 176 Z" style="fill: var(--s-todo)" />
+  <g style="fill: var(--s-todo)">
+    <path d="M142 92 L148 30 L186 66 Z" />
+    <path d="M234 66 L272 30 L278 92 Z" />
+    <ellipse cx="210" cy="122" rx="82" ry="68" />
+  </g>
+
+  <!-- 眼睛：发红、流分泌物 -->
+  <path d="M164 108 Q178 96 192 108 Q178 116 164 108 Z" style="fill: var(--ink)" />
+  <path d="M228 108 Q242 96 256 108 Q242 116 228 108 Z" style="fill: var(--ink)" />
+  <path d="M189 112 Q191 124 187 128 Q183 124 189 112 Z" style="fill: var(--calm)" />
+  <path d="M231 112 Q233 124 229 128 Q225 124 231 112 Z" style="fill: var(--calm)" />
+
+  <!-- 鼻子：流鼻涕 -->
+  <path d="M200 136 L220 136 L210 147 Z" style="fill: var(--pad)" />
+  <path d="M214 147 Q217 156 213 160 Q209 156 214 147 Z" style="fill: var(--calm)" />
+
+  <!-- 嘴微张，露出舌头，上面有溃疡 -->
+  <path d="M190 160 Q210 178 230 160 Q210 166 190 160 Z" style="fill: var(--ink)" />
+  <ellipse cx="210" cy="168" rx="11" ry="6" style="fill: var(--pad)" />
+  <circle cx="207" cy="167" r="2.4" style="fill: #fbfaf6; stroke: color-mix(in srgb, var(--pad) 40%, var(--danger)); stroke-width: 1.2" />
+
+  <!-- 标注：左边 -->
+  <line x1="166" y1="108" x2="112" y2="70" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="106" y="52" text-anchor="end" style="fill: var(--ink); font-size: 15px; font-weight: 600">眼睛</text>
+  <text x="106" y="70" text-anchor="end" style="fill: var(--ink-2); font-size: 13px">分泌物、发红、老眨眼</text>
+  <text x="106" y="86" text-anchor="end" style="fill: var(--ink-2); font-size: 13px">疱疹病毒更明显</text>
+
+  <line x1="176" y1="214" x2="112" y2="206" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="106" y="200" text-anchor="end" style="fill: var(--ink); font-size: 15px; font-weight: 600">喉咙</text>
+  <text x="106" y="218" text-anchor="end" style="fill: var(--ink-2); font-size: 13px">发炎、疼，不想吃</text>
+
+  <!-- 标注：右边 -->
+  <line x1="218" y1="142" x2="306" y2="110" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="312" y="104" style="fill: var(--ink); font-size: 15px; font-weight: 600">鼻子</text>
+  <text x="312" y="122" style="fill: var(--ink-2); font-size: 13px">打喷嚏、流鼻涕</text>
+
+  <line x1="212" y1="168" x2="306" y2="182" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="312" y="176" style="fill: var(--ink); font-size: 15px; font-weight: 600">舌头、嘴</text>
+  <text x="312" y="194" style="fill: var(--ink-2); font-size: 13px">溃疡</text>
+  <text x="312" y="210" style="fill: var(--ink-2); font-size: 13px">杯状病毒常见</text>
+</svg>

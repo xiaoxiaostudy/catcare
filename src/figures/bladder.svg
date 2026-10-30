@@ -1,0 +1,28 @@
+<svg viewBox="0 0 400 260" role="img" aria-label="示意图：膀胱和下面连着的尿道，标出三种常见问题的位置：膀胱壁发炎、膀胱里的结石、卡在尿道里的栓子" xmlns="http://www.w3.org/2000/svg">
+  <!-- 尿道：从膀胱底部往下 -->
+  <path d="M150 150 C150 188 158 214 178 246" style="fill: none; stroke: var(--calm); stroke-width: 11; stroke-linecap: round" />
+  <path d="M150 150 C150 188 158 214 178 246" style="fill: none; stroke: var(--calm-soft); stroke-width: 6; stroke-linecap: round" />
+
+  <!-- 膀胱 -->
+  <ellipse cx="150" cy="92" rx="72" ry="62" style="fill: var(--calm-soft); stroke: var(--calm); stroke-width: 2.5" />
+  <text x="150" y="58" text-anchor="middle" style="fill: var(--calm); font-family: var(--hand); font-size: 22px">膀胱</text>
+  <text x="122" y="236" text-anchor="end" style="fill: var(--calm); font-family: var(--hand); font-size: 20px">尿道</text>
+
+  <!-- 1 膀胱壁发炎：内壁一圈发红 -->
+  <path d="M204 54 Q228 92 206 132" style="fill: none; stroke: color-mix(in srgb, var(--pad) 40%, var(--danger)); stroke-width: 7; stroke-linecap: round" />
+  <line x1="214" y1="70" x2="250" y2="56" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="256" y="52" style="fill: var(--ink); font-size: 15px; font-weight: 600">膀胱发炎</text>
+  <text x="256" y="72" style="fill: var(--ink-2); font-size: 13px">特发性膀胱炎，最常见</text>
+
+  <!-- 2 结石：膀胱里的硬块 -->
+  <path d="M132 112 L146 104 L158 110 L156 124 L140 128 Z" style="fill: color-mix(in srgb, var(--accent) 75%, var(--surface)); stroke: var(--ink); stroke-width: 1.2" />
+  <line x1="158" y1="118" x2="250" y2="126" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="256" y="122" style="fill: var(--ink); font-size: 15px; font-weight: 600">结石</text>
+  <text x="256" y="142" style="fill: var(--ink-2); font-size: 13px">矿物质结成的硬块</text>
+
+  <!-- 3 栓子：软的一团，卡在尿道里 -->
+  <ellipse cx="154" cy="196" rx="6" ry="10" style="fill: var(--muted)" />
+  <line x1="162" y1="196" x2="250" y2="196" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="256" y="192" style="fill: var(--ink); font-size: 15px; font-weight: 600">栓子</text>
+  <text x="256" y="212" style="fill: var(--ink-2); font-size: 13px">软的一团，会堵住尿道</text>
+</svg>
