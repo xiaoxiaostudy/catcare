@@ -55,6 +55,7 @@ summary: >-
 隐睾是指睾丸没有降进阴囊，留在了肚子里、腹股沟或者阴囊前面的皮下。这是公猫最常见的生殖问题（Merck）。各项研究里，大约 1.3% 到 6.2% 的公猫有（2023 年 Animals 期刊的研究综述）。大多数只有一侧（同上）。
 
 - **怎么看出来**：睾丸一般 2 个月大就降进阴囊，很少有 6 个月以后才降的；2 到 4 个月大还摸不到，就可能是隐睾（VCA）。到 7 到 8 个月还没降下来，就算隐睾（2023 年 Animals 研究）。
+- **先等一等**：小猫有一颗没下来，兽医常会等到 6 个月左右再确诊，因为有的猫降得晚（IVIS 隐睾综述、VCA）。等它降下来了，就是普通绝育。过了这个时间还没降，多半就不会自己降了（VCA）。
 - **在哪里**：以前一项研究里，约一半在腹股沟，三分之一在肚子里，其余在阴囊前面（2023 年 Animals 研究引用的数据）。兽医会先摸，再用 B 超找（同上）。
 - **为什么要摘**：留在里面的睾丸照样分泌雄激素（2023 年 Animals 研究、MSD 兽医手册），所以还是会喷尿、味道重、和别的猫打架（VCA）。它还可能长肿瘤，也可能扭转（VCA、Merck、2023 年 Animals 研究）。VCA 说，猫的这些问题比狗少见。
 - **怎么治**：摘除是首选（2023 年 Animals 研究）；兽医手册建议所有隐睾的宠物都做（MSD 兽医手册）。一般两颗都摘，趁没出问题早点做，效果非常好（VCA）。
@@ -144,6 +145,7 @@ summary: >-
 - [Bristol Cats 研究：绝育年龄对猫成年后体重和体型的长期影响](https://bristol.ac.uk/news/2025/june/kitten-neutering-bodyweight-.html)，布里斯托大学新闻稿，论文发表在 Veterinary Record 2025 年 196 卷 12 期。
 - [Veterinary Task Force on Feline Sterilization：Recommendations for Age of Spay and Neuter Surgery](https://www.unitedspayalliance.org/feline-fix-by-five/about-us/endorsements/navc/)，2016 年，共识建议，不是期刊论文。
 - [Merck 兽医手册（宠物主人版）：Reproductive Disorders of Male Cats](https://www.merckvetmanual.com/cat-owners/reproductive-disorders-of-cats/reproductive-disorders-of-male-cats)，2024 年 9 月更新。
+- [IVIS：Canine and Feline Cryptorchidism](https://www.ivis.org/library/recent-advances-small-animal-reproduction/canine-and-feline-cryptorchidism)，收在 IVIS 的《Recent Advances in Small Animal Reproduction》里，讲猫狗隐睾的综述。只用于「等到 6 个月左右再确诊」这一条。
 - [VCA：Retained Testicle (Cryptorchidism) in Cats](https://vcahospitals.com/know-your-pet/retained-testicle-cryptorchidism-in-cats)，2025 年 5 月 13 日更新，LifeLearn 为 VCA 医院网络撰写，多位兽医署名。只用于隐睾一节。
 - [Cornell Feline Health Center：Spaying and Neutering](https://www.vet.cornell.edu/node/4091)，没有写更新日期，内容可能较旧。
 - [Cornell Feline Health Center：Feline Lower Urinary Tract Disease](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease)。
@@ -162,6 +164,7 @@ summary: >-
 10. 绵绵有隐睾，9 个月了，一侧睾丸明显大，另一侧好像也在发育：没降的那颗现在在哪？要不要先做 B 超？要开几个切口、费用多少？绵绵「身体不好」，现在适不适合麻醉？（2026-10-22 记）
 11. 之前去的医院说只接 8 个月以上的猫绝育，和 iCatCare、AAFP 建议的 4 到 5 个月不一样，可以问问医院的考虑。
 12. 核对提醒（2026-10-22 补充来源时）：Bristol 研究的论文全文没读到，用的是布里斯托大学新闻稿和 BSAVA、Vet Times 的报道；AVMA 的早期绝育政策页、JFMS 2012 年 14 卷 849–856 页那篇，都没能打开，没有采用。2016 年工作组的共识是从 Feline Fix by Five 的网站上读的，不是期刊原文。
+13. 核对提醒（2026-10-30）：IVIS 隐睾综述「等到 6 个月左右再确诊」读的是搜索结果里的摘录，作者和年份没核实，要自己打开原文核对。绵绵的隐睾那颗最近降下来了，请兽医确认两颗都在阴囊里。
 
 ## 我家猫的实际情况
 
