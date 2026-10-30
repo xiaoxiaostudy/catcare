@@ -1,0 +1,32 @@
+<svg viewBox="0 0 400 300" role="img" aria-label="示意图：一只猫后腿站着，身子完全伸直，前爪抓着猫抓柱。抓柱比它伸直时的爪子还高，底座宽而稳" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="270" x2="360" y2="270" style="stroke: var(--line); stroke-width: 1.5" />
+  <!-- 抓柱：底座宽，柱子缠绳 -->
+  <rect x="190" y="254" width="120" height="16" rx="3" style="fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.2" />
+  <rect x="234" y="30" width="32" height="224" style="fill: color-mix(in srgb, var(--s-todo) 35%, var(--surface)); stroke: var(--ink-2); stroke-width: 1.2" />
+  <g style="stroke: var(--ink-2); stroke-width: 1; opacity: 0.5">
+    <line x1="234" y1="38" x2="266" y2="44" /><line x1="234" y1="48" x2="266" y2="54" /><line x1="234" y1="58" x2="266" y2="64" /><line x1="234" y1="68" x2="266" y2="74" /><line x1="234" y1="78" x2="266" y2="84" /><line x1="234" y1="88" x2="266" y2="94" /><line x1="234" y1="98" x2="266" y2="104" /><line x1="234" y1="108" x2="266" y2="114" /><line x1="234" y1="118" x2="266" y2="124" /><line x1="234" y1="128" x2="266" y2="134" /><line x1="234" y1="138" x2="266" y2="144" /><line x1="234" y1="148" x2="266" y2="154" /><line x1="234" y1="158" x2="266" y2="164" /><line x1="234" y1="168" x2="266" y2="174" /><line x1="234" y1="178" x2="266" y2="184" /><line x1="234" y1="188" x2="266" y2="194" /><line x1="234" y1="198" x2="266" y2="204" /><line x1="234" y1="208" x2="266" y2="214" /><line x1="234" y1="218" x2="266" y2="224" /><line x1="234" y1="228" x2="266" y2="234" /><line x1="234" y1="238" x2="266" y2="244" /><line x1="234" y1="248" x2="266" y2="254" />
+  </g>
+
+  <!-- 猫：后腿站着，身子往上伸直，前爪搭在柱子上 -->
+  <g style="fill: var(--s-todo)">
+    <path d="M200 160 C214 150 222 120 224 92 L236 90 C236 122 230 168 214 196 Z" />
+    <ellipse cx="196" cy="186" rx="26" ry="50" transform="rotate(14 196 186)" />
+    <ellipse cx="186" cy="236" rx="22" ry="22" />
+    <path d="M172 242 L196 242 L196 268 C196 272 190 272 186 272 L172 272 Z" />
+    <path d="M150 238 C120 240 112 262 96 258" style="fill: none; stroke: var(--s-todo); stroke-width: 11; stroke-linecap: round" />
+    <ellipse cx="208" cy="124" rx="19" ry="17" />
+    <path d="M196 112 L192 90 L208 106 Z" />
+    <path d="M210 106 L224 92 L224 114 Z" />
+    <ellipse cx="232" cy="90" rx="7" ry="5" />
+  </g>
+  <path d="M206 122 Q210 119 214 122" style="fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round" />
+
+  <!-- 高度标注 -->
+  <line x1="150" y1="84" x2="330" y2="84" style="stroke: var(--pad); stroke-width: 1.5; stroke-dasharray: 5 4" />
+  <line x1="330" y1="84" x2="330" y2="270" style="stroke: var(--ink); stroke-width: 1.2" />
+  <path d="M325 92 L330 84 L335 92 M325 262 L330 270 L335 262" style="fill: none; stroke: var(--ink); stroke-width: 1.2" />
+  <text x="338" y="168" style="fill: var(--ink); font-size: 14px; font-weight: 600">至少</text>
+  <text x="338" y="186" style="fill: var(--ink); font-size: 14px; font-weight: 600">这么高</text>
+  <text x="40" y="78" style="fill: var(--ink-2); font-size: 13px">它伸直时爪子够到的地方</text>
+  <text x="250" y="292" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">底座要稳，抓的时候不晃</text>
+</svg>

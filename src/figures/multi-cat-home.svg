@@ -1,0 +1,20 @@
+<svg viewBox="0 0 420 270" role="img" aria-label="示意图：一个家的平面图，客厅、卧室、书房三间，每间各有一个食盆、一个水盆、一个砂盆。两只猫，每样 3 个，分散放" xmlns="http://www.w3.org/2000/svg">
+  <text x="20" y="26" style="fill: var(--ink); font-family: var(--hand); font-size: 22px">两只猫，每样 3 个，分开放</text>
+    <rect x="20" y="40" width="380" height="180" rx="6" style="fill: none; stroke: var(--ink); stroke-width: 2" />
+  <path d="M160 40 V105 M160 145 V220 M280 40 V95 M280 135 V220" style="stroke: var(--ink); stroke-width: 2" />
+  <text x="90.0" y="62" text-anchor="middle" style="fill: var(--muted); font-size: 12px">客厅</text>
+  <text x="220.0" y="62" text-anchor="middle" style="fill: var(--muted); font-size: 12px">卧室</text>
+  <text x="340.0" y="62" text-anchor="middle" style="fill: var(--muted); font-size: 12px">书房</text>
+  <path d="M41 88 L69 88 Q67 100 55 100 Q43 100 41 88 Z" style="fill: var(--pad)" /><text x="55" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">食盆</text>
+  <path d="M111 88 L139 88 Q137 100 125 100 Q113 100 111 88 Z" style="fill: var(--calm)" /><text x="125" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">水盆</text>
+  <rect x="65" y="154" width="40" height="18" rx="3" style="fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.2" /><path d="M71 160 h28 M71 165 h28" style="stroke: var(--line); stroke-width: 1" /><text x="85" y="188" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">砂盆</text>
+  <path d="M171 88 L199 88 Q197 100 185 100 Q173 100 171 88 Z" style="fill: var(--pad)" /><text x="185" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">食盆</text>
+  <path d="M241 88 L269 88 Q267 100 255 100 Q243 100 241 88 Z" style="fill: var(--calm)" /><text x="255" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">水盆</text>
+  <rect x="210" y="154" width="40" height="18" rx="3" style="fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.2" /><path d="M216 160 h28 M216 165 h28" style="stroke: var(--line); stroke-width: 1" /><text x="230" y="188" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">砂盆</text>
+  <path d="M291 88 L319 88 Q317 100 305 100 Q293 100 291 88 Z" style="fill: var(--pad)" /><text x="305" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">食盆</text>
+  <path d="M361 88 L389 88 Q387 100 375 100 Q363 100 361 88 Z" style="fill: var(--calm)" /><text x="375" y="116" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">水盆</text>
+  <rect x="335" y="154" width="40" height="18" rx="3" style="fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.2" /><path d="M341 160 h28 M341 165 h28" style="stroke: var(--line); stroke-width: 1" /><text x="355" y="188" text-anchor="middle" style="fill: var(--ink-2); font-size: 11.5px">砂盆</text>
+  <g style="fill: var(--ink-2)"><circle cx="90" cy="134" r="11" /><path d="M80 130 L81 117 L88 125 Z M92 125 L99 117 L100 130 Z" /></g>
+  <g style="fill: var(--s-todo)"><circle cx="340" cy="134" r="11" /><path d="M330 130 L331 117 L338 125 Z M342 125 L349 117 L350 130 Z" /></g>
+  <text x="210" y="248" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">食盆和水盆分开，砂盆离食盆远一点，几个砂盆别放在一起</text>
+</svg>
