@@ -1,0 +1,21 @@
+<svg viewBox="0 0 420 280" role="img" aria-label="示意图：两颗心脏的剖面。左边正常，心肌壁薄，里面装的血多；右边肥厚型心肌病，心肌壁变厚，里面装的血变少" xmlns="http://www.w3.org/2000/svg">
+  <!-- 正常 -->
+  <path d="M38 78 Q38 50 110 50 Q182 50 182 78 C182 142 132 188 110 200 C88 188 38 142 38 78 Z" style="fill: var(--pad); stroke: var(--ink); stroke-width: 1.2" />
+  <path d="M38 78 Q38 50 110 50 Q182 50 182 78 C182 142 132 188 110 200 C88 188 38 142 38 78 Z" transform="translate(110 112) scale(0.84) translate(-110 -112)" style="fill: color-mix(in srgb, var(--danger) 70%, var(--pad))" />
+  <text x="110" y="118" text-anchor="middle" style="fill: #fbfaf6; font-size: 14px; font-weight: 600">血</text>
+
+  <!-- 肥厚型 -->
+  <path d="M238 78 Q238 50 310 50 Q382 50 382 78 C382 142 332 188 310 200 C288 188 238 142 238 78 Z" style="fill: var(--pad); stroke: var(--ink); stroke-width: 1.2" />
+  <ellipse cx="310" cy="110" rx="26" ry="32" style="fill: color-mix(in srgb, var(--danger) 70%, var(--pad))" />
+  <text x="310" y="116" text-anchor="middle" style="fill: #fbfaf6; font-size: 14px; font-weight: 600">血</text>
+
+  <!-- 心肌壁标注 -->
+  <line x1="360" y1="96" x2="396" y2="36" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="404" y="30" text-anchor="end" style="fill: var(--ink); font-size: 13px">心肌壁</text>
+
+  <text x="110" y="232" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 600">正常</text>
+  <text x="110" y="252" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">心肌壁薄，装的血多</text>
+  <text x="310" y="232" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 600">肥厚型心肌病</text>
+  <text x="310" y="252" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">心肌壁变厚，装的血少</text>
+  <text x="310" y="270" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">还放松不好</text>
+</svg>
