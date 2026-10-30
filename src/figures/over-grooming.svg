@@ -1,0 +1,50 @@
+<svg viewBox="0 -50 420 350" role="img" aria-label="示意图：猫的侧面，标出舔毛过头常见的部位：身体两侧、肚子、后腿内侧；一直舔尾巴根部可能是跳蚤；下腹和生殖器周围秃了可能是泌尿道疼" xmlns="http://www.w3.org/2000/svg">
+  <!-- 远侧的两条腿，颜色淡一点 -->
+  <g style="fill: var(--line)">
+    <path d="M150 168 L166 168 L162 230 C164 236 156 238 150 236 L140 236 C138 232 146 230 148 226 Z" />
+    <path d="M238 160 L256 160 L262 228 C264 236 256 238 250 236 L240 236 C238 232 244 230 246 226 Z" />
+  </g>
+  <!-- 近侧（左侧）：头朝左，各部分用同一种颜色叠在一起 -->
+  <g style="fill: var(--s-todo)">
+    <!-- 尾巴：从屁股垂下再往上翘 -->
+    <path d="M300 126 C334 132 348 188 372 172" style="fill: none; stroke: var(--s-todo); stroke-width: 12; stroke-linecap: round" />
+    <!-- 躯干：胸深，肚子往上收 -->
+    <path d="M118 124 C126 102 168 98 220 100 C270 100 306 108 306 136 C306 160 286 168 262 166 C230 170 192 174 162 176 C130 178 112 156 118 124 Z" />
+    <!-- 脖子 -->
+    <path d="M84 72 L132 104 L136 150 L106 124 Z" />
+    <!-- 头、口鼻、耳朵 -->
+    <ellipse cx="88" cy="80" rx="27" ry="23" />
+    <ellipse cx="66" cy="90" rx="13" ry="10" />
+    <path d="M66 68 L70 38 L88 60 Z" />
+    <path d="M92 58 L106 34 L110 66 Z" />
+    <!-- 后腿：大腿，膝盖往前，跗关节往后折 -->
+    <ellipse cx="276" cy="140" rx="30" ry="32" />
+    <path d="M256 158 L276 156 L294 204 L290 230 C292 236 284 238 278 236 L266 236 C262 232 270 230 274 226 L276 208 Z" />
+    <!-- 前腿：肘部在胸口下方，往后凸一点 -->
+    <path d="M122 156 C124 146 146 148 150 162 L142 224 C142 230 146 234 140 236 L122 236 C118 232 124 228 126 224 Z" />
+  </g>
+  <path d="M76 76 Q81 72 86 76 Q81 79 76 76 Z" style="fill: var(--ink)" />
+  <circle cx="55" cy="87" r="2.5" style="fill: var(--ink-2)" />
+  <!-- 常秃的地方 -->
+  <ellipse cx="206" cy="130" rx="38" ry="18" style="fill: var(--pad); fill-opacity: 0.85; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 2" />
+  <ellipse cx="196" cy="166" rx="30" ry="7" style="fill: var(--pad); fill-opacity: 0.85; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 2" />
+  <ellipse cx="262" cy="166" rx="14" ry="10" style="fill: var(--pad); fill-opacity: 0.85; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 2" />
+  <circle cx="302" cy="124" r="9" style="fill: var(--pad); fill-opacity: 0.85; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 2" />
+
+  <!-- 标注 -->
+  <line x1="206" y1="118" x2="190" y2="-6" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="190" y="-30" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">身体两侧</text>
+  <text x="190" y="-12" text-anchor="middle" style="fill: var(--ink-2); font-size: 12.5px">常见，常左右对称</text>
+
+  <line x1="306" y1="116" x2="330" y2="-6" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="330" y="-30" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">尾巴根部</text>
+  <text x="330" y="-12" text-anchor="middle" style="fill: var(--ink-2); font-size: 12.5px">一直舔这里，可能是跳蚤</text>
+
+  <line x1="196" y1="173" x2="110" y2="258" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="110" y="276" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">肚子、后腿内侧</text>
+  <text x="110" y="292" text-anchor="middle" style="fill: var(--ink-2); font-size: 12.5px">也常见</text>
+
+  <line x1="262" y1="176" x2="300" y2="258" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="300" y="276" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">下腹、生殖器周围</text>
+  <text x="300" y="292" text-anchor="middle" style="fill: var(--ink-2); font-size: 12.5px">可能是泌尿道疼</text>
+</svg>
