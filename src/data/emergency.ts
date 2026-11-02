@@ -151,7 +151,7 @@ export const SITUATIONS: Situation[] = [
     title: '频繁呕吐、吐血，或便又黑又黏',
     signs: '一天吐超过一两次；吐出来带血；同时肚子疼、没精神、虚弱、发烧；或者便像黑色柏油',
     action: '尽快联系兽医。记下吐和拉的样子、次数，可以拍照。不要自己给猫断水。',
-    why: 'Merck 说这样的呕吐需要兽医详细检查，有的原因会危及生命；呕吐会导致脱水，不让喝水会更糟。iCatCare 说黑色柏油样的便可能是肠道上段出血。',
+    why: 'Merck 说这样的呕吐需要兽医详细检查，有的原因会危及生命；呕吐会导致脱水，不让喝水会更糟。iCatCare 说黑色柏油样的便可能是肠子靠上的地方在出血。',
     sources: [
       { name: 'Merck：Vomiting in Cats', url: 'https://www.merckvetmanual.com/cat-owners/digestive-disorders-of-cats/vomiting-in-cats' },
       { name: 'iCatCare：Diarrhoea in cats', url: 'https://icatcare.org/articles/diarrhoea-in-cats' },
