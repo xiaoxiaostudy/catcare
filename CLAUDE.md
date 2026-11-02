@@ -14,6 +14,7 @@
 - `src/lib/learned.ts`：读者学会了哪些笔记（键名 `catcare:learned`），首页三花猫的花色和爪印按它填色，笔记页底部的「我学会了这一篇」按钮写入。首页另存一份上次看到的进度（`catcare:learned-seen`），回到首页时新学会的那一格颜色会涨上来。
 - `src/lib/sources.ts`：笔记依据的五家主要机构（iCatCare、Cornell、Merck、AAFP、WSAVA），按正文里的网址认出每篇用了哪几家。笔记页标题下的「依据」和「内容从哪来」页（`src/pages/about.astro`，讲来源、核对流程、分级、还没兽医审核）都用它。加了新的主要机构要改这里。
 - `src/data/map.ts`：首页学习地图的七大块和全部主题。写好的主题用 `note` 指向笔记文件名。
+- `src/data/worries.ts`：「我家猫……」页（`src/pages/worries.astro`，首页按钮「按情况找笔记」）的数据：读者担心的常见情况，每条指向已写好的笔记；急症清单里也有的，用 `emergency` 写上那一条的 id，页面会提示那一档。只收笔记里讲到的情况。
 - `src/data/emergency.ts`：急症清单页的数据。只收录笔记里「就医红线」明确写到的情况，措辞和来源跟笔记保持一致；笔记 `emergency-checklist.md` 是它的打印版，两边要同步改。
 - 作者自己用的笔记模板、来源清单、待问兽医清单、绵绵和妙妙的档案和基线记录表，放在仓库外面的 `~/Desktop/catcare-作者工作区/`，不进仓库（仓库是公开的）。网站是给读者学的，作者的工作内容不要放进这个仓库。
 - 「我的猫」（`src/pages/cats/`、`src/components/cats/`）是 Preact 组件，只在浏览器里运行（`client:only`）。每个用户添加自己的猫、每天记录，数据都在浏览器 localStorage 里，不上传：
@@ -51,5 +52,6 @@ npm run dev
 1. 放到 `src/content/notes/<英文短名>.md`，写好 frontmatter。
 2. 在 `src/data/map.ts` 里给对应主题加上 `note: '<英文短名>'`。
 3. 如果它的就医红线里有新的情况，补进 `src/data/emergency.ts`。
-4. 跑 `npm run build`，确认没有报错。
-5. 提交，提交信息写「笔记：<主题>」，然后 `git push`。
+4. 如果它讲到读者常担心的情况，补进 `src/data/worries.ts`。
+5. 跑 `npm run build`，确认没有报错。
+6. 提交，提交信息写「笔记：<主题>」，然后 `git push`。

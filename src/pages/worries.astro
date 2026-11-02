@@ -1,0 +1,134 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { WORRIES } from '../data/worries';
+import { SITUATIONS, TIERS } from '../data/emergency';
+
+const base = import.meta.env.BASE_URL;
+const titles = new Map((await getCollection('notes')).map((n) => [n.id, n.data.title]));
+const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
+---
+
+<Base title="我家猫……" description="按你担心的情况找笔记：吐了、乱尿、舔秃了、刚接回小猫……">
+  <div class="wrap narrow worries">
+    <h1 class="hand">我家猫……</h1>
+    <p class="lead">找一条最像的，点进对应的笔记。要马上去医院的情况，先看<a href={`${base}emergency/`}>急症清单</a>。</p>
+
+    {WORRIES.map((g) => (
+      <section class="group">
+        <h2 class="hand">{g.name}</h2>
+        <ul>
+          {g.items.map((w) => {
+            const s = w.emergency ? sos.get(w.emergency) : undefined;
+            return (
+              <li>
+                <p class="worry">{w.text}</p>
+                <p class="reads">
+                  {w.notes.map((n) => (
+                    <a href={`${base}notes/${n}/`}>{titles.get(n)}</a>
+                  ))}
+                </p>
+                {s && (
+                  <a class="sos-hint" data-tier={s.tier} href={`${base}emergency/#${s.id}`}>
+                    {TIERS[s.tier].label}：{s.title}
+                  </a>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .worries {
+    padding-top: 28px;
+  }
+
+  h1 {
+    margin: 6px 0 8px;
+    font-size: clamp(38px, 7vw, 56px);
+  }
+
+  .lead {
+    margin: 0;
+    color: var(--ink-2);
+  }
+
+  .group {
+    margin-top: 36px;
+  }
+
+  h2 {
+    margin: 0 0 4px;
+    font-size: 30px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .worry {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .reads {
+    margin: 2px 0 0;
+    font-size: 15px;
+  }
+
+  .reads a + a::before {
+    content: '·';
+    display: inline-block;
+    margin: 0 8px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  /* 急症清单里也有的情况：用那一档的颜色点一下 */
+  .sos-hint {
+    --c: var(--calm);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 6px;
+    color: var(--ink-2);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .sos-hint::before {
+    content: '';
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c);
+    transform: translateY(-1px);
+  }
+
+  .sos-hint:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--c);
+  }
+
+  .sos-hint[data-tier='now'] {
+    --c: var(--danger);
+  }
+
+  .sos-hint[data-tier='soon'] {
+    --c: var(--warn);
+  }
+</style>

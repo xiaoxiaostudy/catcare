@@ -49,6 +49,10 @@ const calico = regions.map((r) => {
       <h1 class="hand"><span>学养猫，</span><span>也给自家猫记一笔</span></h1>
       <p class="sub">七块花色是七个知识区域。每学会一篇，猫身上那块就多一点颜色。</p>
       <p class="basis">内容整理自 iCatCare、Cornell、AAFP、WSAVA、Merck 兽医手册等兽医机构的公开资料，每条都核对过原文。<a href={`${base}about/`}>内容从哪来</a></p>
+      <p class="entries">
+        <a class="entry" href={`${base}worries/`}>按情况找笔记：我家猫……</a>
+        <a class="entry" href={`${base}cats/`}>给我的猫记一笔</a>
+      </p>
     </div>
 
     <div class="next-box">
@@ -412,6 +416,30 @@ const calico = regions.map((r) => {
 
   .basis a {
     color: var(--ink-2);
+  }
+
+  /* 另外两条路：不知道该看哪块时按情况找；给自家猫记录 */
+  .entries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0 0;
+  }
+
+  .entry {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .entry:hover {
+    border-color: var(--pad);
+    background: color-mix(in srgb, var(--pad) 25%, transparent);
   }
 
   .next-link {
