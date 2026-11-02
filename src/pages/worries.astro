@@ -20,19 +20,22 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
         <ul>
           {g.items.map((w) => {
             const s = w.emergency ? sos.get(w.emergency) : undefined;
+            // 要马上去医院的，提示放在笔记前面、用急症红；其他档放在后面
+            const hint = s && (
+              <a class="sos-hint" data-tier={s.tier} href={`${base}emergency/#${s.id}`}>
+                <span><b>{TIERS[s.tier].label}</b>：{s.title}</span>
+              </a>
+            );
             return (
               <li>
                 <p class="worry">{w.text}</p>
+                {s?.tier === 'now' && hint}
                 <p class="reads">
                   {w.notes.map((n) => (
                     <a href={`${base}notes/${n}/`}>{titles.get(n)}</a>
                   ))}
                 </p>
-                {s && (
-                  <a class="sos-hint" data-tier={s.tier} href={`${base}emergency/#${s.id}`}>
-                    {TIERS[s.tier].label}：{s.title}
-                  </a>
-                )}
+                {s && s.tier !== 'now' && hint}
               </li>
             );
           })}
@@ -105,7 +108,25 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
     margin-top: 6px;
     color: var(--ink-2);
     font-size: 14px;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent);
+  }
+
+  .sos-hint b {
+    font-weight: 600;
+  }
+
+  /* 立刻去医院：紧跟在情况下面，红字加粗，慌的时候第一眼就看到 */
+  .sos-hint[data-tier='now'] {
+    margin: 4px 0 2px;
+    color: var(--danger);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration-color: color-mix(in srgb, var(--danger) 40%, transparent);
+  }
+
+  .sos-hint[data-tier='now'] b {
+    font-weight: 700;
   }
 
   .sos-hint::before {
@@ -126,6 +147,10 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
 
   .sos-hint[data-tier='now'] {
     --c: var(--danger);
+  }
+
+  .sos-hint[data-tier='now']:hover {
+    color: var(--danger);
   }
 
   .sos-hint[data-tier='soon'] {
