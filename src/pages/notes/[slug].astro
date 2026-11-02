@@ -457,6 +457,40 @@ const slotted = remember && after !== undefined;
     vertical-align: 2px;
   }
 
+  /* 红框里不用马上去医院的几段：换成急症清单那一档的颜色，不和「立刻去」混在一起 */
+  .prose :global(.kind-danger .tier) {
+    margin: 14px 0 4px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: var(--surface);
+  }
+
+  .prose :global(.kind-danger .tier > :first-child) {
+    margin-top: 0;
+  }
+
+  .prose :global(.kind-danger .tier > :last-child) {
+    margin-bottom: 0;
+  }
+
+  .prose :global(.kind-danger .tier-soon) {
+    border: 1.5px solid color-mix(in srgb, var(--warn) 45%, transparent);
+    background: var(--warn-soft);
+  }
+
+  .prose :global(.kind-danger .tier-soon > p:first-child strong) {
+    color: var(--warn);
+  }
+
+  .prose :global(.kind-danger .tier-call) {
+    border: 1.5px solid color-mix(in srgb, var(--calm) 40%, transparent);
+    background: var(--calm-soft);
+  }
+
+  .prose :global(.kind-danger .tier-call > p:first-child strong) {
+    color: var(--calm);
+  }
+
   .prose :global(.kind-todo) {
     background: var(--surface);
     border: 1px solid var(--line);

@@ -61,6 +61,39 @@ function figure(node) {
   };
 }
 
+// 红框「什么时候找兽医」里常按急不急分成几小段，每段开头是一行加粗的小标题（「**今天就打电话**：」）。
+// 不是马上去医院的那几段，换成急症清单里那一档的颜色：今天、尽快 → 琥珀，约时间、先问 → 蓝。
+// 其他小标题（立刻去、打电话时……）照旧留在红框里。
+const TIER_LABELS = [
+  [/^(今天|尽快)/, 'soon'],
+  [/约|^先问/, 'call'],
+];
+
+function tierLabel(node) {
+  if (node.type !== 'element' || node.tagName !== 'p') return null;
+  const first = node.children.find((c) => !(c.type === 'text' && !c.value.trim()));
+  if (!first || first.tagName !== 'strong') return null;
+  const after = node.children[node.children.indexOf(first) + 1];
+  if (!(after?.type === 'text' && /^\s*[：:]/.test(after.value))) return null;
+  const label = text(first);
+  return TIER_LABELS.find(([re]) => re.test(label))?.[1] || 'none';
+}
+
+function splitTiers(section) {
+  const [head, ...rest] = section.children;
+  const out = [head];
+  let group = null;
+  for (const node of rest) {
+    const tier = tierLabel(node);
+    if (tier) {
+      group = tier === 'none' ? null : { type: 'element', tagName: 'div', properties: { className: ['tier', `tier-${tier}`] }, children: [] };
+      if (group) out.push(group);
+    }
+    (group ? group.children : out).push(node);
+  }
+  section.children = out;
+}
+
 function text(node) {
   if (node.type === 'text') return node.value;
   return (node.children || []).map(text).join('');
@@ -130,6 +163,7 @@ export default function rehypeNoteSections() {
         out.push(node);
       }
     }
+    out.filter((n) => n.properties?.className?.includes('kind-danger')).forEach(splitTiers);
     tree.children = out.filter((n) => n.tagName !== 'template');
   };
 }
