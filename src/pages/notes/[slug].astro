@@ -117,6 +117,8 @@ const slotted = remember && after !== undefined;
         </a>
       )}
     </nav>
+
+    <p class="other-way">不是你要找的？<a href={`${base}worries/`}>按情况找笔记：我家猫……</a></p>
   </article>
 
   <script>
@@ -382,6 +384,13 @@ const slotted = remember && after !== undefined;
     .learn-paw {
       transition: none;
     }
+  }
+
+  .other-way {
+    margin: 20px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
   }
 
   .pager {

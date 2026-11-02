@@ -14,8 +14,12 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
     <h1 class="hand">我家猫……</h1>
     <p class="lead">找一条最像的，点进对应的笔记。要马上去医院的情况，先看<a href={`${base}emergency/`}>急症清单</a>。</p>
 
-    {WORRIES.map((g) => (
-      <section class="group">
+    <nav class="jump" aria-label="跳到">
+      {WORRIES.map((g, i) => <a href={`#g${i + 1}`}>{g.name}</a>)}
+    </nav>
+
+    {WORRIES.map((g, i) => (
+      <section class="group" id={`g${i + 1}`}>
         <h2 class="hand">{g.name}</h2>
         <ul>
           {g.items.map((w) => {
@@ -60,8 +64,31 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
     color: var(--ink-2);
   }
 
+  /* 一页 26 条，手机上很长：顶上三组可以直接跳 */
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .jump a {
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-2);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .jump a:hover {
+    border-color: var(--pad);
+    color: var(--ink);
+  }
+
   .group {
     margin-top: 36px;
+    scroll-margin-top: 72px;
   }
 
   h2 {
@@ -86,17 +113,19 @@ const sos = new Map(SITUATIONS.map((s) => [s.id, s]));
     font-weight: 600;
   }
 
+  /* 几篇笔记各自带下划线，用空隙隔开；不用「·」，换行时不会落到行首 */
   .reads {
-    margin: 2px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 18px;
+    margin: 0;
     font-size: 15px;
   }
 
-  .reads a + a::before {
-    content: '·';
+  /* 手机上手指点得到：每个链接上下多留一点 */
+  .reads a {
     display: inline-block;
-    margin: 0 8px;
-    color: var(--muted);
-    text-decoration: none;
+    padding: 6px 0;
   }
 
   /* 急症清单里也有的情况：用那一档的颜色点一下 */
