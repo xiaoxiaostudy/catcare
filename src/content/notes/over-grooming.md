@@ -2,7 +2,7 @@
 title: 过度舔毛
 module: behavior
 order: 3
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 scene: >-

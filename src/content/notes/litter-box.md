@@ -2,7 +2,7 @@
 title: 猫砂盆管理
 module: daily-care
 order: 4
-status: 写作中
+status: 已完成
 date: 2026-11-01
 author: Vera
 widget: litter-check

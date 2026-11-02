@@ -2,7 +2,7 @@
 title: 肥厚型心肌病
 module: diseases
 order: 8
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 scene: >-

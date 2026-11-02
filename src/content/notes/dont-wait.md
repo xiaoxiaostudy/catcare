@@ -2,7 +2,7 @@
 title: 这些情况别等，立刻就医
 module: recognize
 order: 6
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 scene: >-

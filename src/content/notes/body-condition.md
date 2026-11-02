@@ -2,7 +2,7 @@
 title: 猫的体型评分怎么看
 module: recognize
 order: 4
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 widget: body-condition

@@ -2,7 +2,7 @@
 title: 吃喝拉撒的正常范围与异常信号
 module: recognize
 order: 3
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 widget: water-calc

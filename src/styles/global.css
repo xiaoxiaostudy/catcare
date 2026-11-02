@@ -224,6 +224,11 @@ a:hover {
   font-size: 14px;
 }
 
+.site-footer .footer-meta {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
 /* 通用 */
 h1,
 h2,

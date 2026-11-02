@@ -2,7 +2,7 @@
 title: 环境丰容
 module: behavior
 order: 5
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 scene: >-

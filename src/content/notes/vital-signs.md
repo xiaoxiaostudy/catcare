@@ -2,7 +2,7 @@
 title: 猫的正常生命体征
 module: recognize
 order: 1
-status: 写作中
+status: 已完成
 date: 2026-10-20
 author: Vera
 widget: heart-timer

@@ -2,7 +2,7 @@
 title: 猫很会忍，哪些细微变化要警惕
 module: recognize
 order: 5
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 widget: spot-change

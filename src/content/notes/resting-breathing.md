@@ -2,7 +2,7 @@
 title: 怎么数静息呼吸
 module: recognize
 order: 2
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 widget: breath-timer

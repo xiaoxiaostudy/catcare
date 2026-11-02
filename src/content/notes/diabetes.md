@@ -2,7 +2,7 @@
 title: 肥胖与糖尿病
 module: diseases
 order: 6
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 scene: >-

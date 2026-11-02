@@ -10,6 +10,10 @@ interface Props {
 const { title, description = '学养猫，也给自家猫记一笔。养猫知识整理自兽医机构的公开资料，记录只存在你自己的浏览器里。', current } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const fullTitle = title ? `${title}｜健康养猫` : '健康养猫｜学养猫，也给自家猫记一笔';
+// 分享卡片：发到社交平台时显示的标题、说明和图（public/og.png，1200×630）
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(`${base}og.png`, Astro.site).href;
+const repo = 'https://github.com/xiaoxiaostudy/catcare';
 ---
 
 <!doctype html>
@@ -28,6 +32,18 @@ const fullTitle = title ? `${title}｜健康养猫` : '健康养猫｜学养猫�
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" />
     <title>{fullTitle}</title>
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="健康养猫" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title ?? fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="一只三花猫，七块花色是七个养猫知识区域" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <header class="site-header">
@@ -54,6 +70,11 @@ const fullTitle = title ? `${title}｜健康养猫` : '健康养猫｜学养猫�
     <footer class="site-footer">
       <div class="wrap">
         <p>这里的内容整理自国际兽医机构公开的资料，还没经兽医审核，不能代替兽医的诊断。猫的情况拿不准时，直接联系兽医。<a href={`${base}about/`}>内容从哪来</a></p>
+        <p class="footer-meta">
+          网站开源在 <a href={repo} rel="noopener">GitHub</a>，觉得有用就点个 Star，发现错误欢迎<a href={`${repo}/issues`} rel="noopener">告诉我</a>。代码用
+          <a href={`${repo}/blob/main/LICENSE`} rel="noopener">MIT</a> 许可，笔记用
+          <a href={`${repo}/blob/main/LICENSE-CONTENT`} rel="noopener">CC BY-NC-SA 4.0</a> 许可，转载请署名、不商用。
+        </p>
       </div>
     </footer>
     <script>

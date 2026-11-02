@@ -2,7 +2,7 @@
 title: 意外和异物：哪些要马上送医
 module: recognize
 order: 9
-status: 写作中
+status: 已完成
 date: 2026-10-22
 author: Vera
 scene: >-

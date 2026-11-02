@@ -2,7 +2,7 @@
 title: 猫的沟通方式与压力信号
 module: behavior
 order: 1
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 widget: body-language

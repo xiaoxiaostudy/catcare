@@ -2,7 +2,7 @@
 title: 看懂成分表和营养标注
 module: nutrition
 order: 2
-status: 写作中
+status: 已完成
 date: 2026-10-21
 author: Vera
 scene: >-

@@ -2,7 +2,7 @@
 title: 急症清单（一页成稿）
 module: recognize
 order: 11
-status: 写作中
+status: 已完成
 date: 2026-10-22
 author: Vera
 summary: >-

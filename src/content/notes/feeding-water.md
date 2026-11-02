@@ -2,7 +2,7 @@
 title: 喂食方式和饮水
 module: nutrition
 order: 4
-status: 写作中
+status: 已完成
 date: 2026-10-30
 author: Vera
 widget: food-calc

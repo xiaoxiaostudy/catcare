@@ -2,7 +2,7 @@
 title: 疫苗原理、程序与加强免疫
 module: prevention
 order: 2
-status: 写作中
+status: 已完成
 date: 2026-10-22
 author: Vera
 scene: >-
