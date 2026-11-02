@@ -186,12 +186,12 @@ const slotted = remember && after !== undefined;
     margin: 24px 0;
     padding: 18px 20px;
     border-radius: var(--radius);
-    background: var(--accent-soft);
+    background: var(--surface-2);
   }
 
   .takeaway-label {
     margin: 0 0 4px;
-    color: var(--accent);
+    color: var(--ink-2);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -223,8 +223,8 @@ const slotted = remember && after !== undefined;
   }
 
   .toc a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--pad);
+    color: var(--ink);
   }
 
   .trust {
@@ -291,8 +291,7 @@ const slotted = remember && after !== undefined;
   }
 
   .learn-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--pad);
   }
 
   .learn-paw {
@@ -361,7 +360,7 @@ const slotted = remember && after !== undefined;
   }
 
   .pager-link:hover {
-    border-color: var(--accent);
+    border-color: var(--pad);
   }
 
   /* 正文里按类型分节 */
@@ -397,12 +396,6 @@ const slotted = remember && after !== undefined;
     color: var(--danger);
   }
 
-  /* 粉红底上橘色链接不够清楚，红框里的链接用正文的黑色加下划线 */
-  .prose :global(.kind-danger a) {
-    color: var(--ink);
-    text-decoration: underline;
-  }
-
   .prose :global(.kind-danger h2)::before {
     content: '!';
     display: inline-grid;
@@ -423,16 +416,12 @@ const slotted = remember && after !== undefined;
   }
 
   .prose :global(.kind-myths) {
-    background: var(--warn-soft);
-  }
-
-  .prose :global(.kind-myths h2) {
-    color: var(--warn);
+    background: var(--surface-2);
   }
 
   .prose :global(.kind-myths li::marker) {
     content: '✗  ';
-    color: var(--warn);
+    color: var(--ink);
     font-weight: 700;
   }
 
@@ -537,8 +526,8 @@ const slotted = remember && after !== undefined;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: var(--ginger);
-    color: var(--on-pad);
+    background: var(--ink);
+    color: var(--bg);
     font-weight: 700;
   }
 
@@ -602,8 +591,11 @@ const slotted = remember && after !== undefined;
     content: '看答案';
     display: block;
     margin-top: 6px;
-    color: var(--accent);
+    color: var(--ink-2);
     font-size: 14px;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+    text-underline-offset: 3px;
     font-weight: 400;
   }
 
@@ -620,7 +612,7 @@ const slotted = remember && after !== undefined;
     margin: 0 16px 14px;
     padding: 10px 14px;
     border-radius: 8px;
-    background: var(--accent-soft);
+    background: var(--surface-2);
   }
 
   .prose :global(.quiz-answer p) {

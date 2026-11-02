@@ -93,13 +93,20 @@ body {
   line-height: 1.75;
 }
 
+/* 橘色只留给「学会」：链接用文字的黑，靠下划线认出来，指上去下划线变肉垫粉 */
 a {
-  color: var(--accent);
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
   text-underline-offset: 3px;
 }
 
+a:hover {
+  text-decoration-color: var(--pad);
+  text-decoration-thickness: 2px;
+}
+
 :focus-visible {
-  outline: 2px solid var(--ginger);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
