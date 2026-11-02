@@ -49,12 +49,20 @@ const slotted = remember && after !== undefined;
       <span>{String(moduleIndex + 1).padStart(2, '0')} {mod.name}</span>
     </nav>
 
-    <h1 class="hand">{titleParts.map((t) => <span class="seg">{t}</span>)}</h1>
-    <p class="meta">
-      {sources.length > 0 && <span>整理自 {sources.map((s) => s.short).join('、')}</span>}
-      <a class:list={['trust', { reviewed }]} href={`${base}about/`}>{reviewed ? '兽医审核过' : '还没经兽医审核'}</a>
-      <span>{date} 更新</span>
-    </p>
+    <h1 class="hand">
+      {titleParts.slice(0, -1).map((t) => <span class="seg">{t}</span>)}
+      <span class="seg">{titleParts.at(-1)}<span class="info">
+        <button class="info-btn" type="button" aria-expanded="false" aria-controls="note-info" aria-label="审核状态和更新日期">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 11v6" /><circle class="dot" cx="12" cy="7.5" r="1.2" /></svg>
+        </button>
+        <span class="info-panel" id="note-info">
+          <span class:list={['trust', { reviewed }]}>{reviewed ? '兽医审核过' : '还没经兽医审核'}</span>{!reviewed && '：内容整理自公开的兽医资料，还没请兽医看过。'}
+          <a href={`${base}about/`}>内容从哪来</a>
+          <span class="info-date">{date} 更新</span>
+        </span>
+      </span></span>
+    </h1>
+    {sources.length > 0 && <p class="meta">整理自 {sources.map((s) => s.short).join('、')}</p>}
 
     {note.data.scene && <p class="scene">{note.data.scene}</p>}
 
@@ -114,6 +122,22 @@ const slotted = remember && after !== undefined;
   <script>
     import { loadLearned, setLearned } from '../../lib/learned';
 
+    // 标题旁的小圆圈：点一下开、再点或点别处关
+    const info = document.querySelector<HTMLElement>('.info')!;
+    const infoBtn = info.querySelector<HTMLButtonElement>('.info-btn')!;
+    function setInfo(open: boolean) {
+      info.classList.toggle('open', open);
+      infoBtn.setAttribute('aria-expanded', String(open));
+      if (!open && info.contains(document.activeElement)) infoBtn.blur();
+    }
+    infoBtn.addEventListener('click', () => setInfo(!info.classList.contains('open')));
+    document.addEventListener('click', (e) => {
+      if (!info.contains(e.target as Node)) setInfo(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setInfo(false);
+    });
+
     // 「我学会了这一篇」：记在这台设备的浏览器里，首页的三花猫按它填色
     const box = document.querySelector<HTMLElement>('.learn')!;
     const btn = box.querySelector<HTMLButtonElement>('.learn-btn')!;
@@ -151,6 +175,7 @@ const slotted = remember && after !== undefined;
   }
 
   h1 {
+    position: relative;
     margin: 12px 0 10px;
     font-size: clamp(38px, 7vw, 56px);
   }
@@ -159,21 +184,91 @@ const slotted = remember && after !== undefined;
     display: inline-block;
   }
 
-  /* 来源、审核、日期合成一行小字，中间用圆点隔开 */
   .meta {
     margin: 0;
     color: var(--muted);
     font-size: 14px;
   }
 
-  .meta > :not(:first-child) {
-    white-space: nowrap;
+  /* 标题旁的小圆圈：审核状态和日期收在里面，电脑上指上去、手机上点一下才显示 */
+  .info-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 6px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--muted);
+    vertical-align: middle;
+    cursor: pointer;
   }
 
-  .meta > * + *::before {
-    content: '·';
-    display: inline-block;
-    margin: 0 8px;
+  .info-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+  }
+
+  .info-btn .dot {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .info-btn:hover,
+  .info.open .info-btn {
+    color: var(--ink);
+  }
+
+  .info-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 5;
+    width: max-content;
+    max-width: min(340px, 100%);
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    color: var(--ink-2);
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: normal;
+    line-height: 1.7;
+    visibility: hidden;
+    opacity: 0;
+    /* 鼠标从圆圈挪到卡片上要经过一点空白，晚一点再收起来 */
+    transition: opacity 0.15s, visibility 0s linear 0.3s;
+  }
+
+  .info.open .info-panel,
+  .info:focus-within .info-panel {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.15s;
+  }
+
+  @media (hover: hover) {
+    .info:hover .info-panel {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.15s;
+    }
+  }
+
+  .info-panel a {
+    margin-left: 4px;
+  }
+
+  .info-date {
+    display: block;
     color: var(--muted);
   }
 
@@ -208,11 +303,8 @@ const slotted = remember && after !== undefined;
   }
 
   .trust {
-    color: var(--ink-2);
-  }
-
-  .trust.reviewed {
     color: var(--ink);
+    font-weight: 600;
   }
 
   .trust.reviewed::before {
