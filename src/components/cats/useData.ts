@@ -19,6 +19,8 @@ export function useData() {
   const update = (next: Data) => {
     setData(next);
     setSaveFailed(!save(next));
+    // 请浏览器把这里的数据当成要长期保留的，存储紧张时不要自动清掉（浏览器不一定答应）
+    navigator.storage?.persist?.().catch(() => {});
   };
 
   return { data, update, saveFailed };

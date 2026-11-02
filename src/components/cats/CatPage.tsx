@@ -6,6 +6,7 @@ import { RecordForm } from './RecordForm';
 import { TrendChart } from './TrendChart';
 import { DotStrip } from './DotStrip';
 import { CareLog } from './CareLog';
+import { BackupNudge } from './BackupNudge';
 import { BASE, useData } from './useData';
 
 type Tab = 'log' | 'trend' | 'care';
@@ -67,6 +68,7 @@ export default function CatPage() {
     <div class="cats-app">
       <a class="back" href={`${BASE}cats/`}>← 我的猫</a>
       {saveFailed && <p class="banner warn">这台设备的浏览器不允许保存（可能是无痕模式），刷新后记录会丢失。</p>}
+      <BackupNudge data={data} />
 
       <header class="cat-head">
         <span class="avatar big" aria-hidden="true">{cat.name.slice(0, 1)}</span>

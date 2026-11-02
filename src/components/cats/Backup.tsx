@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks';
 import { exportFile, parseBackup, type Data } from '../../lib/store';
+import { InstallHint } from './InstallHint';
 
 interface Props {
   data: Data;
@@ -33,6 +34,9 @@ export function Backup({ data, onImport }: Props) {
       <p>
         所有记录只存在<strong>这台设备的这个浏览器</strong>里，不会上传。清除浏览器数据、换手机之前，先导出一份备份；到新设备上再导入。
       </p>
+      <p>
+        iPhone 上的 Safari 如果连续 7 天没打开这个网站，可能会自动清掉这些记录。把网站添加到主屏幕、从主屏幕打开，就不会被清；隔一阵导出一份备份最稳妥。
+      </p>
       <div class="actions">
         <button class="btn" type="button" onClick={() => exportFile(data)} disabled={data.cats.length === 0}>
           导出备份
@@ -43,6 +47,7 @@ export function Backup({ data, onImport }: Props) {
         </label>
       </div>
       {msg && <p class="fine">{msg}</p>}
+      <InstallHint />
     </details>
   );
 }

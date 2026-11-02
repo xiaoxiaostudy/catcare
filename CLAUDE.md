@@ -22,6 +22,8 @@
   - 「疫苗驱虫」是猫页面的第三个标签（`CareLog.tsx`）：分疫苗、体内驱虫、体外驱虫三条线提醒，「下次」日期由用户照兽医或说明书填，网站不替人算间隔；7 天内到期或过期，猫页面和列表上会提示。
   - `src/lib/baseline.ts`：每只猫自己的正常范围（最近 30 天去掉两头各 10%，满 5 天才算）和当天提醒。提醒只说「和它平时不一样」，并链接到急症清单和笔记里对应的条目，措辞要和笔记一致。
   - 急症页存的兽医电话在 `catcare:contacts`。
+  - 备份提醒（`BackupNudge.tsx`）：从没备份过且记录满 7 天，或上次备份 30 天前且之后有新记录，就在「我的猫」页面顶上提醒。上次导出日期存在 `catcare:backup`，「过几天再说」存在 `catcare:backup-snooze`，都不随备份导入导出。
+- 离线和添加到主屏幕：`public/manifest.webmanifest` 和图标；`public/sw.js` 第一次打开时缓存整站，页面先上网、网慢或没网用缓存。预缓存列表和版本号由 `src/lib/pwa.mjs` 在 `npm run build` 后填进 `dist/sw.js`，开发模式不注册。`InstallHint.tsx` 是「添加到主屏幕」的按钮或说明。
 - 互动工具（`src/components/tools/`）：
   - 笔记 frontmatter 写 `widget: <名字>`，工具就会出现在笔记页「动手试试」里。新加一个工具要改三处：`src/content.config.ts` 的 `widget` 枚举、`src/components/NoteWidget.astro` 里加一段、样式写在 `src/styles/tools.css`。工具里的事实和措辞只用对应笔记里写到的，出处跟笔记一致。
   - `BreathTimer`：呼吸计时器（`breath-timer`）；记录表单里也能打开，数完直接填进表单。`kind="heart"` 是心跳计时器（`heart-timer`，在 `vital-signs`）：心跳太快点不过来，心里默数，时间到再填数字。

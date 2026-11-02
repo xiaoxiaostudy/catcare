@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import rehypeNoteSections from './src/lib/rehype-note-sections.mjs';
+import pwa from './src/lib/pwa.mjs';
 
 import preact from '@astrojs/preact';
 
@@ -14,5 +15,5 @@ export default defineConfig({
     rehypePlugins: [rehypeNoteSections],
   },
 
-  integrations: [preact()],
+  integrations: [preact(), pwa()],
 });

@@ -3,6 +3,7 @@ import { ageText, careDue, careOf, recordsOf, today, type Cat } from '../../lib/
 import { alertsFor } from '../../lib/baseline';
 import { CatForm } from './CatForm';
 import { Backup } from './Backup';
+import { BackupNudge } from './BackupNudge';
 import { BASE, catUrl, useData } from './useData';
 
 export default function CatList() {
@@ -17,6 +18,7 @@ export default function CatList() {
   return (
     <div class="cats-app">
       {saveFailed && <p class="banner warn">这台设备的浏览器不允许保存（可能是无痕模式），刷新后记录会丢失。</p>}
+      <BackupNudge data={data} />
 
       {data.cats.length === 0 && !adding && (
         <div class="empty card">

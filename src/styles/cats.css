@@ -879,3 +879,22 @@
   color: var(--muted);
   font-size: 14px;
 }
+
+/* 备份提醒和添加到主屏幕 */
+.banner.backup-nudge {
+  display: grid;
+  gap: 10px;
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.backup-nudge p {
+  margin: 0;
+}
+
+.install-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}

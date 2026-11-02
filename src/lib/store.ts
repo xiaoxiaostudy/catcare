@@ -198,6 +198,47 @@ export function exportFile(d: Data) {
   a.download = `猫咪记录备份-${today()}.json`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  setMark(BACKUP_KEY, today());
+}
+
+// 上次导出备份的日期，和「过几天再说」的日期。单独存，导入备份时不会被覆盖。
+const BACKUP_KEY = 'catcare:backup';
+const SNOOZE_KEY = 'catcare:backup-snooze';
+
+function getMark(key: string) {
+  try {
+    return localStorage.getItem(key) || '';
+  } catch {
+    return '';
+  }
+}
+
+function setMark(key: string, value: string) {
+  try {
+    localStorage.setItem(key, value);
+    window.dispatchEvent(new Event('catcare:change'));
+  } catch {
+    /* 存不了就算了，下次还会提醒 */
+  }
+}
+
+/** 要不要提醒备份：从没备份过、记录满 7 天了；或者上次备份 30 天前、之后又记了新的。 */
+export function backupDue(d: Data, on = today()) {
+  if (d.records.length === 0) return null;
+  if (getMark(SNOOZE_KEY) > on) return null;
+  const last = getMark(BACKUP_KEY);
+  if (!last) {
+    const first = d.records.reduce((m, r) => (r.date < m ? r.date : m), on);
+    const days = daysBetween(first, on);
+    return days >= 7 ? { last: '', days } : null;
+  }
+  const days = daysBetween(last, on);
+  const newer = d.records.some((r) => r.date > last);
+  return days >= 30 && newer ? { last, days } : null;
+}
+
+export function snoozeBackup(days = 7) {
+  setMark(SNOOZE_KEY, addDays(today(), days));
 }
 
 export async function parseBackup(file: File): Promise<Data> {
