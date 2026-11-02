@@ -49,10 +49,6 @@ const calico = regions.map((r) => {
       <h1 class="hand"><span>学养猫，</span><span>也给自家猫记一笔</span></h1>
       <p class="sub">七块花色是七个知识区域。每学会一篇，猫身上那块就多一点颜色。</p>
       <p class="basis">内容整理自 iCatCare、Cornell、AAFP、WSAVA、Merck 兽医手册等兽医机构的公开资料，每条都核对过原文。<a href={`${base}about/`}>内容从哪来</a></p>
-      <p class="entries">
-        <a class="entry" href={`${base}worries/`}>按情况找笔记：我家猫……</a>
-        <a class="entry" href={`${base}cats/`}>给我的猫记一笔</a>
-      </p>
     </div>
 
     <div class="next-box">
@@ -61,6 +57,7 @@ const calico = regions.map((r) => {
         <b id="next-title">{firstNote.title}</b>
       </a>
       <p class="progress" id="learned-text" hidden></p>
+      <p class="other-ways">不知道从哪看？<a href={`${base}worries/`}>按情况找笔记</a>　·　<a href={`${base}cats/`}>给我的猫记一笔</a></p>
     </div>
 
     <div class="cat-box">
@@ -419,27 +416,17 @@ const calico = regions.map((r) => {
   }
 
   /* 另外两条路：不知道该看哪块时按情况找；给自家猫记录 */
-  .entries {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  /* 便签是首屏唯一的主按钮；另外两条路降成一行小字 */
+  .other-ways {
     margin: 16px 0 0;
+    color: var(--muted);
+    font-size: 14px;
   }
 
-  .entry {
+  .other-ways a {
     display: inline-block;
-    padding: 8px 16px;
-    border: 1.5px solid var(--ink);
-    border-radius: 999px;
-    color: var(--ink);
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .entry:hover {
-    border-color: var(--pad);
-    background: color-mix(in srgb, var(--pad) 25%, transparent);
+    padding: 6px 0;
+    color: var(--ink-2);
   }
 
   .next-link {
@@ -727,6 +714,7 @@ const calico = regions.map((r) => {
   }
 
   .paws li {
+    position: relative;
     display: grid;
     grid-template-columns: 46px minmax(0, 1fr);
     gap: 12px;
@@ -781,6 +769,14 @@ const calico = regions.map((r) => {
     text-decoration: none;
   }
 
+  /* 整行都能点：标题链接铺满这一行 */
+  a.t-title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .paws li:hover a.t-title,
   a.t-title:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
