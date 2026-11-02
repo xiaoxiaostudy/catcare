@@ -27,6 +27,8 @@ const prev = siblings[pos - 1];
 const next = siblings[pos + 1];
 
 const date = note.data.date.toISOString().slice(0, 10);
+// 标题只在逗号、冒号后面换行，不把一个词拆到两行
+const titleParts = note.data.title.split(/(?<=[，：、])/);
 const reviewed = note.data.status === '已审核';
 const sources = sourcesOf(note.body);
 // 年龄滑块在三篇生命阶段笔记里，各自从这个阶段的典型年龄开始（单位：月）
@@ -47,14 +49,12 @@ const slotted = remember && after !== undefined;
       <span>{String(moduleIndex + 1).padStart(2, '0')} {mod.name}</span>
     </nav>
 
-    <h1 class="hand">{note.data.title}</h1>
+    <h1 class="hand">{titleParts.map((t) => <span class="seg">{t}</span>)}</h1>
     <p class="meta">
-      <a class:list={['trust', { reviewed }]} href={`${base}about/`}>{reviewed ? '兽医审核过' : '整理自公开的兽医资料，还没经兽医审核'}</a>
-      <span>更新于 {date}</span>
+      {sources.length > 0 && <span>整理自 {sources.map((s) => s.short).join('、')}</span>}
+      <a class:list={['trust', { reviewed }]} href={`${base}about/`}>{reviewed ? '兽医审核过' : '还没经兽医审核'}</a>
+      <span>{date} 更新</span>
     </p>
-    {sources.length > 0 && (
-      <p class="basis">依据：{sources.map((s) => s.short).join('、')}。<a href={`${base}about/`}>内容从哪来</a></p>
-    )}
 
     {note.data.scene && <p class="scene">{note.data.scene}</p>}
 
@@ -155,14 +155,26 @@ const slotted = remember && after !== undefined;
     font-size: clamp(38px, 7vw, 56px);
   }
 
+  h1 .seg {
+    display: inline-block;
+  }
+
+  /* 来源、审核、日期合成一行小字，中间用圆点隔开 */
   .meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
     margin: 0;
     color: var(--muted);
     font-size: 14px;
+  }
+
+  .meta > :not(:first-child) {
+    white-space: nowrap;
+  }
+
+  .meta > * + *::before {
+    content: '·';
+    display: inline-block;
+    margin: 0 8px;
+    color: var(--muted);
   }
 
   .scene {
@@ -196,33 +208,10 @@ const slotted = remember && after !== undefined;
   }
 
   .trust {
-    padding: 0 10px;
-    border-radius: 999px;
-    background: var(--surface-2);
-    color: var(--ink-2);
-    line-height: 26px;
-  }
-
-  a.trust {
-    text-decoration: none;
-  }
-
-  a.trust:hover {
-    color: var(--ink);
-  }
-
-  .basis {
-    margin: 8px 0 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
-
-  .basis a {
     color: var(--ink-2);
   }
 
   .trust.reviewed {
-    background: color-mix(in srgb, var(--s-done) 18%, transparent);
     color: var(--ink);
   }
 
