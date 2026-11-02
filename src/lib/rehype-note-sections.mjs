@@ -130,14 +130,6 @@ export default function rehypeNoteSections() {
         out.push(node);
       }
     }
-    // 「记住」那张卡片底下，链到汇总所有卡片的速记卡页
-    const remember = out.find((n) => n.properties?.className?.includes('kind-remember'));
-    remember?.children.push({
-      type: 'element',
-      tagName: 'p',
-      properties: { className: ['cards-link'] },
-      children: [{ type: 'element', tagName: 'a', properties: { href: '/catcare/cards/' }, children: [{ type: 'text', value: '所有笔记的速记卡' }] }],
-    });
     tree.children = out.filter((n) => n.tagName !== 'template');
   };
 }
