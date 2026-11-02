@@ -320,7 +320,6 @@ h3 {
 @media print {
   .site-header,
   .site-footer,
-  .toc,
   .pager,
   .try-it,
   .crumbs {

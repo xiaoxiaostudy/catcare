@@ -26,8 +26,6 @@ const pos = siblings.findIndex((t) => t.note === note.id);
 const prev = siblings[pos - 1];
 const next = siblings[pos + 1];
 
-// 「存疑点」「我家猫」两节只给作者看，网页上不显示（见 rehype-note-sections），目录里也去掉
-const toc = headings.filter((h) => h.depth === 2 && !/存疑点|我家猫/.test(h.text)).map((h) => ({ ...h, text: h.text.replace(/^\d+\.\s*/, '') }));
 const date = note.data.date.toISOString().slice(0, 10);
 const reviewed = note.data.status === '已审核';
 const sources = sourcesOf(note.body);
@@ -68,12 +66,6 @@ const slotted = remember && after !== undefined;
     )}
 
     {!slotted && <NoteWidget widget={note.data.widget} base={base} startAge={startAge} />}
-
-    {toc.length > 0 && (
-      <nav class="toc" aria-label="本篇目录">
-        {toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
-      </nav>
-    )}
 
     {slotted ? (
       <>
@@ -201,30 +193,6 @@ const slotted = remember && after !== undefined;
     margin: 0;
     font-size: 17px;
     line-height: 1.75;
-  }
-
-  .toc {
-    display: flex;
-    gap: 8px;
-    margin: 0 -16px 8px;
-    padding: 0 16px 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .toc a {
-    flex: none;
-    padding: 4px 12px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--ink-2);
-    font-size: 14px;
-    text-decoration: none;
-  }
-
-  .toc a:hover {
-    border-color: var(--pad);
-    color: var(--ink);
   }
 
   .trust {
