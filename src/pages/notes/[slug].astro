@@ -397,6 +397,12 @@ const slotted = remember && after !== undefined;
     color: var(--danger);
   }
 
+  /* 粉红底上橘色链接不够清楚，红框里的链接用正文的黑色加下划线 */
+  .prose :global(.kind-danger a) {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
   .prose :global(.kind-danger h2)::before {
     content: '!';
     display: inline-grid;

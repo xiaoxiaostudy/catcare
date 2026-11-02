@@ -114,6 +114,7 @@ const calico = regions.map((r) => {
 
         {calico.map((r) => (
           <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId, soon: !r.available }]} data-region={r.id} aria-label={r.name}>
+            <rect class="hitbox" />
             <rect class="bg" rx="4" />
             <polyline class="lead" points={r.line} />
             <circle class="anchor" cx={r.p.a[0]} cy={r.p.a[1]} r="5.5" fill={r.fill} />
@@ -191,8 +192,11 @@ const calico = regions.map((r) => {
       if (narrow.matches) document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 名字后面那条肉垫粉的底色，要按手写字实际的宽度画
+    // 名字后面那条肉垫粉的底色，要按手写字实际的宽度画；
+    // 手机上猫缩得很小，另外垫一块看不见的点击区，保证至少 44px 高
     function sizeLabels() {
+      const scale = cat.getScreenCTM()?.a || 1;
+      const minH = 44 / scale;
       labels.forEach((l) => {
         const box = l.querySelector('text')!.getBBox();
         const bg = l.querySelector('.bg')!;
@@ -200,6 +204,12 @@ const calico = regions.map((r) => {
         bg.setAttribute('y', String(box.y + 4));
         bg.setAttribute('width', String(box.width + 16));
         bg.setAttribute('height', String(Math.max(box.height - 4, 0)));
+        const hit = l.querySelector('.hitbox')!;
+        const h = Math.max(box.height, minH);
+        hit.setAttribute('x', String(box.x - 12));
+        hit.setAttribute('y', String(box.y + box.height / 2 - h / 2));
+        hit.setAttribute('width', String(box.width + 24));
+        hit.setAttribute('height', String(h));
       });
     }
 
@@ -210,7 +220,7 @@ const calico = regions.map((r) => {
       }),
     );
     hits.forEach((h) => h.addEventListener('click', () => select(h.dataset.region!, true)));
-    narrow.addEventListener('change', sizeLabels);
+    addEventListener('resize', sizeLabels);
     sizeLabels();
     document.fonts?.ready.then(sizeLabels);
 
@@ -402,7 +412,7 @@ const calico = regions.map((r) => {
   }
 
   .progress :global(b) {
-    color: var(--ginger);
+    color: var(--accent);
     font-weight: 600;
   }
 
@@ -466,6 +476,11 @@ const calico = regions.map((r) => {
     fill: transparent;
   }
 
+  .lbl .hitbox {
+    fill: transparent;
+    pointer-events: all;
+  }
+
   .lbl.on .bg,
   .lbl:focus-visible .bg {
     fill: var(--pad);
@@ -504,7 +519,7 @@ const calico = regions.map((r) => {
   }
 
   .lbl .ct.some {
-    fill: var(--ginger);
+    fill: var(--accent);
   }
 
   .lbl.soon .nm {
@@ -604,7 +619,7 @@ const calico = regions.map((r) => {
   }
 
   .count :global(b) {
-    color: var(--ginger);
+    color: var(--accent);
     font-weight: 600;
   }
 
