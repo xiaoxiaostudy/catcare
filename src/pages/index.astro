@@ -252,8 +252,21 @@ const calico = regions.map((r) => {
     addEventListener('blur', () => look());
 
     // 按读者学会的笔记给花色、计数、爪印和「下一篇」上色；从笔记页返回时也要重新算
+    // 上次在首页看到的进度。回到首页时，这之后新学会的那一格颜色从下往上涨上来
+    const SEEN_KEY = 'catcare:learned-seen';
+    function loadSeen(): Set<string> | null {
+      try {
+        const raw = localStorage.getItem(SEEN_KEY);
+        return raw === null ? null : new Set(JSON.parse(raw));
+      } catch {
+        return null;
+      }
+    }
+    const calm = matchMedia('(prefers-reduced-motion: reduce)');
+
     function applyProgress() {
       const learned = loadLearned();
+      const seen = loadSeen();
       let total = 0;
       let done = 0;
       let next: HTMLLIElement | undefined;
@@ -273,7 +286,19 @@ const calico = regions.map((r) => {
         const rect = cat.querySelector<SVGRectElement>(`.fill[data-region="${id}"]`)!;
         const top = Number(rect.dataset.top);
         const bottom = Number(rect.dataset.bottom);
-        rect.setAttribute('y', String(avail ? bottom - (bottom - top) * (n / avail) : bottom));
+        const levelAt = (k: number) => (avail ? bottom - (bottom - top) * (k / avail) : bottom);
+        rect.setAttribute('y', String(levelAt(n)));
+        const before = seen ? items.filter((li) => seen.has(li.dataset.note!) && learned.has(li.dataset.note!)).length : n;
+        if (before < n && !calm.matches) {
+          // 先停在上次的高度，稍等一下再涨到现在的高度
+          rect.style.transition = 'none';
+          rect.style.transform = `translateY(${levelAt(before) - levelAt(n)}px)`;
+          rect.getBoundingClientRect();
+          setTimeout(() => {
+            rect.style.transition = 'transform 1.1s cubic-bezier(0.22, 1, 0.36, 1)';
+            rect.style.transform = '';
+          }, 450);
+        }
         document.querySelectorAll(`[data-count="${id}"]`).forEach((el) => {
           if (!avail) return;
           if (el instanceof HTMLElement) el.innerHTML = `学会了 <b>${n}</b> / ${avail} 篇`;
@@ -301,6 +326,9 @@ const calico = regions.map((r) => {
         document.getElementById('next-title')!.textContent = a.textContent!;
       }
       sizeLabels();
+      try {
+        localStorage.setItem(SEEN_KEY, JSON.stringify([...learned]));
+      } catch {}
       return next?.closest<HTMLElement>('section.region')?.dataset.region;
     }
 
@@ -648,13 +676,9 @@ const calico = regions.map((r) => {
     padding: 7px 0 7px var(--x, 0px);
   }
 
-  .paws li:nth-child(4n + 2),
-  .paws li:nth-child(4n) {
-    --x: 26px;
-  }
-
-  .paws li:nth-child(4n + 3) {
-    --x: 48px;
+  /* 爪印只轻轻左右摆一点，像猫走过；摆太大会被看成上下级 */
+  .paws li:nth-child(even) {
+    --x: 12px;
   }
 
   .paw {
@@ -769,16 +793,6 @@ const calico = regions.map((r) => {
     }
   }
 
-  @media (max-width: 420px) {
-    .paws li:nth-child(4n + 2),
-    .paws li:nth-child(4n) {
-      --x: 17px;
-    }
-
-    .paws li:nth-child(4n + 3) {
-      --x: 34px;
-    }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .pupil {
