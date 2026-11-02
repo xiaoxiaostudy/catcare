@@ -23,7 +23,7 @@
   - `src/lib/baseline.ts`：每只猫自己的正常范围（最近 30 天去掉两头各 10%，满 5 天才算）和当天提醒。提醒只说「和它平时不一样」，并链接到急症清单和笔记里对应的条目，措辞要和笔记一致。
   - 急症页存的兽医电话在 `catcare:contacts`。
 - 互动工具（`src/components/tools/`）：
-  - 笔记 frontmatter 写 `widget: <名字>`，工具就会出现在笔记页「动手试试」里。新加一个工具要改三处：`src/content.config.ts` 的 `widget` 枚举、`src/pages/notes/[slug].astro` 里加一段、样式写在 `src/styles/tools.css`。工具里的事实和措辞只用对应笔记里写到的，出处跟笔记一致。
+  - 笔记 frontmatter 写 `widget: <名字>`，工具就会出现在笔记页「动手试试」里。新加一个工具要改三处：`src/content.config.ts` 的 `widget` 枚举、`src/components/NoteWidget.astro` 里加一段、样式写在 `src/styles/tools.css`。工具里的事实和措辞只用对应笔记里写到的，出处跟笔记一致。
   - `BreathTimer`：呼吸计时器（`breath-timer`）；记录表单里也能打开，数完直接填进表单。`kind="heart"` 是心跳计时器（`heart-timer`，在 `vital-signs`）：心跳太快点不过来，心里默数，时间到再填数字。
   - `BodyCondition`：体型评分滑块，页面在 `/tools/body-condition/`。每一分的文字逐条译自 WSAVA 对照表，不要自己改写。地图上的主题可以用 `tool` 字段指向工具页。
   - `LitterWatch`：砂盆观察（`litter-watch`，在 `urinary-blockage`）。拖动一天的时间，对比两只虚构公猫的砂盆，再判断哪只要马上去医院。次数和尿团大小只是示意。
@@ -32,6 +32,7 @@
   - `ToxinRoom`：找危险物（`toxin-room`，在 `household-toxins`）。客厅里每一样都在笔记的清单里。
   - `FoodCalc`：喂多少（`food-calc`，在 `feeding-water`）。按笔记里 WSAVA 的热量表（2 到 6 公斤、体型理想的成年猫）换算成克数和罐数；体型不是 5 分就不算，改成提醒找兽医。
   - `WaterCalc`：喝多少水（`water-calc`，在 `eating-drinking-elimination`）。按 Cornell 每公斤瘦体重每天约 52 毫升算总水量（含食物里的水），不替人扣湿粮的水；样式借用 `FoodCalc` 的。
+  - `LitterCheck`：给砂盆打个分（`litter-check`，在 `litter-box`）。勾选几只猫、几个盆、多长、什么砂、多久铲、放哪，列出做得好的和可以改的；每一条都出自笔记，豆腐砂没有兽医资料，只提醒看猫的反应。样式借用 `FoodCalc` 的。
   - `LifeStage`：年龄滑块（`life-stage`，在 `kitten`、`adult-cat`、`senior-cat`，起始年龄在 `[slug].astro` 的 `startAge`）。分段和人类年龄换算按 AAFP 和 iCatCare。
   - 呼吸、心跳计时器和体型评分都用 `SaveToCat` 把结果存进某只猫今天的记录；链接带 `?cat=<id>` 会预先选好那只猫。
 - 已知坑：`.astro` 文件里，条件表达式 `{x && (...)}` 中的 `client:only` 组件不要带 `slot="fallback"` 子元素，会让 Astro 编译器崩溃。

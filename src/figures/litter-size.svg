@@ -1,0 +1,45 @@
+<svg viewBox="0 0 420 260" role="img" aria-label="示意图：上面一只猫，从鼻子到尾巴根量出它的身长；下面一个砂盆，长度是这个身长的 1.5 倍，猫砂铺约 3 厘米深" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(60 0) scale(0.5)">
+  <!-- 远侧的两条腿，颜色淡一点 -->
+  <g style="fill: var(--line)">
+    <path d="M150 168 L166 168 L162 230 C164 236 156 238 150 236 L140 236 C138 232 146 230 148 226 Z" />
+    <path d="M238 160 L256 160 L262 228 C264 236 256 238 250 236 L240 236 C238 232 244 230 246 226 Z" />
+  </g>
+  <!-- 近侧（左侧）：头朝左，各部分用同一种颜色叠在一起 -->
+  <g style="fill: var(--s-todo)">
+    <!-- 尾巴：从屁股垂下再往上翘 -->
+    <path d="M300 126 C334 132 348 188 372 172" style="fill: none; stroke: var(--s-todo); stroke-width: 12; stroke-linecap: round" />
+    <!-- 躯干：胸深，肚子往上收 -->
+    <path d="M118 124 C126 102 168 98 220 100 C270 100 306 108 306 136 C306 160 286 168 262 166 C230 170 192 174 162 176 C130 178 112 156 118 124 Z" />
+    <!-- 脖子 -->
+    <path d="M84 72 L132 104 L136 150 L106 124 Z" />
+    <!-- 头、口鼻、耳朵 -->
+    <ellipse cx="88" cy="80" rx="27" ry="23" />
+    <ellipse cx="66" cy="90" rx="13" ry="10" />
+    <path d="M66 68 L70 38 L88 60 Z" />
+    <path d="M92 58 L106 34 L110 66 Z" />
+    <!-- 后腿：大腿，膝盖往前，跗关节往后折 -->
+    <ellipse cx="276" cy="140" rx="30" ry="32" />
+    <path d="M256 158 L276 156 L294 204 L290 230 C292 236 284 238 278 236 L266 236 C262 232 270 230 274 226 L276 208 Z" />
+    <!-- 前腿：肘部在胸口下方，往后凸一点 -->
+    <path d="M122 156 C124 146 146 148 150 162 L142 224 C142 230 146 234 140 236 L122 236 C118 232 124 228 126 224 Z" />
+  </g>
+  <path d="M76 76 Q81 72 86 76 Q81 79 76 76 Z" style="fill: var(--ink)" />
+  <circle cx="55" cy="87" r="2.5" style="fill: var(--ink-2)" />
+  </g>
+  <!-- 身长：鼻尖到尾巴根 -->
+  <line x1="86" y1="130" x2="213" y2="130" style="stroke: var(--ink); stroke-width: 1.4" />
+  <path d="M92 125 L86 130 L92 135 M207 125 L213 130 L207 135" style="fill: none; stroke: var(--ink); stroke-width: 1.4" />
+  <text x="150" y="150" text-anchor="middle" style="fill: var(--ink); font-size: 13px; font-weight: 600">鼻子到尾巴根</text>
+  <text x="240" y="70" style="fill: var(--ink-2); font-size: 13px">尾巴不算</text>
+
+  <!-- 砂盆：1.5 倍 -->
+  <rect x="86" y="190" width="190" height="40" rx="4" style="fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 1.4" />
+  <rect x="88" y="214" width="186" height="14" style="fill: color-mix(in srgb, var(--s-todo) 80%, var(--surface))" />
+  <line x1="86" y1="246" x2="276" y2="246" style="stroke: var(--ink); stroke-width: 1.4" />
+  <path d="M92 241 L86 246 L92 251 M270 241 L276 246 L270 251" style="fill: none; stroke: var(--ink); stroke-width: 1.4" />
+  <text x="290" y="212" style="fill: var(--ink); font-size: 14px; font-weight: 600">砂盆：1.5 倍长</text>
+  <text x="290" y="232" style="fill: var(--ink-2); font-size: 13px">猫砂约 3 厘米深</text>
+  <line x1="213" y1="130" x2="213" y2="188" style="stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3" />
+  <line x1="86" y1="130" x2="86" y2="188" style="stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3" />
+</svg>

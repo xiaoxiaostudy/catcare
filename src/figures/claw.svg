@@ -1,0 +1,18 @@
+<svg viewBox="0 0 420 230" role="img" aria-label="示意图：猫爪子的侧面。爪子弯弯的，里面靠根部有一段粉红色的血线，尖端是浅色透明的。剪的位置在血线前面，只剪尖端" xmlns="http://www.w3.org/2000/svg">
+  <!-- 脚趾 -->
+  <path d="M40 120 C40 80 80 66 130 70 C170 72 190 90 190 120 C190 150 160 166 120 166 C70 166 40 152 40 120 Z" style="fill: var(--s-todo)" />
+  <ellipse cx="110" cy="160" rx="44" ry="12" style="fill: var(--pad)" />
+  <!-- 爪子：浅色外壳 -->
+  <path d="M170 96 C230 84 300 100 340 160 C300 128 250 124 176 138 Z" style="fill: #f4efe4; stroke: var(--ink-2); stroke-width: 1.4" />
+  <!-- 血线：粉色，靠根部 -->
+  <path d="M176 106 C214 100 246 106 262 122 C240 120 210 122 178 128 Z" style="fill: color-mix(in srgb, var(--pad) 70%, var(--danger))" />
+  <!-- 剪的位置 -->
+  <line x1="290" y1="92" x2="304" y2="156" style="stroke: var(--ink); stroke-width: 2; stroke-dasharray: 5 4" />
+  <text x="300" y="80" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">剪这里</text>
+
+  <line x1="226" y1="112" x2="200" y2="196" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="200" y="214" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">血线：别剪到</text>
+
+  <line x1="322" y1="146" x2="352" y2="196" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="352" y="214" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 600">透明的尖端</text>
+</svg>

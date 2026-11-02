@@ -1,0 +1,41 @@
+<svg viewBox="-70 0 510 270" role="img" aria-label="示意图：猫的正脸，标出扶头时手放的位置。手掌放在头顶偏后；拇指和中指分别扶住两只眼睛下面的颧骨；拇指把上唇往上掀，另一只手把下唇往下拉" xmlns="http://www.w3.org/2000/svg">
+  <!-- 脖子和头 -->
+  <path d="M176 176 L172 236 L248 236 L244 176 Z" style="fill: var(--s-todo)" />
+  <g style="fill: var(--s-todo)">
+    <path d="M142 92 L148 30 L186 66 Z" />
+    <path d="M234 66 L272 30 L278 92 Z" />
+    <ellipse cx="210" cy="122" rx="82" ry="68" />
+  </g>
+  <path d="M164 108 Q178 98 192 108 Q178 114 164 108 Z" style="fill: var(--ink)" />
+  <path d="M228 108 Q242 98 256 108 Q242 114 228 108 Z" style="fill: var(--ink)" />
+  <path d="M200 136 L220 136 L210 147 Z" style="fill: var(--pad)" />
+  <path d="M210 147 L210 154 M210 154 Q201 162 192 156 M210 154 Q219 162 228 156" style="fill: none; stroke: var(--ink-2); stroke-width: 1.4; stroke-linecap: round" />
+
+  <!-- 手掌：头顶偏后 -->
+  <ellipse cx="210" cy="66" rx="38" ry="14" style="fill: var(--pad); fill-opacity: 0.55; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 4 3" />
+  <line x1="246" y1="62" x2="306" y2="40" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="312" y="36" style="fill: var(--ink); font-size: 15px; font-weight: 600">手掌</text>
+  <text x="312" y="54" style="fill: var(--ink-2); font-size: 13px">头顶偏后</text>
+
+  <!-- 拇指、中指：眼睛下面的颧骨 -->
+  <circle cx="174" cy="128" r="7" style="fill: var(--pad); stroke: var(--ink); stroke-width: 1.4" />
+  <circle cx="246" cy="128" r="7" style="fill: var(--pad); stroke: var(--ink); stroke-width: 1.4" />
+  <line x1="167" y1="128" x2="100" y2="112" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="94" y="104" text-anchor="end" style="fill: var(--ink); font-size: 15px; font-weight: 600">拇指</text>
+  <text x="94" y="122" text-anchor="end" style="fill: var(--ink-2); font-size: 13px">扶住颧骨</text>
+  <line x1="253" y1="128" x2="306" y2="112" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="312" y="104" style="fill: var(--ink); font-size: 15px; font-weight: 600">中指</text>
+  <text x="312" y="122" style="fill: var(--ink-2); font-size: 13px">扶住颧骨</text>
+  <text x="312" y="140" style="fill: var(--ink-2); font-size: 13px">食指抬起，别挡眼睛</text>
+
+  <!-- 掀上唇、拉下唇 -->
+  <path d="M188 172 L188 150 M182 157 L188 150 L194 157" style="fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round" />
+  <path d="M232 168 L232 190 M226 183 L232 190 L238 183" style="fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round" />
+  <line x1="186" y1="166" x2="100" y2="190" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="94" y="186" text-anchor="end" style="fill: var(--ink); font-size: 15px; font-weight: 600">拇指掀上唇</text>
+  <line x1="236" y1="186" x2="306" y2="196" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="312" y="192" style="fill: var(--ink); font-size: 15px; font-weight: 600">另一只手</text>
+  <text x="312" y="210" style="fill: var(--ink-2); font-size: 13px">把下唇往下拉</text>
+
+  <text x="210" y="262" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">为了看清位置画的是正脸；实际扶的时候，让它背对着你</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg viewBox="0 0 420 250" role="img" aria-label="示意图：一颗牙和牙龈的剖面。牙刷在牙齿外侧，刷毛斜着 45 度对准牙和牙龈之间的缝。里侧有舌头，不用刷" xmlns="http://www.w3.org/2000/svg">
+  <!-- 牙龈 -->
+  <path d="M120 150 C120 130 140 124 160 128 L260 128 C280 124 300 130 300 150 L300 230 L120 230 Z" style="fill: var(--pad)" />
+  <!-- 牙齿：牙冠露在牙龈上面 -->
+  <path d="M170 140 C166 100 172 50 190 30 C200 22 220 22 230 30 C248 50 254 100 250 140 Z" style="fill: #fbfaf6; stroke: var(--ink-2); stroke-width: 1.4" />
+  <path d="M170 140 L170 200 C176 214 186 214 192 200 L196 150 M250 140 L250 200 C244 214 234 214 228 200 L224 150" style="fill: none; stroke: var(--ink-2); stroke-width: 1.2; stroke-dasharray: 3 3" />
+  <!-- 舌头在里侧 -->
+  <path d="M300 170 C330 150 380 156 400 176 C380 196 330 200 300 186 Z" style="fill: color-mix(in srgb, var(--pad) 70%, var(--danger)); opacity: 0.8" />
+  <text x="352" y="150" text-anchor="middle" style="fill: var(--ink-2); font-size: 13px">里侧：舌头会清</text>
+
+  <!-- 牙刷：在外侧，刷毛 45 度 -->
+  <g transform="rotate(-45 150 132)">
+    <rect x="40" y="122" width="96" height="14" rx="5" style="fill: var(--calm)" />
+    <g style="stroke: var(--ink); stroke-width: 2">
+      <line x1="140" y1="122" x2="160" y2="122" />
+      <line x1="140" y1="127" x2="160" y2="127" />
+      <line x1="140" y1="132" x2="160" y2="132" />
+      <line x1="140" y1="137" x2="160" y2="137" />
+    </g>
+  </g>
+  <circle cx="166" cy="136" r="10" style="fill: none; stroke: var(--ink); stroke-width: 1.4" />
+  <line x1="158" y1="128" x2="110" y2="60" style="stroke: var(--ink); stroke-width: 1.2" />
+  <text x="20" y="40" style="fill: var(--ink); font-size: 14px; font-weight: 600">对准牙和牙龈之间的缝</text>
+  <text x="20" y="58" style="fill: var(--ink-2); font-size: 13px">外侧，斜 45 度</text>
+  <text x="210" y="190" text-anchor="middle" style="fill: #2c2a2e; font-size: 13px">牙龈</text>
+</svg>

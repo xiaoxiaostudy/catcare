@@ -9,6 +9,7 @@ import ToxinRoom from './tools/ToxinRoom';
 import FoodCalc from './tools/FoodCalc';
 import WaterCalc from './tools/WaterCalc';
 import LifeStage from './tools/LifeStage';
+import LitterCheck from './tools/LitterCheck';
 
 interface Props {
   widget?: string;
@@ -72,6 +73,13 @@ const { widget, base, startAge } = Astro.props;
   <section class="try-it" aria-labelledby="try-it">
     <h2 id="try-it" class="try-title">动手试试：拖到它的年龄</h2>
     <LifeStage client:only="preact" start={startAge} />
+  </section>
+)}
+
+{widget === 'litter-check' && (
+  <section class="try-it" aria-labelledby="try-it">
+    <h2 id="try-it" class="try-title">动手试试：给你家砂盆打个分</h2>
+    <LitterCheck client:only="preact" />
   </section>
 )}
 

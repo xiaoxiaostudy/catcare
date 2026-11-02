@@ -9,14 +9,14 @@ widget: water-calc
 scene: >-
   它昨天喝了多少水、尿了几团、拉了几次？大多数人答不上来。可猫不舒服时，最先变的往往就是这几样。
 summary: >-
-  食欲、饮水、排尿、排便这四项，能给出明确数值基线的只有饮水量和排便频率；排尿次数和食量更要靠你给自家猫建立基线。真正要记住的是几条红线：公猫反复去砂盆却尿不出、成年猫停食约 24 小时以上、48 小时没排便或用力排便。
+  食欲、饮水、排尿、排便这四项，饮水量、排便和排尿次数有参考数字（排尿次数来自一项小样本录像研究）；食量要靠你给自家猫建立基线。真正要记住的是几条红线：公猫反复去砂盆却尿不出、成年猫停食约 24 小时以上、48 小时没排便或用力排便。
 ---
 
 ## 记住这三件事
 
 1. **公猫反复蹲砂盆却几乎没尿：立刻去医院。** 完全堵住后，最快一两天就可能没命（Cornell）。见[公猫尿不出](/catcare/notes/urinary-blockage/)。
 2. **成年猫一天不吃，就打电话给兽医。** 别等几天看看。持续不吃，短到 24 小时就可能伤身体（Cornell）。
-3. **只有两个数可以背，其他看它自己的平时。** 喝水和排便有参考数字；吃多少、尿几次，要靠你每天记。
+3. **喝水、尿、便有参考数，最准的还是它自己的平时。** 吃多少没有统一的数，要靠你每天记。
 
 ## 正常是多少
 
@@ -25,7 +25,7 @@ summary: >-
 | 喝水（连食物里的水一起算） | **每公斤体重每天约 52 毫升**（Cornell，按瘦体重换算） | 4 公斤的猫，一天大约 200 毫升 |
 | 排便 | **每天 1 到 2 次**（OVC） | 两天没拉，就要问兽医 |
 | 吃 | 没有统一的数 | 看它自己的平时 |
-| 排尿 | 没找到可靠的次数标准 | 记尿团的个数和大小 |
+| 排尿 | 健康的猫**一天约 2 次**，0 到 5 次都有（一项录像研究） | 一天两泡左右，记尿团的个数和大小 |
 
 吃湿粮的猫喝得少，是正常的：湿粮里的水最多能占八成左右（Cornell）。偏胖的猫，按兽医说的理想体重算。
 
@@ -98,7 +98,8 @@ summary: >-
 | 饮水（总量，含食物里的水分） | 每 5 磅瘦体重每天约 4 盎司，10 磅的猫约 1 杯（约 237 毫升）。换算成每公斤约 52 毫升 | Cornell Hydration |
 | 湿粮与干粮的差别 | 湿粮含水量最高约 80%，吃湿粮的猫可能喝得少；吃干粮的猫通常通过喝水摄入更多水分 | Cornell Hydration |
 | 食欲 | 没有给出「正常食量」，只说持续食欲丧失对成年猫来说，短到 24 小时就可能影响健康 | Cornell Anorexia |
-| 排尿次数 | 没找到权威来源给出具体的每日次数 | — |
+| 排尿次数 | 健康的猫平均一天 2.1 次，范围 0 到 5 次；主人常低估，主人说一天 0.6 次，录像数出来是 2.5 次（19 只猫一起算） | Dulaney 等 2017，录像记录 19 只猫，其中 11 只健康 |
+| 尿和便加起来 | 一天约 3 到 5 次 | AAFP/ISFM 2014 指南 |
 | 排便次数 | 健康成年猫通常每天 1 到 2 次 | OVC 便秘文章 |
 | 粪便形态 | 理想的粪便评分是 2 分，1 分可能提示便秘 | OVC 便秘文章 |
 
@@ -113,7 +114,9 @@ summary: >-
 - [Cornell Feline Health Center：Anorexia](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia)。
 - [伊利诺伊大学兽医学院：Hepatic Lipidosis — When Cats Don't Eat](https://vetmed.illinois.edu/pet-health-columns/hepatic-lipidosis-when-cats-dont-eat/)。
 - [圭尔夫大学 OVC：Is Your Cat Having Trouble Pooping? Let's Talk Constipation](https://ovcpetnutrition.uoguelph.ca/2025/11/20/is-your-cat-having-trouble-pooping-lets-talk-constipation/)，2025-11-20，学生撰写、教授审阅。审阅者任职的教席由 Nestlé Purina 冠名，有企业赞助背景。
-- 未采用：几家宠物用品公司的博客给了「每天排尿 2 到 4 次」这类数字，没有可核实的权威出处，所以没有写进范围里。
+- [Dulaney 等 2017：用录像记录猫的排尿](https://pmc.ncbi.nlm.nih.gov/articles/PMC5354006/)，J Vet Intern Med 31:486–491。样本小（19 只猫），2026-11-01 补充。
+- [AAFP/ISFM：Feline House-soiling Guidelines（2014）](https://pmc.ncbi.nlm.nih.gov/articles/PMC11148882/)。
+- 未采用：几家宠物用品公司的博客给了「每天排尿 2 到 4 次」这类数字，没有可核实的权威出处。
 
 ## 存疑点（待问兽医）
 
