@@ -30,7 +30,7 @@
 .try-it {
   margin: 24px 0;
   padding: 18px 20px;
-  border: 1.5px dashed color-mix(in srgb, var(--accent) 50%, var(--line));
+  border: 1.5px dashed color-mix(in srgb, var(--pad) 70%, var(--line));
   border-radius: var(--radius);
   background: var(--surface);
 }
@@ -102,7 +102,7 @@ p.save-to-cat {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--pad) 30%, var(--surface));
   color: var(--ink);
   font: inherit;
   cursor: pointer;
@@ -128,14 +128,14 @@ p.save-to-cat {
 
 .bt-track {
   fill: none;
-  stroke: color-mix(in srgb, var(--accent) 18%, transparent);
+  stroke: color-mix(in srgb, var(--pad) 45%, transparent);
   stroke-width: 10;
 }
 
 .bt-ring {
   transition: stroke-dashoffset 0.1s linear;
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--ink);
   stroke-width: 10;
   stroke-linecap: round;
 }
@@ -194,7 +194,7 @@ p.save-to-cat {
 }
 
 .bt-bpm b {
-  color: var(--accent);
+  color: var(--ink);
   font-size: 30px;
 }
 
@@ -280,7 +280,7 @@ p.save-to-cat {
 .bcs-slider input[type='range'] {
   width: 100%;
   margin: 0;
-  accent-color: var(--accent);
+  accent-color: var(--ink);
 }
 
 /* 数字和滑块的停靠点对齐：两端各留半个滑块宽度 */
@@ -385,7 +385,7 @@ p.save-to-cat {
 .lw-clock input[type='range'] {
   flex: 1;
   min-width: 0;
-  accent-color: var(--accent);
+  accent-color: var(--ink);
 }
 
 .lw-lanes {
@@ -721,7 +721,7 @@ p.save-to-cat {
   gap: 8px;
   padding: 12px 14px;
   border-radius: 10px;
-  background: var(--accent-soft);
+  background: var(--surface-2);
 }
 
 .sc-end p {
@@ -1021,7 +1021,7 @@ p.save-to-cat {
 }
 
 .tr-mark.on {
-  stroke: var(--accent);
+  stroke: var(--ink);
 }
 
 .tr-card {
@@ -1099,7 +1099,7 @@ p.save-to-cat {
 
 .fc-kcal b,
 .fc-out b {
-  color: var(--accent);
+  color: var(--ink);
   font-size: 22px;
   font-variant-numeric: tabular-nums;
 }
@@ -1109,7 +1109,7 @@ p.save-to-cat {
   gap: 4px;
   padding: 12px 14px;
   border-radius: 10px;
-  background: var(--accent-soft);
+  background: var(--surface-2);
 }
 
 .fc-out p {
@@ -1144,7 +1144,7 @@ p.save-to-cat {
 }
 
 .lc-score b {
-  color: var(--accent);
+  color: var(--ink);
   font-size: 22px;
   font-variant-numeric: tabular-nums;
 }
@@ -1170,12 +1170,12 @@ p.save-to-cat {
 }
 
 .lc-list.fix li {
-  background: var(--accent-soft);
+  background: var(--surface-2);
 }
 
 .lc-list.fix li::before {
   content: '改';
-  color: var(--accent);
+  color: var(--ink);
   font-size: 13px;
   top: 10px;
 }
@@ -1283,7 +1283,7 @@ p.save-to-cat {
 .ls-track input[type='range'] {
   width: calc(100% - 4.6em - 8px);
   margin: 4px 0 0 calc(4.6em + 8px);
-  accent-color: var(--accent);
+  accent-color: var(--ink);
 }
 
 .ls-ticks {

@@ -67,7 +67,7 @@
 }
 
 .btn:hover:not(:disabled) {
-  border-color: var(--accent);
+  border-color: var(--pad);
 }
 
 .btn:disabled {
@@ -144,7 +144,7 @@
 }
 
 .cat-card:hover {
-  border-color: var(--accent);
+  border-color: var(--pad);
 }
 
 .avatar {
@@ -154,8 +154,8 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--pad) 30%, var(--surface));
+  color: var(--on-pad);
   font-family: var(--hand);
   font-size: 26px;
   font-weight: 400;
@@ -297,9 +297,9 @@
 }
 
 .seg-btn.on {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #fff;
+  border-color: var(--pad);
+  background: var(--pad);
+  color: var(--on-pad);
   font-weight: 600;
 }
 
@@ -500,7 +500,7 @@
 
 .calc {
   margin: 0;
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 650;
 }
 
@@ -600,13 +600,13 @@
 
 .trend .line {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--ink-2);
   stroke-width: 2;
   stroke-linejoin: round;
 }
 
 .trend .pt {
-  fill: var(--accent);
+  fill: var(--ink-2);
   stroke: var(--surface);
   stroke-width: 2;
 }
@@ -846,7 +846,7 @@
 }
 
 .care-item:hover {
-  border-color: var(--accent);
+  border-color: var(--pad);
 }
 
 .care-kind {
