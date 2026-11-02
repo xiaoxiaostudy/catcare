@@ -78,6 +78,11 @@ npm run dev
 
 Notes live in `src/content/notes/`, one Markdown file each; the learning map is in `src/data/map.ts`. Pushing to `main` deploys to GitHub Pages via GitHub Actions.
 
+## License
+
+- **Code:** [MIT](LICENSE)
+- **Notes, figures and emergency checklist text:** [CC BY-NC-SA 4.0](LICENSE-CONTENT). You're welcome to share and adapt them: credit us with a link, don't use them commercially, and release adaptations under the same license.
+
 ## Acknowledgements
 
 Content is drawn from material published by these organizations, who hold its copyright:

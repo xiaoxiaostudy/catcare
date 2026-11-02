@@ -76,6 +76,11 @@ npm run dev
 
 笔记在 `src/content/notes/`，一篇一个 Markdown；学习地图在 `src/data/map.ts`。推送到 `main` 后由 GitHub Actions 自动发布到 GitHub Pages。
 
+## 许可证
+
+- **代码**：[MIT](LICENSE)
+- **笔记、示意图和急症清单的文字**：[CC BY-NC-SA 4.0](LICENSE-CONTENT)。欢迎转载和改编，请署名并附上链接，不要商用，改编后用同样的许可发布。
+
 ## 致谢
 
 知识内容整理自以下机构公开的资料，版权归原机构所有：
