@@ -113,8 +113,8 @@ const calico = regions.map((r) => {
         </g>
 
         {calico.map((r) => (
-          <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId, soon: !r.available }]} data-region={r.id} aria-label={r.name}>
-            <rect class="hitbox" />
+          <a href={`#${r.id}`} class:list={['lbl', { on: r.id === currentId, soon: !r.available }]} data-region={r.id} aria-label={r.name} aria-controls={r.id} aria-current={r.id === currentId ? 'true' : undefined}>
+            <rect class="hitbox" rx="10" />
             <rect class="bg" rx="4" />
             <polyline class="lead" points={r.line} />
             <circle class="anchor" cx={r.p.a[0]} cy={r.p.a[1]} r="5.5" fill={r.fill} />
@@ -126,6 +126,7 @@ const calico = regions.map((r) => {
         ))}
 
         <a class="tag-link" href={`${base}emergency/`} aria-label="猫不对劲？打开急症清单">
+          <circle class="tag-focus" cx="200" cy="240" r="30" />
           <g class="tagnote">
             <polyline class="lead" points="186,246 120,300 62,300" />
             <text x="52" y="310" text-anchor="end">不对劲？点这里</text>
@@ -137,6 +138,7 @@ const calico = regions.map((r) => {
           </g>
         </a>
       </svg>
+      <p class="sr-only" id="region-live" aria-live="polite"></p>
     </div>
   </section>
 
@@ -185,9 +187,19 @@ const calico = regions.map((r) => {
     function select(id: string, fromUser: boolean) {
       if (!regions.some((r) => r.dataset.region === id)) return;
       regions.forEach((r) => (r.hidden = r.dataset.region !== id));
-      labels.forEach((l) => l.classList.toggle('on', l.dataset.region === id));
+      labels.forEach((l) => {
+        const on = l.dataset.region === id;
+        l.classList.toggle('on', on);
+        if (on) l.setAttribute('aria-current', 'true');
+        else l.removeAttribute('aria-current');
+      });
       hits.forEach((h) => h.classList.toggle('on', h.dataset.region === id));
       if (!fromUser) return;
+      // 读屏软件看不到下面的列表换了，念一句告诉它
+      const region = regions.find((r) => r.dataset.region === id)!;
+      const name = region.querySelector('h2')!.textContent;
+      const count = region.querySelector('.count')!.textContent;
+      document.getElementById('region-live')!.textContent = `已切换到「${name}」，${count}`;
       history.replaceState(null, '', `#${id}`);
       if (narrow.matches) document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -507,6 +519,24 @@ const calico = regions.map((r) => {
   .lbl .hitbox {
     fill: transparent;
     pointer-events: all;
+  }
+
+  /* 键盘移到名字上时，点击区画一圈玳瑁黑的框 */
+  .lbl:focus-visible .hitbox {
+    stroke: var(--ink);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .tag-focus {
+    fill: none;
+    stroke: none;
+  }
+
+  .tag-link:focus-visible .tag-focus {
+    stroke: var(--ink);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
   }
 
   .lbl.on .bg,
